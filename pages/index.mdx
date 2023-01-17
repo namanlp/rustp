@@ -1,0 +1,33 @@
+import {
+  ScreenContainer,
+  Button,
+  HeroSection,
+  Hero,
+  HeroBody,
+  HeroTitle,
+  HeroTeaser,
+  HeroActionList,
+  HeroAction,
+} from "smooth-doc/components";
+import heroBackgroundImageURL from "../images/hero-background.png";
+
+<HeroSection>
+  <Hero backgroundImageURL={heroBackgroundImageURL}>
+    <HeroBody>
+      <HeroTitle>Your Smooth DOC setup is complete!</HeroTitle>
+      <HeroTeaser>Edit `pages/index.mdx` to personalize homepage.</HeroTeaser>
+      <HeroActionList>
+        <HeroAction>
+          <Button
+            variant="neutral"
+            forwardedAs="a"
+            href="/docs/"
+          >
+            Browse Docs
+          </Button>
+        </HeroAction>
+      </HeroActionList>
+    </HeroBody>
+  </Hero>
+</HeroSection>
+

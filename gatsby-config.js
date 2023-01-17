@@ -6,6 +6,7 @@ module.exports = {
         name: "Rust Programming",
         description: "Use your own description...",
         siteUrl: "https://rustp.org",
+        githubRepositoryURL: "https://github.com/namanlp/rustp"
       },
     },
   ],

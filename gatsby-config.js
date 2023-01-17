@@ -3,9 +3,9 @@ module.exports = {
     {
       resolve: "smooth-doc",
       options: {
-        name: "Smooth DOC Starter",
+        name: "Rust Programming",
         description: "Use your own description...",
-        siteUrl: "https://example.com",
+        siteUrl: "https://rustp.org",
       },
     },
   ],

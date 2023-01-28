@@ -1,8 +1,11 @@
 // src/smooth-doc/theme.js
 import { theme as baseTheme } from 'smooth-doc/src/theme'
+import myTheme from 'prism-react-renderer/themes/dracula'
+
 
 export const theme = {
   ...baseTheme,
+  'prism-theme': myTheme,
   colors: {
     ...baseTheme.colors,
     'primary-100': '#FFFAF0',

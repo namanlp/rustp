@@ -9,7 +9,7 @@ module.exports = {
         siteUrl: "https://rustp.org",
         author: "Naman Garg",
         githubRepositoryURL: "https://github.com/namanlp/rustp",
-        sections: ['Introduction', 'Number Theory', 'Components', 'Reference'],
+        sections: ['Introduction', '1. Number Theory', 'Components', 'Reference'],
         twitterAccount: 'namanlp',
       },
     },

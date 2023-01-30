@@ -1,0 +1,81 @@
+---
+title: Factorial Of Very Large Numbers
+section: Number Theory
+order: 81
+slug: /number-theory/factorial-of-large-numbers/
+description: Factorial is an important value of a number. But calculating factorial of very large can result in overflow. This article deals with this problem using modular arithmetic or modulo.
+---
+
+# Factorial Of Very Large Numbers
+Using Remainder and Modular Arithmetic
+
+## Why do we need Modulo
+The program discussed in [Finding Factorial Of a Number](/number-theory/factorial-of-number/) page finds the factorial of a given number. But factorial of number grows very fast with number. **Factorial of 100 is 9.33 × 10¹⁵⁷**
+So, it becomes impossible to store such large number as number in many languages, like **C, C++, Rust** etc. ( Though some languages like Python allow number of any length being stored ).
+
+* Largest integer data type in rust is `i128` which can store data from `-170141183460469231731687303715884105728` to `170141183460469231731687303715884105727` which is roughly of order `10³⁸` <br /> <br />
+* If we try to store a number beyond this range, **the number will overflow, and an error will be thrown!**
+
+Therefore, we must find an alternate to store and use the factorial of larger numbers.
+
+## Using Modulo of Number to store
+
+As we saw above, we can not store the complete number. But we can store it's modulo from a number.
+
+In most programming contest, a specific number is mentioned, generally `10⁹ + 7 or 1000000007` is used because It is *safe prime number*.
+
+But we will see a function that generates factorial of a number modulo any other number. Also, it is guaranteed that number will be less than the second number. That is, if we find factorial modulo 13, it is guaranteed that the answer will be less than 13.
+Hence, it will ensure that the number doesn't overflow.
+
+## Recursive Approach
+
+In the code seen in [Finding Factorial of a Number](/number-theory/factorial-of-number/) page, we just **return number modulo divisor**
+
+```rust
+
+fn factorial_recursive(number : i128, divisor: i128) -> i128{
+
+    // Base Case
+    if number<=1 {
+        return 1;
+    }
+
+    // Recursive Case
+    return ( (number%divisor) * factorial_recursive(number-1, divisor) ) % divisor;
+}
+```
+Program with Driver Code
+
+```rust
+use std::io::stdin;
+
+fn factorial_recursive(number : i128, divisor: i128) -> i128{
+
+    // Base Case
+    if number<=1 {
+        return 1;
+    }
+
+    // Recursive Case
+    return ( (number%divisor) * factorial_recursive(number-1, divisor) ) % divisor;
+}
+
+// Driver Code
+
+pub fn main() {
+
+    // Read and parse number to i128
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    let number : i128 = input.trim().parse().unwrap();
+
+    input.clear();
+
+    stdin().read_line(&mut input).unwrap();
+    let divisor : i128 = input.trim().parse().unwrap();
+
+    // Find and print factorial
+    let factorial = factorial_recursive(number, divisor);
+    println!("Factorial of {} is : {}", number,  factorial);
+}
+```

@@ -3,7 +3,7 @@ title: Factorial Of a Number
 section: Number Theory
 order: 80
 slug: /number-theory/factorial-of-number/
-description: Factorial is an important property of a number. It is used a lot of times, especially for calculating Permutation and Combination, Probability etc. for a given set of numbers.
+description: Factorial is an important value of a number. This article covers the basic definition factorial, properties and simple functions to find factorial of a number in Rust in both Iterative and Recursive manner. 
 ---
 
 # Factorial Of A Number
@@ -60,11 +60,9 @@ For example, 5! = 5 × 4! = 5 × 24 = 120
 
 For example, 5! = 6! / 6 = 720/6 = 120
 
-## Simple Program To Find Factorial of a number
+## Iterative Approach
 
 **Note :** We will take maximum integer data type in rust, that is `i128` so that we can find factorial of the largest number possible to store
-
-### Iterative Approach
 
 It is the simplest method, just take the number, and multiply it with all the natural numbers less than it.
 
@@ -124,3 +122,54 @@ Factorial of 20 is : 2432902008176640000
 
 **Time Complexity : O(n)** <br/>
 **Space Complexity : O(1)**
+
+
+## Recursive Approach
+
+In this, we compute the factorial using property of factorial **n! = n × (n-1)!** 
+
+So, we find the factorial of n by computing the factorial of n-1 recursively. Factorial of 0 and 1 are 1, as already known. Program is
+
+```rust
+fn factorial_recursive(number : i128) -> i128{
+
+    // Base Case
+    if number<=1 {
+        return 1;
+    }
+
+    // Recursive Case
+    return number * factorial_recursive(number-1);
+}
+```
+**Output**
+
+>20 <br/>
+Factorial of 20 is : 2432902008176640000
+
+
+**Time Complexity : O(n)** <br/>
+**Space Complexity : O(n)**
+
+( Space complexity is O(n) because all the intermediate are stored in stack memory till factorial of n-1 is found. )
+
+**Note :** Iterative approach is more efficient than recursive approach !
+
+## Conclusion
+
+This article covers the basic definition factorial, properties and simple functions to find factorial of a number in Rust in both Iterative and Recursive manner. 
+
+Factorial of Larger Numbers and array will be covered in the coming articles.
+
+**Thank You**
+
+
+
+import { GatsbySeo } from 'gatsby-plugin-next-seo';
+
+<GatsbySeo 
+description='Factorial is an important value of a number. This article covers the basic definition factorial, properties and simple functions to find factorial of a number in Rust in both Iterative and Recursive manner.'
+openGraph={{
+        description: 'Factorial is an important value of a number. This article covers the basic definition factorial, properties and simple functions to find factorial of a number in Rust in both Iterative and Recursive manner.',
+}}
+/>

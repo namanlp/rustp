@@ -14,8 +14,8 @@ import heroBackgroundImageURL from "../images/hero-background.png";
 <HeroSection>
   <Hero backgroundImageURL={heroBackgroundImageURL}>
     <HeroBody>
-      <HeroTitle>Your Smooth DOC setup is complete!</HeroTitle>
-      <HeroTeaser>Edit `pages/index.mdx` to personalize homepage.</HeroTeaser>
+      <HeroTitle>Providing Guides and ready to use codes in Rust Language!</HeroTitle>
+      <HeroTeaser>for development as well as competitive programming.</HeroTeaser>
       <HeroActionList>
         <HeroAction>
           <Button
@@ -23,11 +23,21 @@ import heroBackgroundImageURL from "../images/hero-background.png";
             forwardedAs="a"
             href="/introduction/what-is-rust/"
           >
-            Browse Docs
+            Browse Guides
           </Button>
         </HeroAction>
       </HeroActionList>
     </HeroBody>
   </Hero>
 </HeroSection>
+
+
+import { GatsbySeo } from 'gatsby-plugin-next-seo';
+
+<GatsbySeo
+    description='Providing Guides and ready to use codes in Rust Language for development as well as competitive programming.'
+    openGraph={{
+        description: 'Providing Guides and ready to use codes in Rust Language for development as well as competitive programming.',
+    }}
+/>
 

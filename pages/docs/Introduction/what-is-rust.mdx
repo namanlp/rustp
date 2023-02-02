@@ -3,6 +3,7 @@ title: What is Rust?
 section: Introduction
 order: 1
 slug: /introduction/what-is-rust/
+description: Rust is a modern general purpose High Level Programming language, used for many applications. This article introduces Rust Programming Language and covers the main features of Rust
 ---
 
 # What is Rust?
@@ -19,3 +20,35 @@ Rust is a modern general purpose High Level Programming language, used by many c
 
 - Rust uses **compiler** instead of interpreter.
 - Rust is Open Source
+- Rust uses concept of **Ownership and Borrowing**
+- Rust has a very [good documentation to learn from](https://www.rust-lang.org/learn)
+
+## Main Features of Rust
+
+**1. Rust ensures memory safety :** Rust ensures that there are no null pointers, dangling pointers, or data races, unlike C / C++. Moreover, you can not access elements outside of array in Rust.
+
+**2. Very efficient :** Rust is much more efficient in most cases as compared to Java and Python. Its speed is comparable to C++
+
+**3. No Garbage Collector :** As used in other programming languages like Java, rust do not use garbage collector to free the memory. Instead, it uses the concept of *Ownership and Borrowing*. This makes rust much efficient.
+
+**4. Use of Pointers :** Rust also allow the use of Pointers and References. It is unique that Rust allows use of pointers and ensures memory safety at the same time.
+
+**5. Strong community support :** Rust is an Open Source Project and has a [strong, welcoming and active community](https://users.rust-lang.org/).
+
+That's main features of rust for me, but there are many more features. I can not cover all of them here.
+
+## Conclusion
+
+This article introduces Rust Programming Language for a newbie point of view, and covers the main features of Rust.
+
+**Thank You**
+
+
+import { GatsbySeo } from 'gatsby-plugin-next-seo';
+
+<GatsbySeo
+    description='Rust is a modern general purpose High Level Programming language, used for many applications. This article introduces Rust Programming Language and covers the main features of Rust'
+    openGraph={{
+        description: 'Rust is a modern general purpose High Level Programming language, used for many applications. This article introduces Rust Programming Language and covers the main features of Rust.',
+    }}
+/>

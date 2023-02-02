@@ -13,5 +13,87 @@ And its Program in Rust
 
 Many times, we have to compute exponents of a given number. But it is notable that overflow may occur for large values. Largest number that we can store with numerical data type in rust is **`2¹²⁸`**
 
-Now, suppose, in some question, we have to find **`2¹⁰⁰⁰`** modulo 1000000007. This is called Modular Exponentiation.
+Now, suppose, in some question, we have to find **`2¹⁰⁰⁰`** modulo 1000000007. If we try to first compute **`2¹⁰⁰⁰`** and then find modulo, rust will throw overflow error.
 
+```python
+thread 'main' panicked at 'attempt to multiply with overflow', src/iterative.rs:10:9
+```
+
+## Problem statement
+
+Given three numbers n, x and p, compute **`nˣ`**  modulo p.
+
+## Naive Approach
+
+Simplest solution to this would be to take 1, and multiply it with n, x times, and find modulo p each time. From [Modular Multiplication](/number-theory/modular-multiplication/#2-multiplication-property), we already know that
+
+<center> <b>(a x b) mod m = ((a mod m) x (b mod m)) mod m</b> </center>
+
+But this will be done in **O( x )** or **Linear time complexity.**
+
+Here's the code for this approach
+
+```rust
+fn modular_exponent(n:i128 , x:i128 , p:i128) -> i128{
+    // Initialize ans = 1
+    let mut ans = 1;
+
+    // Multiply ans with n, x times, ans modulo
+    for _ in 0..x {
+        ans *= n;
+        ans%=p;
+    }
+
+    // Return ans
+    return ans;
+}
+```
+
+With Driver Code
+
+```rust
+fn modular_exponent(n:i128 , x:i128 , p:i128) -> i128{
+    // Initialize ans = 1
+    let mut ans = 1;
+
+    // Multiply ans with n, x times, ans modulo
+    for _ in 0..x {
+        ans *= n;
+        ans%=p;
+    }
+
+    // Return ans
+    return ans;
+}
+
+// Driver Code
+
+use std::io;
+
+fn take_int() -> i128 {
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+    return input.trim().parse().unwrap();
+}
+
+fn main() {
+    let n = take_int();
+    let x = take_int();
+    let p = take_int();
+
+    println!("{}", modular_exponent(n, x, p));
+}
+```
+
+**Input**
+>2 <br />
+100000 <br />
+1000000007 <br />
+
+**Output**
+>607723520
+
+**Time Complexity : O(n)** <br/>
+**Space Complexity : O(1)**
+<br />
+<br />

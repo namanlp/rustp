@@ -20,6 +20,7 @@ export function AppNav() {
               href="https://github.com/namanlp/rustp/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="This website's Github Repository"
             >
               <RiGithubFill style={{ width: 24, height: 24 }} />
             </NavLink>
@@ -31,6 +32,7 @@ export function AppNav() {
               href="https://twitter.com/namanlp"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="My Twitter Account"
             >
               <RiTwitterFill style={{ width: 24, height: 24 }} />
             </NavLink>

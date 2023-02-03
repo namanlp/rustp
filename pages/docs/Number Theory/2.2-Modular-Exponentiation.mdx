@@ -3,7 +3,7 @@ title: Modular Exponentiation
 section: 2.1 Arithmetic Operations
 order: 2
 slug: /number-theory/modular-exponentiation/
-description: Many times, the results become so large that it becomes impossible to store them in any numerical data structure. This article covers basics of Modular Arithmetic.
+description:  Modular exponentiation is very frequently used concept in competitive programming. Here is the program for modular exponentiation in rust in logarithmic time complexity instead of linear using Divide and Conquer.
 ---
 
 # Modular Exponentiation in Rust
@@ -11,7 +11,7 @@ And its Program in Rust
 
 ## What is Modular Exponentiation
 
-Many times, we have to compute exponents of a given number. But it is notable that overflow may occur for large values. Largest number that we can store with numerical data type in rust is **`2¹²⁸`**
+Many times, we have to compute exponents of a given number for various purposes. But it is notable that overflow may occur for large values. Largest number that we can store with numerical data type in rust is **`2¹²⁸`**, and is 2<sup>64</sup> in C / C++.
 
 Now, suppose, in some question, we have to find **`2¹⁰⁰⁰`** modulo 1000000007. If we try to first compute **`2¹⁰⁰⁰`** and then find modulo, rust will throw overflow error.
 
@@ -21,7 +21,7 @@ thread 'main' panicked at 'attempt to multiply with overflow', src/iterative.rs:
 
 ## Problem statement
 
-Given three numbers n, x and p, compute **`nˣ`**  modulo p.
+Given three numbers n, x and p, compute n<sup>x</sup>  modulo p.
 
 ## Naive Approach
 
@@ -93,7 +93,125 @@ fn main() {
 **Output**
 >607723520
 
-**Time Complexity : O(n)** <br/>
-**Space Complexity : O(1)**
+**Time Complexity : O( x )** <br/>
+**Space Complexity : O( 1 )**
 <br />
 <br />
+
+##  Efficient Divide and Conquer solution
+
+We can find the modular exponentiation in logarithmic time complexity, using  Divide and Conqueror approach.
+
+### Approach
+
+We know that mathematically,
+
+<center> <b> n<sup>a.b</sup> = (n<sup>a</sup> )<sup> b </sup> </b> </center>
+
+So, let's suppose we have to find n<sup>x</sup> and x = 2.y, so, we can find ( n <sup> 2 </sup> ) <sup> y </sup>. <br /> **In y + 1 steps or x/2 + 1 steps**
+
+<center> <b> n<sup>2.y</sup> = (n<sup>2</sup> )<sup> y </sup> </b> </center>
+Hence, we multiply n by itself, if x is even.
+
+If, on the other hand, x is odd number **it is guaranteed that x-1 will be even number**, hence, we multiply answer by n, if x is odd, and reduce x by 1.
+<hr/>
+
+### Algorithm
+
+1. If x <= 0, return 1.
+2. If x is 1, return (answer * n) % p
+3. If x  > 1 and even, change n to n<sup>2</sup>, change x to x/2, and go to step 2
+4. If X > 1 and odd, multiply answer by n and store answer modulo p, and reduce x to x-1 and go to step 2.
+
+## Program for Modular Exponentiation in Rust
+
+Implementation of above algorithm is written below
+
+```rust
+
+fn modular_exponent(mut n:i128 ,mut x:i128 , p:i128) -> i128{
+    // Initialize ans = 1
+    let mut ans = 1;
+
+    // x is 0, return 1
+    if x<=0 {
+        return 1;
+    }
+
+    // use loop statement in rust for infinite loop
+    loop {
+        // Step 2. If x is 1, return (answer * n) % p
+        if x==1 {
+            return (ans * n) % p;
+        }
+
+        // Step 3. If x > 1 and even, change n to n^2, change x to x/2, and go to step 2
+
+        // for checking if x is even, we check the LSB. is 0 or 1
+        // Alternatively, we can also check x%2, but this is more efficient
+        if x&1==0 {
+            n=( n * n ) % p;
+            x>>=1; // or x = x/2
+            continue;
+        }
+
+        // Step 4. If X > 1 and odd, multiply answer by n and store answer modulo p,
+        // and reduce x to x-1 and go to step 2.
+        else {
+            ans = (ans*n) % p;
+            x-=1;
+        }
+    }
+}
+```
+
+**Input**
+>2 <br />
+100000 <br />
+1000000007 <br />
+
+**Output**
+>607723520
+
+**Time Complexity : O( log <sub> 2 </sub> x)** <br/>
+**Space Complexity : O( 1 )**
+
+## Conclusion
+
+Modular exponentiation is very frequently used concept in competitive programming for computing the answer.
+In this article, we made a program for modular exponentiation in rust in logarithmic time complexity instead of linear time complexity using Divide and Conquer approach. Here's the function for easy access
+
+```rust
+
+fn modular_exponent(mut n:i128 ,mut x:i128 , p:i128) -> i128{
+    let mut ans = 1;
+    if x<=0 {
+        return 1;
+    }
+    loop {
+        if x==1 {
+            return (ans * n) % p;
+        }
+        if x&1==0 {
+            n=( n * n ) % p;
+            x>>=1;
+            continue;
+        }
+        else {
+            ans = (ans*n) % p;
+            x-=1;
+        }
+    }
+}
+```
+
+**Thank You**
+
+import { GatsbySeo } from 'gatsby-plugin-next-seo';
+
+<GatsbySeo
+    description='Modular exponentiation is very frequently used concept in competitive programming. Here is the program for modular exponentiation in rust in logarithmic time complexity instead of linear using Divide and Conquer.'
+    openGraph={{
+        description: 'Modular exponentiation is very frequently used concept in competitive programming. Here is the program for modular exponentiation in rust in logarithmic time complexity instead of linear using Divide and Conquer.',
+    }}
+/>

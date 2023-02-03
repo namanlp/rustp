@@ -143,13 +143,8 @@ In this article, we designed a function that takes input from user and returns a
 use std::io;
 
 fn take_int() -> usize {
-    // Declare string
     let mut input = String::new();
-
-    // Input string
     io::stdin().read_line(&mut input).unwrap();
-
-    // Return number
     return input.trim().parse().unwrap();
 }
 ```

@@ -19,11 +19,11 @@ So, it is better to make a function and just call it instead of rewriting it aga
 
 In Rust, and most other programming languages, **input is taken as string of characters**. So, it is necessary to convert the string into desired numerical data type like **`i8, u8 , i16, u16, isize, usize, f32, f64`** etc.
 
-**Note :** In this program, we will assume that **integers are in different lines** and only 1 integer per line is allowed.
+**Note :** In this program, we will assume that **integers are in different lines** and only 1 integer per line is allowed. For multiple integers in a single line, see [Function to Input array of numbers](/basic-programs/input-array-of-numbers/)
 
 ## Simple Multiplication Program
 
-So, let's start with designing a multiplication program. In this program, we will take two integers and output the result of their multiplication.
+So, let's start with designing a multiplication program. In this program, we will take two integers and output will be the product of two numbers.
 
 **Example :** <br />
 **Input :**
@@ -43,7 +43,7 @@ fn take_int() -> usize {
 }
 ```
 
-You can replace usize with any numerical data type you want.
+You can replace `usize` with any data type you want, provide it can be parsed.
 
 ### 2. Declaring a string
 
@@ -85,7 +85,7 @@ return input
 **`.parse()`** is used to convert the string to number. Interestingly, you don't have to tell the data type in this case, because Rust automatically determines it using return data type. Cool, no? <br />
 **`unwrap()`** specifies that program will panic if, string can not be converted to number. For example if you input `12h`, `23 34` it will panic because it is not convertible to number. You must enter 1 number per line.
 
-### 5. Complete function
+### 5. Putting things together
 
 ```rust
 use std::io;

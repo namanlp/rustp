@@ -3,7 +3,7 @@ title: Prime Factorization of a number
 section: 2.2 Factors of a Number
 order: 2
 slug: /number-theory/prime-factorization-of-a-number/
-description: Prime Factorization of a natural number is splitting the number into its factors, which are prime numbers. Here, we will make a function to list all the prime factors of a natural number in Rust.
+description: Prime Factorization of a natural number is splitting the number into its factors, which are prime numbers. Here, we will make a function to list all the prime factors of a natural number in Rust using BTreeMap.
 ---
 
 # Prime Factorization of a natural number
@@ -29,7 +29,9 @@ Using BTreeMap
 3. While i divides number, simply add i to prime factors.
 4. If the number, after loop, does not become 1, number that is left, itself is a prime number.
 
-Function using above approach is given below :
+## Program
+
+Program using above approach is given below :
 
 ```rust
 pub fn prime_factorization(mut number:i128) -> BTreeMap<i128, i128> {
@@ -167,3 +169,49 @@ pub fn main() {
 **Note :** We can print the number instead of storing into the BtreeMap, to reduce **Space Complexity to O(1)** but it is rarely useful. BTreeMap or vector of prime factors is far more useful in real applications, so I will demonstrate BTreeMap, instead of printing directly.
 
 You can also modify the code to use *HashMap* or *Vector* or *BTreeSet* or *HashSet*, according to your requirement.
+
+## Conclusion
+
+Prime Factorization of a natural number is splitting the number into the product of prime numbers. It is used for various applications.
+
+In this article, we made a function to generate all the prime factors of a number and store them with their respective exponents. Here is the function for easy access
+
+```rust
+pub fn prime_factorization(mut number:i128) -> BTreeMap<i128, i128> {
+    let mut prime_factors: BTreeMap<i128, i128> = BTreeMap::new();
+    let mut freq:i128 = 0;
+    while number&1 == 0 {
+        number>>=1;
+        freq+=1;
+    }
+    if freq > 0 { prime_factors.insert(2, freq);}
+    let mut i = 3;
+    while i*i <= number {
+        if number%i==0 {
+            freq = 0;
+            while number%i==0 {
+                number/=i;
+                freq+=1;
+            }
+            prime_factors.insert(i, freq);
+        }
+        i+=2;
+    }
+    if number > 1 {prime_factors.insert(number, 1);}
+
+    return prime_factors;
+}
+```
+
+Above program runs on O( sqrt (n) ) time complexity. We can also optimize the code using sieve method, which we will discuss later.
+
+**Thank You**
+
+import { GatsbySeo } from 'gatsby-plugin-next-seo';
+
+<GatsbySeo
+    description='Prime Factorization of a natural number is splitting the number into its factors, which are prime numbers. Here, we will make a function to list all the prime factors of a natural number in Rust using BTreeMap.'
+    openGraph={{
+        description: 'Prime Factorization of a natural number is splitting the number into its factors, which are prime numbers. Here, we will make a function to list all the prime factors of a natural number in Rust using BTreeMap.',
+    }}
+/>

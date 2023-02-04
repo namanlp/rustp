@@ -150,3 +150,34 @@ Use the same driver code.
 **Space Complexity : O( sqrt(n) )**
 
 **Note :** Repeating, We can print the number instead of storing into the array or vector, to reduce **Space Complexity to O(1)** but it is rarely useful. Vector of factors is far more useful in real applications, so I will demonstrate Vector, instead of printing directly.
+
+## Conclusion
+
+Factors or divisors of a natural number are the numbers that perfectly divides it. In this article we made a program to list all the factors of a natural number in Rust, and also optimized it to square root time complexity. Here is the optimized function for easy access
+
+```rust
+fn list_factors(number:i128) -> Vec<i128>{
+    let mut factors : Vec<i128> = Vec::new();
+    let mut i : i128 = 1;
+    while i*i <= number{
+        if number % i == 0 {
+            factors.push(i);
+            if i*i != number { factors.push(number / i); }
+        }
+        i+=1;
+    }
+    factors.sort();
+    return factors;
+}
+```
+
+**Thank You**
+
+import { GatsbySeo } from 'gatsby-plugin-next-seo';
+
+<GatsbySeo
+    description='Factors or divisors of a natural number are the numbers that perfectly divides it. Here, we will make a function to list all the factors of a natural number in Rust, and also optimize it to square root time complexity.'
+    openGraph={{
+        description: 'Factors or divisors of a natural number are the numbers that perfectly divides it. Here, we will make a function to list all the factors of a natural number in Rust, and also optimize it to square root time complexity.',
+    }}
+/>

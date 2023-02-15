@@ -17,10 +17,10 @@ Lowest Common denominator is used for rational numbers, and it is LCM of denomin
 
 **For Example :** LCM of 100 and 75 is 300
 
-import gcdHcf from "../../../images/Number Theory/gcd-or-hcf.webp"
+import lcm from "../../../images/Number Theory/lcm.webp"
 
 <div style={{textAlign: 'center'}} >
-    <img src={gcdHcf} width="100%" alt="GCD of 150 and 210 is 30" />
+    <img src={lcm} width="100%" alt="LCM of 150 and 210 is 1050" />
 </div>
 
 ## Naive Approach
@@ -36,6 +36,16 @@ We will not write its code, because it is very clumsy.
 **Space Complexity : O( 1 )**
 
 ## Efficient Euclidean algorithm
+
+We know that, product of 2 numbers is equal to product of their GCD and LCM. Mathematically,
+
+<center> <b> a × b = GCD(a, b) × LCM(a, b)</b> </center>
+
+We already saw [How To find HCF of 2 numbers using Euclidean Algorithm Here](/number-theory/gcd-or-hcf/). We will use this function to find LCM of 2 numbers.
+
+So,
+
+<center> <b> LCM (a, b) = (a × b) / HCF(a, b)</b> </center>
 
 
 

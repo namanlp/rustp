@@ -35,6 +35,75 @@ Hence, if gcd > 1, then remainder must also be greater than 1.
 1. For returning or printing fractional numbers in competitive programming. For example, we have to find ( p / q ) mod m. It is simply written as (p × q<sup>-1</sup>) mod m or ( (p mod) ×  (q<sup>-1</sup>) mod m ) mod m,
 where **( q<sup>-1</sup> ) mod m** is Modular Multiplicative Inverse of q with respect to m.
 
+
 2. To find Permutation and Combination of very large numbers. For example, we have to find <sup>100</sup>P<sub>50</sub>. We must first [generate factorial array](/number-theory/factorial-of-mutiple-numbers/),
 then compute Modular Multiplicative Inverse of 50! with respect to given number, and multiply it with 100! mod p, and then compute answer. We will discuss detailed method later.
 
+
+3. In Cryptography, especially in RSA algorithm.
+
+## Naive Approach
+
+Simplest brute force solution can be to simply traverse all numbers from 1 to p-1, and return the number if ( n × x  ) % p = 1  or ( n × x ) - 1 is divisible by p.
+
+Function using this approach
+
+```rust
+fn mod_inverse (n:i128, p:i128) -> i128{
+    // Checks numbers from 1 to p-1
+    for x in 1..p {
+        if (n*x) % p == 1 {
+            return x;
+        }
+    }
+
+    // Returns 0 if no Modular Multiplicative Inverse exist
+    return 0;
+}
+```
+
+With Driver Code
+
+```rust
+use std::io::stdin;
+
+fn take_int() -> i128 {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    input.trim().parse().unwrap()
+}
+
+// Magic starts here
+
+fn mod_inverse (n:i128, p:i128) -> i128{
+    // Checks numbers from 1 to p-1
+    for x in 1..p {
+        if (n*x) % p == 1 {
+            return x;
+        }
+    }
+
+    // Returns 0 if no Modular Multiplicative Inverse exist
+    return 0;
+}
+
+// Driver Code
+
+pub fn main() {
+    let n = take_int();
+    let p = take_int();
+
+    println!("{}", mod_inverse(n, p));
+}
+```
+
+**Input**
+>213 <br />
+1000000007 <br />
+
+**Output**
+>32863850
+
+**Time Complexity : O( p )** <br/>
+**Space Complexity : O( 1 )**
+<br />

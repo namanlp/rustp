@@ -9,3 +9,22 @@ description: Hello
 # Modular Multiplicative Inverse in Rust
 And program in Rust to find it using Fermat's little theorem
 
+## What is Modular Multiplicative Inverse
+
+As we know that there is **no divide operation in Modular Arithmetic**. So, Modular Multiplicative Inverse is a number that *replaces* divide function  in Modular Arithmetic.
+Modular Multiplicative Inverse of **n** with respect to **p** is a natural number **between 1 and p-1**, let us say x, such that
+
+<center> <b> ( n × x )  mod p = 1 </b> </center>
+
+We can alternatively say that Modular Multiplicative Inverse is a number such that **( n × x ) - 1 is divisible by p**.
+
+**For Example :** Modular Multiplicative Inverse of 23 with respect to 10 is 7. ( Because 23 × 7 = 161 and 161 % 10 = 1 )
+
+<hr />
+
+**Note :** The multiplicative inverse of  **n** with respect to **p** exists if and only if **n and p are co prime numbers**
+
+**Proof :** Let us suppose n = q × p + r , where q is quotient and r is remainder. So, if n is divisible by gcd, and p is divisible by gcd, then r must be divisible by gcd too. ( From Euclidean Algorithm )
+
+Hence, if gcd > 1, then remainder must be greater than 1.
+

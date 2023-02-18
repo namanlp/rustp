@@ -18,6 +18,8 @@ Modular Multiplicative Inverse of **n** with respect to **p** is a natural numbe
 
 We can alternatively say that Modular Multiplicative Inverse is a number such that **( n × x ) - 1 is divisible by p**.
 
+x can also be written as **x = ( n<sup>-1</sup> ) mod p**
+
 **For Example :** Modular Multiplicative Inverse of 23 with respect to 10 is 7. ( Because 23 × 7 = 161 and 161 % 10 = 1 )
 
 <hr />
@@ -26,5 +28,13 @@ We can alternatively say that Modular Multiplicative Inverse is a number such th
 
 **Proof :** Let us suppose n = q × p + r , where q is quotient and r is remainder. So, if n is divisible by gcd, and p is divisible by gcd, then r must be divisible by gcd too. ( From Euclidean Algorithm )
 
-Hence, if gcd > 1, then remainder must be greater than 1.
+Hence, if gcd > 1, then remainder must also be greater than 1.
+
+## Need of Modular Multiplicative Inverse
+
+1. For returning or printing fractional numbers in competitive programming. For example, we have to find ( p / q ) mod m. It is simply written as (p × q<sup>-1</sup>) mod m or ( (p mod) ×  (q<sup>-1</sup>) mod m ) mod m,
+where **( q<sup>-1</sup> ) mod m** is Modular Multiplicative Inverse of q with respect to m.
+
+2. To find Permutation and Combination of very large numbers. For example, we have to find <sup>100</sup>P<sub>50</sub>. We must first [generate factorial array](/number-theory/factorial-of-mutiple-numbers/),
+then compute Modular Multiplicative Inverse of 50! with respect to given number, and multiply it with 100! mod p, and then compute answer. We will discuss detailed method later.
 

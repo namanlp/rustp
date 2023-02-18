@@ -107,3 +107,83 @@ pub fn main() {
 **Time Complexity : O( p )** <br/>
 **Space Complexity : O( 1 )**
 <br />
+
+## Efficient Fermat's little theorem Solution
+
+Generally, especially in competitive programming, we are given that the number, p, is prime number. So, we can easily find Modular Multiplicative Inverse using [Fermat's little theorem](https://en.wikipedia.org/wiki/Fermat%27s_little_theorem)
+
+From Fermat's little theorem,
+
+<center> <b> ( n<sup> p-1</sup> )  mod p = 1 </b> </center>
+
+Now, n<sup> p-1</sup>  = n<sup> p-2</sup> × n. So, multiplying with n<sup>-1</sup> both sides, we get.
+
+<center> <b> ( n<sup> p-2</sup> )  mod p = ( n<sup> -1</sup> )  mod p </b> </center>
+
+We can easily calculate ( n<sup> p-2</sup> ) mod p using [Modular Exponentiation in Rust](/number-theory/modular-exponentiation/).
+
+Function using this approach is given below.
+
+```rust
+// Function for Modular Exponentiation in Rust
+
+// Calculates (n^x) % p
+fn modular_exponent(mut n:i128 ,mut x:i128 , p:i128) -> i128{
+    let mut ans = 1;
+    if x<=0 { return 1; }
+    loop {
+        if x==1 { return (ans * n) % p; }
+        if x&1==0 {
+            n=( n * n ) % p;
+            x>>=1;
+            continue;
+        }
+        else {
+            ans = (ans*n) % p;
+            x-=1;
+        }
+    }
+}
+
+// Check GCD
+fn gcd(mut a:i128, mut b:i128) -> i128{
+    if a==b { return a; }
+    if b > a {
+        let temp = a;
+        a = b;
+        b = temp;
+    }
+    while b>0 {
+        let temp = a;
+        a = b;
+        b = temp%b;
+    }
+    return a;
+}
+
+// Magic starts here
+fn mod_inverse (n:i128, p:i128) -> i128{
+
+    // Returns 0 if no Modular Multiplicative Inverse exist
+    if p<=1 || gcd(n, p)>1 {
+        return 0;
+    }
+
+    // Return Modular Multiplicative Inverse, that is (n^(p-2)) mod p
+    // From Fermat's little theorem
+    return modular_exponent(n, p-2, p);
+}
+```
+
+Use the same driver code.
+
+**Input**
+>213 <br />
+1000000007 <br />
+
+**Output**
+>32863850
+
+**Time Complexity : O( log <sub> 2 </sub> p)** <br/>
+**Space Complexity : O( 1 )**
+<br />

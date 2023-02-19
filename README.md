@@ -14,4 +14,19 @@ And finally,
 ```
 gatsby develop
 ```
+To generate static website to host, run
+
+```
+gatsby build
+```
+
+and you can see that there is a website in `/public` folder.
+
+You can test it on Linux, using 
+
+```
+python3 -m http.server
+```
+
+command
 

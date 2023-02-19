@@ -3,7 +3,7 @@ title: Modular Multiplicative Inverse
 section: 2.1 Arithmetic Operations
 order: 3
 slug: /number-theory/modular-inverse/
-description: Hello
+description: Modular Multiplicative Inverse is a number that replaces the divide function in Modular Arithmetic. We will make a function to find Modular Multiplicative Inverse of a number in Rust, and optimize it to logarithmic time complexity using Fermat's little theorem.
 ---
 
 # Modular Multiplicative Inverse in Rust
@@ -186,4 +186,53 @@ Use the same driver code.
 
 **Time Complexity : O( log <sub> 2 </sub> p)** <br/>
 **Space Complexity : O( 1 )**
-<br />
+
+## Conclusion
+
+Modular Multiplicative Inverse is a number that replaces the divide function in Modular Arithmetic.
+
+In this Article, we made a function to calculate Modular Multiplicative Inverse of a number with respect to a prime number using Fermat's little theorem in logarithmic time complexity.
+
+Code is pretty easier to understand, as compared to equivalent Extended Euclidean Algorithm.
+
+Here is function for easy access
+
+```rust
+
+// Calculates (n^x) % p
+fn modular_exponent(mut n:i128 ,mut x:i128 , p:i128) -> i128{
+    let mut ans = 1;
+    if x<=0 { return 1; }
+    loop {
+        if x==1 { return (ans * n) % p; }
+        if x&1==0 { n=( n * n ) % p; x>>=1;continue; }
+        else { ans = (ans*n) % p; x-=1; }
+    }
+}
+// Find GCD
+fn gcd(mut a:i128, mut b:i128) -> i128{
+    if a==b { return a; }
+    if b > a { let temp = a;a = b;b = temp; }
+    while b>0 { let temp = a;a = b;b = temp%b; }
+    return a;
+}
+// Magic starts here
+fn mod_inverse (n:i128, p:i128) -> i128{
+    if p<=1 || gcd(n, p)>1 { return 0; }
+    return modular_exponent(n, p-2, p);
+}
+
+```
+**Thank You**
+
+
+import { GatsbySeo } from 'gatsby-plugin-next-seo';
+
+<GatsbySeo
+    description=
+        "Modular Multiplicative Inverse is a number that replaces the divide function in Modular Arithmetic. We will make a function to find Modular Multiplicative Inverse of a number in Rust, and optimize it to logarithmic time complexity using Fermat's little theorem."
+    openGraph={{
+        description:
+            "Modular Multiplicative Inverse is a number that replaces the divide function in Modular Arithmetic. We will make a function to find Modular Multiplicative Inverse of a number in Rust, and optimize it to logarithmic time complexity using Fermat's little theorem.",
+    }}
+/>

@@ -6,4 +6,34 @@ slug: /basic-programs/string-to-vector/
 description: Convert a string to vector of chars in Rust.
 ---
 
-# Function to convert String to Vector
+# Function to convert String to Vector of characters
+and frequently used string functions for competitive programming and more in Rust
+
+## Introduction
+
+For many applications, especially for many questions in competitive programming, ability to treat string like a vector or array of characters becomes immensely important.
+In many questions, you have to take input as a string and then perform certain operations on it like a vector.
+
+In many languages like C, C++, python etc. you can easily index strings using square brackets [], just like vectors or arrays.
+
+In Rust, however, you can not index strings using square brackets. For example, the given code
+
+```rust
+println!("{}", string1[0]);
+```
+
+will give error
+
+```js
+error[E0277]: the type `str` cannot be indexed by `{integer}`
+```
+
+or
+
+```js
+error[E0277]: the type `str` cannot be indexed by `usize`
+```
+
+These operations are used very frequently in various applications, including competitive programming.
+
+So, if you are doing competitive programming in Rust, you should include a function in your template to take string as input, and return vector of chars, for easy access.

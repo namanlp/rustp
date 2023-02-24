@@ -14,9 +14,9 @@ and frequently used string functions for competitive programming and more in Rus
 For many applications, especially for many questions in competitive programming, ability to treat string like a vector or array of characters becomes immensely important.
 In many questions, you have to take input as a string and then perform certain operations on it like a vector.
 
-In many languages like C, C++, python etc. you can easily index strings using square brackets [], just like vectors or arrays.
+In many languages like C, C++ etc. you can easily index strings using square brackets [], just like vectors or arrays.
 
-In Rust, however, you can not index strings using square brackets. For example, the given code
+In Rust, however, you can not index strings using square brackets, due to **UTF-8 encoding**. For example, the given code
 
 ```rust
 println!("{}", string1[0]);
@@ -36,4 +36,18 @@ error[E0277]: the type `str` cannot be indexed by `usize`
 
 These operations are used very frequently in various applications, including competitive programming.
 
-So, if you are doing competitive programming in Rust, you should include a function in your template to take string as input, and return vector of chars, for easy access.
+So, if you are doing competitive programming in Rust, you should **include a function in your template** to take string as input, and return vector of chars, for easy access.
+
+## Why Rust do this
+
+The simple answer is to save space!
+
+Actually, Rust implements Unicode with UTF-8 encoding by default. UTF-8 tends to reduce the memory space occupied by string. But now, each character is of different length.
+So, it is impossible to get any character by index by simply going to that block, like we did in C / C++, because we can not simply guarantee how much characters are there in between.
+
+For example, `a` is encoded as `61` and `©` ( copyright sign ) is encoded as `C2 A9` in unicode. ( These are hexadecimal code )
+
+So, if we have a string `a©a` = `61 C2 A9 61` , and try to access string[2] by incrementing 2 bytes in base address, it will return `A9` hexadecimal, which is invalid character.
+
+So, we have to traverse whole string and move only after checking unique prefixes.
+

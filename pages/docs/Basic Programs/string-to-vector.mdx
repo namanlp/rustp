@@ -70,3 +70,23 @@ fn main() {
 
 As seen above, it takes **O( n )** Time Complexity for accessing character each time. Hence, it results in TLE in competitive programming very often. We should be able to access each character in **O( 1 )** or constant time complexity for each subsequent operations.
 
+## Converting String to Vector of Characters
+
+As seen above, if we use `.chars().nth().unwrap()` method, it will take **O( N )** or linear time complexity **for each operation**. So, let's say we have to print all the characters of the string. It will take **O( N <sup>2</sup> )** or quadratic time complexity.
+
+But we can access each element of Vector using **O( 1 )** or constant time complexity. So, printing all characters can be easily done in **O( N )** or Linear time complexity. We can convert string to vector of characters using **`.collect()`** method.
+
+Program to demonstrate this
+
+```rust
+fn main() {
+    let string1 = "Hello World";
+    let characters:Vec<char> = string1.chars().collect();
+    println!("{:?}", characters);
+}
+```
+
+**Output**
+
+>['H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd']
+

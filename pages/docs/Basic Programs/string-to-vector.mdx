@@ -90,3 +90,60 @@ fn main() {
 
 >['H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd']
 
+## Function with input
+
+Now, in competitive programming as well as other string manipulation programmes, most of the programmers will want a function, that will take string input and automatically convert it to vector and return vector of characters.
+
+Function for this is
+
+```rust
+use std::io;
+
+fn take_string() -> Vec<char> {
+    // Initiate input variable
+    let mut input = String::new();
+
+    // Read into input
+    io::stdin().read_line(&mut input).unwrap();
+
+    // Convert input to vector of characters
+    let vec:Vec<char> = input.trim().chars().collect();
+
+    // Return vector
+    return vec;
+}
+```
+
+With Driver code, this looks like
+```rust
+use std::io;
+
+fn take_string() -> Vec<char> {
+    // Initiate input variable
+    let mut input = String::new();
+
+    // Read into input
+    io::stdin().read_line(&mut input).unwrap();
+
+    // Convert input to vector of characters
+    let vec:Vec<char> = input.trim().chars().collect();
+
+    // Return vector
+    return vec;
+}
+
+// Driver code
+fn main() {
+    let str1 = take_string();
+    println!("{:?}", str1);
+    println!("{} {}", str1[0], str1[str1.len()-1]);
+}
+```
+
+**Input**
+>This is rust programming
+
+**Output**
+>['T', 'h', 'i', 's', ' ', 'i', 's', ' ', 'r', 'u', 's', 't', ' ', 'p', 'r', 'o', 'g', 'r', 'a', 'm', 'm', 'i', 'n', 'g'] <br />
+T g
+

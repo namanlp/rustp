@@ -51,3 +51,22 @@ So, if we have a string `a©a` = `61 C2 A9 61` , and try to access string[2] by 
 
 So, we have to traverse whole string and move only after checking unique prefixes.
 
+## The `.chars().nth()` method and TLE
+
+Rust has a method called `.chars()` , that is used to access string as chars. It takes **O( n )** time complexity, because it has to decode the complete string.
+
+Now, if we use, `.chars().nth(i).unwrap()` , it will run each time with **O( n )** time complexity, which is very inefficient. Let us see a program using this
+
+```rust
+fn main() {
+    let string1 = "Hello World";
+    println!("{}", string1.chars().nth(0).unwrap());
+}
+```
+
+**Output**
+
+>H
+
+As seen above, it takes **O( n )** Time Complexity for accessing character each time. Hence, it results in TLE in competitive programming very often. We should be able to access each character in **O( 1 )** or constant time complexity for each subsequent operations.
+

@@ -136,7 +136,7 @@ fn take_string() -> Vec<char> {
 fn main() {
     let str1 = take_string();
     println!("{:?}", str1);
-    println!("{} {}", str1[0], str1[str1.len()-1]);
+    println!("First and last characters : {} {}", str1[0], str1[str1.len()-1]);
 }
 ```
 
@@ -145,7 +145,7 @@ fn main() {
 
 **Output**
 >['T', 'h', 'i', 's', ' ', 'i', 's', ' ', 'r', 'u', 's', 't', ' ', 'p', 'r', 'o', 'g', 'r', 'a', 'm', 'm', 'i', 'n', 'g'] <br />
-T g
+First and last characters : T g
 
 ## Conclusion
 
@@ -164,7 +164,7 @@ fn take_string() -> Vec<char> {
     return vec;
 }
 ```
-This function should also be included in your template.<br/>
+This function should also be **included in your template**, if you are doing competitive programming in rust.<br/>
 Also, we should also be able to convert array / vector of characters back to string. We shall discuss that in next article.
 
 **Thank You**

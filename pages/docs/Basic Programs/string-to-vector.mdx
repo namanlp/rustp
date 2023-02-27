@@ -147,3 +147,24 @@ fn main() {
 >['T', 'h', 'i', 's', ' ', 'i', 's', ' ', 'r', 'u', 's', 't', ' ', 'p', 'r', 'o', 'g', 'r', 'a', 'm', 'm', 'i', 'n', 'g'] <br />
 T g
 
+## Conclusion
+
+For many applications, especially for many questions in competitive programming, it is very handy to have a function to input a string as a vector of characters.
+In this article, we made such function to take input string from user and return Vector of characters.
+
+Here is function for easy access
+
+```rust
+use std::io;
+
+fn take_string() -> Vec<char> {
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+    let vec:Vec<char> = input.trim().chars().collect();
+    return vec;
+}
+```
+This function should also be included in your template.<br/>
+Also, we should also be able to convert array / vector of characters back to string. We shall discuss that in next article.
+
+**Thank You**

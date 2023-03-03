@@ -157,7 +157,19 @@ Factorial of 20 is : 2432902008176640000
 
 ## Conclusion
 
-This article covers the basic definition factorial, properties and simple functions to find factorial of a number in Rust in both Iterative and Recursive manner. 
+This article covers the basic definition factorial, properties and simple functions to find factorial of a number in Rust in both Iterative and Recursive manner.
+
+Here is function for easy access
+
+```rust
+fn factorial(number : i128) -> i128{
+    let mut factorial : i128 = 1;
+    for i in 1..(number+1) {
+        factorial*=i;
+    }
+    return factorial
+}
+```
 
 Factorial of Larger Numbers and array will be covered in the coming articles.
 

@@ -147,6 +147,19 @@ Factorial of 12345 is : 579592771
 
 This article covered how to find factorial of very large numbers, using both Iterative and recursive methods in rust.
 
+Here is function for easy access
+
+```rust
+fn factorial(number : i128, divisor: i128) -> i128{
+    let mut factorial : i128 = 1;
+    for i in 1..(number+1) {
+        factorial*=i;
+        factorial%=divisor;
+    }
+    return factorial
+}
+```
+
 In the next article, we will see how to find the factorial of multiple numbers.
 
 **Thank You**

@@ -3,7 +3,7 @@ title: Function to convert Vector to String
 section: 1. Basic Programs
 order: 4
 slug: /basic-programs/vector-to-string/
-description: Hello
+description: For many applications and competitive programming output, it is very handy to have a function to convert a vector to a string. We make such a function here using iter().collect() method in Rust.
 ---
 
 # Function to convert Vector of characters to String
@@ -47,3 +47,14 @@ In the above code, `.iter()` is used to traverse through the vector. See [Iterat
 
 And  `collect::<String>()`  function is used to convert an iterator into a String.
 
+## Conclusion
+
+For many applications as well as competitive programming output, it is very handy to have a function to convert a vector to a string, especially for showing output. In this article, we made such a function using `iter().collect()` method in Rust.
+
+Here is function for easy access
+
+```rust
+fn to_string(vec:Vec<char>) -> String{return vec.iter().collect::<String>();}
+```
+
+You might want to add this function to your template, if you are doing competitive programming in rust.

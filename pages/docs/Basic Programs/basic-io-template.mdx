@@ -19,4 +19,54 @@ Feel free to use it. If you like it, you can [follow me on github](https://githu
 
 I hope you like it!
 
+## Template
 
+```rust
+/*
+This template is made by Naman Garg <naman.rustp@gmail.com>
+Github : https://github.com/namanlp
+Gitlab : https://gitlab.com/namanlp
+Website : https://rustp.org
+
+You can visit https://rustp.org/basic-programs/basic-template/
+for understanding the template
+
+Feel free to copy the template, but not the solutions :D
+Thank You
+ */
+
+use std::io::stdin;
+
+fn take_int() -> usize {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    return input.trim().parse().unwrap()
+}
+
+fn take_vector() -> Vec<usize> {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    let arr: Vec<usize> = input.trim().split_whitespace().map(|x| x.parse().unwrap()).collect();
+    return arr;
+}
+
+fn take_string() -> Vec<char> {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    let vec:Vec<char> = input.trim().chars().collect();
+    return vec;
+}
+fn to_string(vec:Vec<char>) -> String{return vec.iter().collect::<String>();}
+
+fn solve() {
+// ======================= Code Here =========================
+}
+
+
+pub fn main() {
+    let t = take_int();
+    for _ in 0..t { solve(); }
+}
+```
+
+You can take the input of space separated numbers as vector of numbers, and then access the individual numbers using indexing, that is, square brackets `[]`.

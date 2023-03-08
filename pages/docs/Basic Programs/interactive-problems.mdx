@@ -25,3 +25,12 @@ Actually, the output to terminal is an expensive process for any programming lan
 But in interactive problem, this will be an issue, because online judge will keep waiting indefinitely for the output, because it is stored in Buffer.
 So, we have to clear the buffer and print the output. This is called *flushing*.
 
+## `flush` in Rust
+
+From [Rust Documentation](https://doc.rust-lang.org/std/macro.print.html),
+
+*Note that stdout is frequently line-buffered by default*
+
+So, if you use **`println!()`**, your output will automatically be printed as soon as you call it.
+
+Actually there are mainly 2 macros in Rust used for output, `println!()` and `print!()`.

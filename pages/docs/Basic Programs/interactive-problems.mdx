@@ -18,3 +18,10 @@ These problems are generally like  *guessing games*.
 
 Also, guesses are limited, off course, else the problems will be too easy.
 
+## The `flush` Issue
+
+Actually, the output to terminal is an expensive process for any programming language. So, most of the modern programming languages make use of Buffer to store the output, and print the output later.
+
+But in interactive problem, this will be an issue, because online judge will keep waiting indefinitely for the output, because it is stored in Buffer.
+So, we have to clear the buffer and print the output. This is called *flushing*.
+

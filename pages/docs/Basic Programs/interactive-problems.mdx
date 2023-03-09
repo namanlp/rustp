@@ -20,10 +20,13 @@ And, queries are limited, off course, else the problems will be too easy.
 
 ## The `flush` Issue
 
-Actually, the output to terminal is an *expensive* process for any programming language. So, most of the modern programming languages make use of Buffer to store the output, and print the output later.
-But in the interactive problems, this is a major issue, because online judge will keep waiting indefinitely for the output, as it is stored in Buffer.
+Actually, the output to terminal is an *expensive* process for any programming language. If there are no buffers, each character will be shown as soon as output is generated. It will block the rest of the program thread, resulting in much slow execution of program.
+So, most of the modern programming languages make use of Buffer to store the output, and print the output later, block by block.
 
-So, we have to clear the buffer and print the output. This is called *flushing*.
+But in the interactive problems, this is a major issue, because online judge will keep waiting indefinitely for the output, as it is stored in Buffer, and thus, no output will be generated, and the program keeps waiting for the output.
+This will result in *deadlock* situation, and will result in **Time Limit Exceeded** verdict in most programming websites.
+
+So, we have to print  the contents of buffer and clear its contents. This is called *flushing*.
 
 ## `flush` in Rust
 
@@ -107,3 +110,13 @@ fn main() {
     io::stdout().flush().unwrap();
 }
 ```
+
+**Output**
+
+> This is using println <br />
+This is not flushed yet. <br />
+Flushed now..... <br />
+Hence the buffer contains the string
+
+**Note :** In this article, the timing of each output line matters more than the actual output. So, **run it yourself!**
+

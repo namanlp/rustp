@@ -3,7 +3,7 @@ title: Solve Interactive Problems
 section: 1. Basic Programs
 order: 90
 slug: /basic-programs/interactive-problems/
-description: For competitive Programming
+description: In competitive programming contests, Interactive Problems might be seen quite often. We will discuss flushing the buffer for these problems here in Rust Language.
 ---
 
 # Solve Interactive Problems in Rust
@@ -14,9 +14,9 @@ specifically for Competitive Programming in Rust
 In competitive programming contests, there can be a special type of problem called Interactive Problem. In these problems, the input is not predetermined. Rather, it is generated based on the *queries*. Basically, your program "sends" the "queries" and the
 Online judge "answers" these queries, based on which, your program generates the final answer.
 
-These problems are generally like  *guessing games*.
-
 And, queries are limited, off course, else the problems will be too easy.
+
+See  [Basic interactive problem on CodeChef](https://www.codechef.com/problems/CHFIDEAL) for reference.
 
 ## The `flush` Issue
 
@@ -24,7 +24,7 @@ Actually, the output to terminal is an *expensive* process for any programming l
 So, most of the modern programming languages make use of Buffer to store the output, and print the output later, block by block.
 
 But in the interactive problems, this is a major issue, because online judge will keep waiting indefinitely for the output, as it is stored in Buffer, and thus, no output will be generated, and the program keeps waiting for the output.
-This will result in *deadlock* situation, and will result in **Time Limit Exceeded** verdict in most programming websites.
+This will result in *deadlock* situation, and will result in **Time Limit Exceeded ( TLE )** verdict in most programming websites.
 
 So, we have to print  the contents of buffer and clear its contents. This is called *flushing*.
 
@@ -120,3 +120,10 @@ Hence the buffer contains the string
 
 **Note :** In this article, the timing of each output line matters more than the actual output. So, **run it yourself!**
 
+## Conclusion
+
+In competitive programming contests, Interactive Problems might be seen quite often.  We discussed the problem with buffers and online judge in such problems as well as flushing the buffer in Rust.
+
+Now, with the given knowledge, try to submit the CodeChef problem given on the top of the page.
+
+**Thank You**

@@ -49,3 +49,61 @@ io::stdout().flush().unwrap();
 
 to flush.
 
+## Demonstrating Buffer
+
+For demonstrating the buffer, we make a simple program. In this, we first use `println!()` , to show that it immediately flushes the output after each call.
+
+Then we add some `print!()` statements and sleep statements, so that we wait some time. As the output is stored in buffer, it is not printed till we flush the output.
+
+```rust
+use std::{thread, time};
+use std::io::{self, Write};
+
+fn main() {
+    // Define one_second as 1 second of time
+    let one_second = time::Duration::from_secs(1);
+
+    // println!() output will be flushed immediately
+    println!("This is using println");
+
+    // Now, demonstrating buffered output
+
+    // This is stored in buffer
+    print!("This ");
+    // This basically sleeps for 1 second
+    thread::sleep(one_second);
+
+    print!("is ");
+    thread::sleep(one_second);
+
+    print!("not ");
+    thread::sleep(one_second);
+
+    print!("flushed ");
+    thread::sleep(one_second);
+
+    print!("yet.");
+    thread::sleep(one_second);
+
+    print!("\nFlushed now.....");
+
+    // Flushing output
+    io::stdout().flush().unwrap();
+
+
+    print!("\nHence ");
+    thread::sleep(one_second);
+
+    print!("the ");
+    thread::sleep(one_second);
+
+    print!("buffer ");
+    thread::sleep(one_second);
+
+    print!("contains ");
+    thread::sleep(one_second);
+
+    print!("the string ");
+    io::stdout().flush().unwrap();
+}
+```

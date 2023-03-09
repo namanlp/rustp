@@ -11,26 +11,41 @@ specifically for Competitive Programming in Rust
 
 ## Introduction to Interactive problems
 
-In programming contests, there can be a special type of problem called Interactive Problem. In this problem, input is not predetermined. Rather, it is generated based on the output. Basically, your program "asks" the online judge the "questions"
-Online judge "answers" the questions, based on which, your program generates the answer.
+In competitive programming contests, there can be a special type of problem called Interactive Problem. In these problems, the input is not predetermined. Rather, it is generated based on the *queries*. Basically, your program "sends" the "queries" and the
+Online judge "answers" these queries, based on which, your program generates the final answer.
 
 These problems are generally like  *guessing games*.
 
-Also, guesses are limited, off course, else the problems will be too easy.
+And, queries are limited, off course, else the problems will be too easy.
 
 ## The `flush` Issue
 
-Actually, the output to terminal is an expensive process for any programming language. So, most of the modern programming languages make use of Buffer to store the output, and print the output later.
+Actually, the output to terminal is an *expensive* process for any programming language. So, most of the modern programming languages make use of Buffer to store the output, and print the output later.
+But in the interactive problems, this is a major issue, because online judge will keep waiting indefinitely for the output, as it is stored in Buffer.
 
-But in interactive problem, this will be an issue, because online judge will keep waiting indefinitely for the output, because it is stored in Buffer.
 So, we have to clear the buffer and print the output. This is called *flushing*.
 
 ## `flush` in Rust
 
 From [Rust Documentation](https://doc.rust-lang.org/std/macro.print.html),
 
-*Note that stdout is frequently line-buffered by default*
+*... stdout is frequently line-buffered by default ...*
 
 So, if you use **`println!()`**, your output will automatically be printed as soon as you call it.
 
 Actually there are mainly 2 macros in Rust used for output, `println!()` and `print!()`.
+
+As you might already know, the `println!()` macro ends with newline whereas the `print!()` does not. So, after each `println!()` statement, the buffer should automatically be cleared and output should be shown.
+But if you are using `print!()` statement, you must flush the output after each output statement.
+
+For flushing the output, you first have to import using
+```rust
+use std::io::{self, Write};
+```
+And then, use
+```rust
+io::stdout().flush().unwrap();
+```
+
+to flush.
+

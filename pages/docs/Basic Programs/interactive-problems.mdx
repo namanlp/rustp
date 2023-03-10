@@ -41,7 +41,7 @@ Actually there are mainly 2 macros in Rust used for output, `println!()` and `pr
 As you might already know, the `println!()` macro ends with newline whereas the `print!()` does not. So, after each `println!()` statement, the buffer should automatically be cleared and output should be shown.
 But if you are using `print!()` statement, you must flush the output after each output statement.
 
-For flushing the output, you first have to import using
+For explicitly flushing the output, you first have to import using
 ```rust
 use std::io::{self, Write};
 ```

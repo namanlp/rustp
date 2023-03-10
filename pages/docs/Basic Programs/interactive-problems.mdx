@@ -16,17 +16,17 @@ Online judge "answers" these queries, based on which, your program generates the
 
 And, queries are limited, off course, else the problems will be too easy.
 
-See  [Basic interactive problem on CodeChef](https://www.codechef.com/problems/CHFIDEAL) for reference.
+See  [Basic interactive problem on CodeChef](https://www.codechef.com/problems/CHFIDEAL) as an example.
 
 ## The `flush` Issue
 
-Actually, the output to terminal is an *expensive* process for any programming language. If there are no buffers, each character will be shown as soon as output is generated. It will block the rest of the program thread, resulting in much slow execution of program.
+Actually, the output to terminal is an *expensive* process for any programming language. If there are no buffers, each character will be shown as soon as output is generated. It will block the rest of the program thread for the time being, resulting in much slow execution of program.
 So, most of the modern programming languages make use of Buffer to store the output, and print the output later, block by block.
 
-But in the interactive problems, this is a major issue, because online judge will keep waiting indefinitely for the output, as it is stored in Buffer, and thus, no output will be generated, and the program keeps waiting for the output.
-This will result in *deadlock* situation, and will result in **Time Limit Exceeded ( TLE )** verdict in most programming websites.
+But in the interactive problems, this is a major issue, because online judge will keep waiting indefinitely for the output, as it is stored in Buffer, and thus, no output will be generated, and the program keeps waiting for the output from online judge.
+This will result in *deadlock* situation, and will result in **Time Limit Exceeded ( TLE )** verdict in most of the cases.
 
-So, we have to print  the contents of buffer and clear its contents. This is called *flushing*.
+So, we have to print  the contents of the buffer. This is called *flushing*. Formally, <br /> *A buffer flush is the transfer of computer data from a temporary storage area to the computer’s permanent memory*
 
 ## `flush` in Rust
 

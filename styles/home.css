@@ -1,7 +1,7 @@
 .wrapper{
     display: flex;
     height: 95vh;
-    background: rgb(30, 30, 60) url('https://github.com/namanlp/rustp/raw/main/images/background.webp') no-repeat top left;
+    background: rgb(30, 30, 60) url('./background.webp') no-repeat top left;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;

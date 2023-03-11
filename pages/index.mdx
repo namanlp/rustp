@@ -11,26 +11,12 @@ import {
 } from "smooth-doc/components";
 import heroBackgroundImageURL from "../images/hero-background.webp";
 import logo from "../images/logo-manifest.png";
+import "../styles/home.css"
 
-<div className="wrapper"
-     style="
-          display: flex;
-          height: 95vh;
-          background-color : black;
-          background: url('https://github.com/namanlp/rustp/raw/main/images/background.webp') no-repeat top left/cover;
-          align-items: center;
-         justify-content: center;
-         flex-wrap: wrap;
-         flex-direction : column;
-" >
+<div className="wrapper">
 
-<h1
-    style="
-    color : white;
-    font-size:calc(16px + 5vw);
-"
->
-<img src={logo} style="height:calc(20px + 5vw); margin-right : 2vw;" alt="rustp logo"/>
+<h1>
+<img className="logo" src={logo} alt="rustp logo"/>
 Rust Programming
 </h1>
 

@@ -12,7 +12,8 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    color : white;
+    color : #D9D9D9;
+    text-shadow: 0.4vh 0.4vw #b7410e;
     font-size:calc(16px + 5vw);
 }
 

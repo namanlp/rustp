@@ -1,13 +1,13 @@
 import {
-  ScreenContainer,
-  Button,
-  HeroSection,
-  Hero,
-  HeroBody,
-  HeroTitle,
-  HeroTeaser,
-  HeroActionList,
-  HeroAction,
+    ScreenContainer,
+    Button,
+    HeroSection,
+    Hero,
+    HeroBody,
+    HeroTitle,
+    HeroTeaser,
+    HeroActionList,
+    HeroAction,
 } from "smooth-doc/components";
 import heroBackgroundImageURL from "../images/hero-background.webp";
 import logo from "../images/logo-manifest.png";
@@ -21,12 +21,13 @@ Rust Programming
 </h1>
 
 </div>
+<ScreenContainer>
 
 <HeroSection>
   <Hero backgroundImageURL={heroBackgroundImageURL}>
     <HeroBody>
-      <HeroTitle>Providing Guides and ready to use codes in Rust Language!</HeroTitle>
-      <HeroTeaser>for development as well as competitive programming.</HeroTeaser>
+      <HeroTitle>Guides and ready to use codes in Rust Language!</HeroTitle>
+      <HeroTeaser>for development, DSA, competitive programming and more.</HeroTeaser>
       <HeroActionList>
         <HeroAction>
           <Button
@@ -41,6 +42,8 @@ Rust Programming
     </HeroBody>
   </Hero>
 </HeroSection>
+
+</ScreenContainer>
 
 
 import { GatsbySeo } from 'gatsby-plugin-next-seo';

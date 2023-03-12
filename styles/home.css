@@ -25,3 +25,40 @@
     width:calc(20px + 5vw);
     margin-right : 2vw;
 }
+
+/* -------------------------------------------------------------------------- Section 2 -------------------------------------------------------------------------- */
+
+.section2{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    width: 100%;
+    height: 95vh;
+    padding: 3vw;
+}
+
+.guide{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.guide h2{
+    font-size: calc(10px + 2.5vw)
+}
+
+
+/* ---------------------------------*/
+
+.feature{
+    text-align: center;
+    font-size: 3rem;
+}
+
+.rust{
+    transition: all 0.5s;
+}
+
+.feature:hover .rust{
+    color : #b7410e;
+    text-shadow: 0.4vh 0.4vw #D9D9D9;
+}

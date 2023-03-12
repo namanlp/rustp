@@ -8,6 +8,12 @@ import {
     HeroTeaser,
     HeroActionList,
     HeroAction,
+    FeatureSection,
+    FeatureList,
+    Feature,
+    FeatureImage,
+    FeatureTitle,
+    FeatureText,
 } from "smooth-doc/components";
 import heroBackgroundImageURL from "../images/hero-background.webp";
 import logo from "../images/logo-manifest.png";
@@ -21,29 +27,46 @@ Rust Programming
 </h1>
 
 </div>
-<ScreenContainer>
 
-<HeroSection>
-  <Hero backgroundImageURL={heroBackgroundImageURL}>
-    <HeroBody>
-      <HeroTitle>Guides and ready to use codes in Rust Language!</HeroTitle>
-      <HeroTeaser>for development, DSA, competitive programming and more.</HeroTeaser>
-      <HeroActionList>
-        <HeroAction>
-          <Button
+
+<div className="section2">
+    <div className="guide">
+        <h2>
+            Guides and ready to use codes in Rust Language!
+        </h2>
+        <h3>
+            for development, DSA, competitive programming and more.
+        </h3>
+        <Button
             variant="neutral"
             forwardedAs="a"
             href="/basic-programs/input-single-number/"
-          >
+        >
             Browse Guides
-          </Button>
-        </HeroAction>
-      </HeroActionList>
-    </HeroBody>
-  </Hero>
-</HeroSection>
+        </Button>
+    </div>
+    <div className="grid-image">
+        <img src={heroBackgroundImageURL} width="100%" />
+    </div>
+</div>
 
-</ScreenContainer>
+
+<h2 className="feature">
+    Why use <span className="rust">Rust? </span>
+</h2>
+
+<FeatureSection>
+    <FeatureList>
+        <Feature>
+            <FeatureImage src={logo} load = "lazy" />
+            <FeatureTitle>Time and memory efficient</FeatureTitle>
+            <FeatureText>
+                Rust is very time and memory efficient
+            </FeatureText>
+        </Feature>
+    </FeatureList>
+</FeatureSection>
+
 
 
 import { GatsbySeo } from 'gatsby-plugin-next-seo';

@@ -29,23 +29,31 @@
 /* -------------------------------------------------------------------------- Section 2 -------------------------------------------------------------------------- */
 
 .section2{
-    display: grid;
-    grid-template-columns: 40% 60%;
+    display: flex;
+    justify-content: space-evenly;
     width: 100%;
     height: 95vh;
     padding: 3vw;
 }
 
 .guide{
+    min-width: 45%;
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
 
 .guide h2{
+    min-width: 100%;
     font-size: calc(10px + 2.5vw)
 }
 
+.grid-image, .guide{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+}
 
 /* ---------------------------------*/
 

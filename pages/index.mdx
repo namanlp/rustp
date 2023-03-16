@@ -1,5 +1,8 @@
+---
+slug: /
+---
+
 import {
-    Button,
     FeatureSection,
     FeatureList,
     Feature,
@@ -7,8 +10,10 @@ import {
     FeatureTitle,
     FeatureText,
 } from "smooth-doc/components";
-import heroBackgroundImageURL from "../images/hero-background.webp";
 import logo from "../images/logo-manifest.png";
+import efficiency from "../images/icon/efficiency.webp"
+import security from "../images/icon/file-shield-solid.webp"
+import community from "../images/icon/users-between-lines-solid.webp"
 import "../styles/home.css"
 
 <div className="wrapper">
@@ -21,28 +26,6 @@ Rust Programming
 </div>
 
 
-<div className="section2">
-    <div className="guide">
-        <h2>
-            Guides and ready to use codes in Rust Language!
-        </h2>
-        <h3>
-            for development, DSA, competitive programming and more.
-        </h3>
-        <Button
-            variant="neutral"
-            forwardedAs="a"
-            href="/basic-programs/input-single-number/"
-        >
-            Browse Guides
-        </Button>
-    </div>
-    <div className="grid-image">
-        <img src={heroBackgroundImageURL} width="100%" alt="image" />
-    </div>
-</div>
-
-
 <h2 className="feature">
     Why use <span className="rust">Rust? </span>
 </h2>
@@ -50,10 +33,24 @@ Rust Programming
 <FeatureSection>
     <FeatureList>
         <Feature>
-            <FeatureImage src={logo} load = "lazy" />
+            <FeatureImage src={efficiency} load = "lazy" />
             <FeatureTitle>Time and memory efficient</FeatureTitle>
             <FeatureText>
                 Rust is very time and memory efficient
+            </FeatureText>
+        </Feature>
+        <Feature>
+            <FeatureImage src={security} load = "lazy" />
+            <FeatureTitle>Memory Safety</FeatureTitle>
+            <FeatureText>
+                Rust implements memory safety.
+            </FeatureText>
+        </Feature>
+        <Feature>
+            <FeatureImage src={community} load = "lazy" />
+            <FeatureTitle>Good community support</FeatureTitle>
+            <FeatureText>
+                Rust has strong and welcoming community.
             </FeatureText>
         </Feature>
     </FeatureList>

@@ -66,7 +66,12 @@
     transition: all 0.5s;
 }
 
-.feature:hover .rust{
+img.feature-image{
+    height: 48px;
+    margin-top: 3px;
+}
+
+.feature-wrapper:hover .rust{
     color : #b7410e;
     text-shadow: 0.4vh 0.4vw #D9D9D9;
 }

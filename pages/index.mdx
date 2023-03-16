@@ -6,14 +6,14 @@ import {
     FeatureSection,
     FeatureList,
     Feature,
-    FeatureImage,
     FeatureTitle,
     FeatureText,
 } from "smooth-doc/components";
-import logo from "../images/logo-manifest.png";
+import logo from "../images/logo-manifest.webp";
 import efficiency from "../images/icon/efficiency.webp"
 import security from "../images/icon/file-shield-solid.webp"
 import community from "../images/icon/users-between-lines-solid.webp"
+import borrowChecker from "../images/icon/borrow.webp"
 import "../styles/home.css"
 
 <div className="wrapper">
@@ -25,7 +25,7 @@ Rust Programming
 
 </div>
 
-
+<div className="feature-wrapper">
 <h2 className="feature">
     Why use <span className="rust">Rust? </span>
 </h2>
@@ -33,28 +33,37 @@ Rust Programming
 <FeatureSection>
     <FeatureList>
         <Feature>
-            <FeatureImage src={efficiency} load = "lazy" />
+            <img className="feature-image" src={efficiency} load = "lazy" alt="Time and memory efficient" />
             <FeatureTitle>Time and memory efficient</FeatureTitle>
             <FeatureText>
                 Rust is very time and memory efficient
             </FeatureText>
         </Feature>
         <Feature>
-            <FeatureImage src={security} load = "lazy" />
+            <img className="feature-image" src={security} load = "lazy" alt="Memory safe" />
             <FeatureTitle>Memory Safety</FeatureTitle>
             <FeatureText>
                 Rust implements memory safety.
             </FeatureText>
         </Feature>
         <Feature>
-            <FeatureImage src={community} load = "lazy" />
-            <FeatureTitle>Good community support</FeatureTitle>
+            <img className="feature-image" src={community} load = "lazy" alt="Strong community support" />
+            <FeatureTitle>Strong community support</FeatureTitle>
             <FeatureText>
                 Rust has strong and welcoming community.
             </FeatureText>
         </Feature>
+        <Feature>
+            <img className="feature-image" src={borrowChecker} load = "lazy" alt="Borrow Checker" />
+            <FeatureTitle>Borrow Checker</FeatureTitle>
+            <FeatureText>
+                Rust implements borrow checker.
+            </FeatureText>
+        </Feature>
     </FeatureList>
 </FeatureSection>
+
+</div>
 
 
 

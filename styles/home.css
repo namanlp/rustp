@@ -21,7 +21,6 @@
     padding-bottom: 5vh;
     font-size:calc(16px + 5vw);
     transition: all 0.5s linear;
-    user-select: none;
 }
 
 .wrapper h1:hover{

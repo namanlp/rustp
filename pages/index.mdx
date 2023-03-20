@@ -14,6 +14,7 @@ import efficiency from "../images/icon/efficiency.webp"
 import security from "../images/icon/file-shield-solid.webp"
 import community from "../images/icon/users-between-lines-solid.webp"
 import borrowChecker from "../images/icon/borrow.webp"
+import llvmIcon from "../images/icon/llvm.webp"
 import "../styles/home.css"
 
 <div className="wrapper">
@@ -58,6 +59,13 @@ Rust Programming
             <FeatureTitle>Borrow Checker</FeatureTitle>
             <FeatureText className="feature-text">
                 Rust implements borrow checker.
+            </FeatureText>
+        </Feature>
+        <Feature className="feature-item">
+            <img className="feature-image" src={llvmIcon} load = "lazy" alt="Time and memory efficient" />
+            <FeatureTitle>Use LLVM Compiler Infrastructure</FeatureTitle>
+            <FeatureText className="feature-text">
+                Rust uses LLVM Compiler Infrastructure, which is also used by C compilers (GCC), C++ compilers, Swift, Python, etc. which helps to optimize the code as well as provide enhanced security.
             </FeatureText>
         </Feature>
     </FeatureList>

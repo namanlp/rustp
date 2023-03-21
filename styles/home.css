@@ -74,3 +74,9 @@ img.feature-image{
 .feature-item:hover img{
     transform: scale(1.2);
 }
+
+.feature-wrapper a{
+    color: #b7410e;
+    text-decoration: none;
+    font-weight: bold;
+}

@@ -42,7 +42,10 @@
 
 
 .feature-wrapper{
-    min-height: 95vh;
+    min-height: 96vh;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
 }
 
 .feature-wrapper:hover .rust{

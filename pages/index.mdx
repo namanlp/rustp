@@ -15,6 +15,7 @@ import security from "../images/icon/file-shield-solid.webp"
 import community from "../images/icon/users-between-lines-solid.webp"
 import borrowChecker from "../images/icon/borrow.webp"
 import llvmIcon from "../images/icon/llvm.webp"
+import openSource from "../images/icon/open-source.webp"
 import "../styles/home.css"
 
 <div className="wrapper">
@@ -62,10 +63,17 @@ Rust Programming
             </FeatureText>
         </Feature>
         <Feature className="feature-item">
-            <img className="feature-image" src={llvmIcon} load = "lazy" alt="Time and memory efficient" />
+            <img className="feature-image" src={llvmIcon} load = "lazy" alt="Use LLVM Compiler Infrastructure" />
             <FeatureTitle>Use LLVM Compiler Infrastructure</FeatureTitle>
             <FeatureText className="feature-text">
                 Rust uses LLVM Compiler Infrastructure, which is also used by C compilers (GCC), C++ compilers, Swift, Python, etc. which helps to optimize the code as well as provide enhanced security.
+            </FeatureText>
+        </Feature>
+        <Feature className="feature-item">
+            <img className="feature-image" src={openSource} load = "lazy" alt="Use LLVM Compiler Infrastructure" />
+            <FeatureTitle>Rust is Open Source</FeatureTitle>
+            <FeatureText className="feature-text">
+                Rust is an Open Source Project supported by Mozilla Research. Its source code can by found at <a href="https://github.com/rust-lang">Rust's Github Repo </a>
             </FeatureText>
         </Feature>
     </FeatureList>

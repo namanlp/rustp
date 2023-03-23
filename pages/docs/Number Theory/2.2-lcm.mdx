@@ -68,7 +68,7 @@ fn gcd(mut a:i128, mut b:i128) -> i128{
 
 fn lcm(a:i128, b:i128) -> i128{
     // LCM = a*b / gcd
-    return (a*b)/gcd(a,b);
+    return a*(b/gcd(a,b));
 }
 ```
 
@@ -107,7 +107,7 @@ fn gcd(mut a:i128, mut b:i128) -> i128{
 
 fn lcm(a:i128, b:i128) -> i128{
     // LCM = a*b / gcd
-    return (a*b)/gcd(a,b);
+    return a * (b/gcd(a,b));
 }
 
 // Driver Code
@@ -154,7 +154,7 @@ fn gcd(mut a:i128, mut b:i128) -> i128{
 }
 
 fn lcm(a:i128, b:i128) -> i128{
-    return (a*b)/gcd(a,b);
+    return a*(b/gcd(a,b));
 }
 ```
 

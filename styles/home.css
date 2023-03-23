@@ -66,6 +66,11 @@ body.xstyled-color-mode-dark .feature-wrapper:hover .rust{
     transition: all 0.5s;
 }
 
+.FeatureTitle{
+    font-size: 1.2rem;
+    font-weight: bolder;
+}
+
 img.feature-image{
     height: 48px;
     transition: all 1s;

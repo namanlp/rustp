@@ -1,4 +1,4 @@
-import { RiGithubFill, RiTwitterFill } from 'react-icons/ri'
+import { RiGithubFill } from 'react-icons/ri'
 
 import React from 'react'
 import {
@@ -9,11 +9,26 @@ import {
   ColorModeSwitcher,
 } from 'smooth-doc/components'
 
+import book from "./book-solid.svg"
+import "./AppNavSyle.css"
+
 
 export function AppNav() {
   return (
     <Nav>
       <NavList>
+          <NavListItem>
+
+              <NavLink
+                  forwardedAs="a"
+                  href="/basic-programs/input-single-number/"
+                  aria-label="Browse Guides"
+                  className = "nav_link"
+              >
+                  <img alt="Browse Guides" src={book} height="24" className="navBook" />
+              </NavLink>
+          </NavListItem>
+
           <NavListItem>
             <NavLink
               forwardedAs="a"
@@ -23,18 +38,6 @@ export function AppNav() {
               aria-label="This website's Github Repository"
             >
               <RiGithubFill style={{ width: 24, height: 24 }} />
-            </NavLink>
-          </NavListItem>
-
-          <NavListItem>
-            <NavLink
-              forwardedAs="a"
-              href="https://twitter.com/namanlp"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="My Twitter Account"
-            >
-              <RiTwitterFill style={{ width: 24, height: 24 }} />
             </NavLink>
           </NavListItem>
         <NavListItem>

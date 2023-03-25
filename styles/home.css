@@ -92,3 +92,35 @@ img.feature-image{
     text-decoration: none;
     font-weight: bold;
 }
+
+/*---------------------------------------------------------------------------*/
+
+.browse_guides {
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: block;
+    margin: 1rem 4vw 2rem 2rem;
+    text-align: right;
+    color: rgba(183, 65, 14, 0.8);
+    transition: all 0.5s;
+}
+
+.browse_guides:hover{
+    transform: translateX(0.5vw);
+    color: rgba(183, 65, 14, 1);
+}
+
+/* -------------------------------------------------------------------------- Media Queries -------------------------------------------------------------------------- */
+
+
+
+@media (hover: none) {
+    body.xstyled-color-mode-light .rust{
+        color : #b7410e;
+        text-shadow: 0.4vh 1.3vw #D9D9D9;
+    }
+
+    body.xstyled-color-mode-dark .rust{
+        text-shadow: 0.4vh 1.3vw #b7410e;
+    }
+}

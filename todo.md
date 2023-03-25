@@ -14,6 +14,7 @@
 ## Number Theory
 
 * Sieve method
+* Permutation And Combination
 
 ## Arrays
 

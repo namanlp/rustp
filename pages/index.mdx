@@ -17,6 +17,7 @@ import borrowChecker from "../images/icon/borrow.webp"
 import llvmIcon from "../images/icon/llvm.webp"
 import openSource from "../images/icon/open-source.webp"
 import cargoIcon from "../images/icon/cargoIcon.png"
+import motherBoard from "../images/icon/motherboard.webp"
 import "../styles/home.css"
 
 <div className="wrapper">
@@ -82,6 +83,13 @@ Rust Programming
             <FeatureTitle class="FeatureTitle">Strong community support</FeatureTitle>
             <FeatureText className="feature-text">
                 Rust has strong and welcoming community. You can contact Rust devs and other community members via forums, various chat platforms as well as email. See <a href="https://www.rust-lang.org/community" target="_blank">Rust Official Community Page.</a>
+            </FeatureText>
+        </Feature>
+        <Feature className="feature-item">
+            <img className="feature-image" src={motherBoard} load = "lazy" alt="Low Level Programming Support" />
+            <FeatureTitle class="FeatureTitle">Low Level Programming support</FeatureTitle>
+            <FeatureText className="feature-text">
+                Rust supports Low Level Programming and control over memory, like C and C++. Rust also allows the use of Pointers and References as well as executing Assembly Language Instructions and Embedded device support.
             </FeatureText>
         </Feature>
     </FeatureList>

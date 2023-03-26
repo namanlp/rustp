@@ -2,7 +2,7 @@
 
 ## Website Tasks
 
-* Improve Home Page
+* Port to latest smooth-doc
 * Add copy to clipboard button
 
 ## Basic Programs

@@ -3,6 +3,7 @@
 ## Website Tasks
 
 * Port to latest smooth-doc
+* Change to SEO
 * Add copy to clipboard button
 
 ## Basic Programs

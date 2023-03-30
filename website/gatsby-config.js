@@ -5,29 +5,15 @@ module.exports = {
     {
       resolve: 'smooth-doc',
       options: {
-        name: 'Smooth DOC',
-        siteUrl: 'https://smooth-doc.com',
-        description: 'Ready to use documentation theme for Gatsby.',
+        name: "Rust Programming",
+        description: "Providing Guides and ready to use codes in Rust Language",
+        siteUrl: "https://rustp.org",
         baseDirectory: path.resolve(__dirname, '../'),
-        author: 'Greg Bergé',
-        sections: ['About', 'Guide', 'Components', 'Reference'],
-        navItems: [{ title: 'Docs', url: '/docs/' }],
-        twitterAccount: 'neoziro',
-        githubRepositoryURL: 'https://github.com/gregberge/smooth-doc/',
-        carbonAdsURL:
-          '//cdn.carbonads.com/carbon.js?serve=CE7IL2JN&placement=xstyleddev',
-        docSearch: {
-          appId: 'J2LYQ9877O',
-          apiKey: '9295224c1474afa9f75f7d4772a1f713',
-          indexName: 'smooth-doc',
-        },
-      },
-    },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        // The property ID; the tracking code won't be generated without it
-        trackingId: 'UA-154496255-5',
+        author: "Naman Garg",
+        sections: ['Introduction', '1. Basic Programs', '2. Number Theory', '2.1 Arithmetic Operations', '2.2 Factors of a Number', '2.3 Factorials', 'Reference'],
+        twitterAccount: 'namanlp',
+        githubRepositoryURL: 'https://github.com/namanlp/rustp/',
+        docSearch: { appId: '9AFUK2OAFI', apiKey: '5e83557335cd2d4c93144517d309a790', indexName: 'rustp'   },
       },
     },
   ],

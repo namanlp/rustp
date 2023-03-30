@@ -1,5 +1,5 @@
-.cache
-public
-node_modules
-yarn.lock
-.idea
+node_modules/
+/lib/
+.cache/
+public/
+dist/

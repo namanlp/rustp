@@ -3,7 +3,6 @@ import styled, { x, css, up, down, th, useUp } from '@xstyled/styled-components'
 import { useDialogState, Dialog, DialogDisclosure } from 'ariakit/dialog'
 import { Portal } from 'ariakit/portal'
 import { VscChevronUp } from 'react-icons/vsc'
-import { RiPencilLine } from 'react-icons/ri'
 import { ScreenContainer } from './ScreenContainer'
 import { SideNav, useSideNavState, useSideNavPrevNext } from './SideNav'
 import { PageLayout } from './PageLayout'
@@ -174,7 +173,7 @@ function PrevNextLinks(props) {
   )
 }
 
-export function DocLayout({ children, tableOfContents, editLink, ...props }) {
+export function DocLayout({ children, tableOfContents, ...props }) {
   const upMd = useUp('md')
   const sideNav = useSideNavState()
   return (
@@ -194,18 +193,6 @@ export function DocLayout({ children, tableOfContents, editLink, ...props }) {
           <x.div pb={6} px={3}>
             <Article>
               {children}
-              {editLink && (
-                <x.a
-                  mt={5}
-                  display="grid"
-                  gridTemplateColumns="min-content max-content"
-                  gridGap={1}
-                  alignItems="center"
-                  href={editLink}
-                >
-                  <RiPencilLine /> Edit this page on GitHub
-                </x.a>
-              )}
               <PrevNextLinks {...sideNav} />
             </Article>
           </x.div>

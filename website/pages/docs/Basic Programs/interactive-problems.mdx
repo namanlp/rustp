@@ -1,0 +1,135 @@
+---
+title: Solve Interactive Problems
+section: 1. Basic Programs
+order: 90
+slug: /basic-programs/interactive-problems/
+description: In competitive programming contests, Interactive Problems might be seen quite often. We will discuss flushing the buffer for these problems in Rust Language.
+---
+
+# Solve Interactive Problems in Rust
+specifically for Competitive Programming in Rust
+
+## Introduction to Interactive problems
+
+In competitive programming contests, there can be a special type of problem called Interactive Problem. In these problems, the input is not predetermined. Rather, it is generated based on the *queries*. Basically, your program "sends" the "queries" and the
+Online judge "answers" these queries, based on which, your program generates the final answer.
+
+And, queries are limited, off course, else the problems will be too easy.
+
+See  [Basic interactive problem on CodeChef](https://www.codechef.com/problems/CHFIDEAL) as an example.
+
+## The `flush` Issue
+
+Actually, the output to terminal is an *expensive* process for any programming language. If there are no buffers, each character will be shown as soon as output is generated. It will block the rest of the program thread for the time being, resulting in much slow execution of program.
+So, most of the modern programming languages make use of Buffer to store the output, and print the output later, block by block.
+
+But in the interactive problems, this is a major issue, because online judge will keep waiting indefinitely for the output, as it is stored in Buffer, and thus, no output will be generated, and the program keeps waiting for the output from online judge.
+This will result in *deadlock* situation, and will result in **Time Limit Exceeded ( TLE )** verdict in most of the cases.
+
+So, we have to print  the contents of the buffer. This is called *flushing*. Formally, <br /> *A buffer flush is the transfer of computer data from a temporary storage area to the computer’s permanent memory*
+
+## `flush` in Rust
+
+From [Rust Documentation](https://doc.rust-lang.org/std/macro.print.html),
+
+*... stdout is frequently line-buffered by default ...*
+
+So, if you use **`println!()`**, your output will automatically be printed as soon as you call it.
+
+Actually there are mainly 2 macros in Rust used for output, `println!()` and `print!()`.
+
+As you might already know, the `println!()` macro ends with newline whereas the `print!()` does not. So, after each `println!()` statement, the buffer should automatically be cleared and output should be shown.
+But if you are using `print!()` statement, you must flush the output after each output statement.
+
+For explicitly flushing the output, you first have to import using
+```rust
+use std::io::{self, Write};
+```
+And then, use
+```rust
+io::stdout().flush().unwrap();
+```
+
+to flush.
+
+## Demonstrating Buffer
+
+For demonstrating the buffer, we make a simple program. In this, we first use `println!()` , to show that it immediately flushes the output after each call.
+
+Then we add some `print!()` statements and sleep statements, so that we wait some time. As the output is stored in buffer, it is not printed till we flush the output.
+
+```rust
+use std::{thread, time};
+use std::io::{self, Write};
+
+fn main() {
+    // Define one_second as 1 second of time
+    let one_second = time::Duration::from_secs(1);
+
+    // println!() output will be flushed immediately
+    println!("This is using println");
+
+    // Now, demonstrating buffered output
+
+    // This is stored in buffer
+    print!("This ");
+    // This basically sleeps for 1 second
+    thread::sleep(one_second);
+
+    print!("is ");
+    thread::sleep(one_second);
+
+    print!("not ");
+    thread::sleep(one_second);
+
+    print!("flushed ");
+    thread::sleep(one_second);
+
+    print!("yet.");
+    thread::sleep(one_second);
+
+    print!("\nFlushed now.....");
+
+    // Flushing output
+    io::stdout().flush().unwrap();
+
+
+    print!("\nHence ");
+    thread::sleep(one_second);
+
+    print!("the ");
+    thread::sleep(one_second);
+
+    print!("buffer ");
+    thread::sleep(one_second);
+
+    print!("contains ");
+    thread::sleep(one_second);
+
+    print!("the string ");
+    io::stdout().flush().unwrap();
+}
+```
+
+**Output**
+
+> This is using println <br />
+This is not flushed yet. <br />
+Flushed now..... <br />
+Hence the buffer contains the string
+
+**Note :** In this article, the timing of each output line matters more than the actual output. So, **run it yourself!**
+
+## Conclusion
+
+In competitive programming contests, Interactive Problems might be seen quite often.  We discussed the problem with buffers and online judge in such problems as well as flushing the buffer in Rust.
+
+Now, with the given knowledge, try to submit the CodeChef problem given on the top of the page.
+
+**Thank You**
+
+import {SEO} from "smooth-doc/src/components/SEO";
+
+<SEO title="Solve Interactive Problems - Rust Programming"
+     description="In competitive programming contests, Interactive Problems might be seen quite often. We will discuss flushing the buffer for these problems in Rust Language."
+/>

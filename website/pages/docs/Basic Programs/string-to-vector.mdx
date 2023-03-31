@@ -1,0 +1,176 @@
+---
+title: Convert String to Vector
+section: 1. Basic Programs
+order: 3
+slug: /basic-programs/string-to-vector/
+description: For many applications and competitive programming, it is very handy to have a function to input a string as a vector of characters. We make such a function here using chars() method.
+---
+
+# Function to convert String to Vector of characters
+for competitive programming and more in Rust
+
+## Introduction
+
+For many applications, especially for many questions in competitive programming, ability to treat string like a vector or array of characters becomes immensely important.
+In many questions, you have to take input as a string and then perform certain operations on it like a vector.
+
+In many languages like C, C++ etc. you can easily index strings using square brackets [], just like vectors or arrays.
+
+In Rust, however, you can not index strings using square brackets, due to **UTF-8 encoding**. For example, the given code
+
+```rust
+println!("{}", string1[0]);
+```
+
+will give error
+
+```js
+error[E0277]: the type `str` cannot be indexed by `{integer}`
+```
+
+or
+
+```js
+error[E0277]: the type `str` cannot be indexed by `usize`
+```
+
+These operations are used very frequently in various applications, including competitive programming.
+
+So, if you are doing competitive programming in Rust, you should **include a function in your template** to take string as input, and return vector of chars, for easy access.
+
+## Why Rust do this
+
+The simple answer is to save space!
+
+Actually, Rust implements Unicode with UTF-8 encoding by default. UTF-8 tends to reduce the memory space occupied by string. But now, each character is of different length.
+So, it is impossible to get any character by index by simply going to that block, like we did in C / C++, because we can not simply guarantee how much characters are there in between.
+
+For example, `a` is encoded as `61` and `©` ( copyright sign ) is encoded as `C2 A9` in unicode. ( These are hexadecimal code )
+
+So, if we have a string `a©a` = `61 C2 A9 61` , and try to access string[2] by incrementing 2 bytes in base address, it will return `A9` hexadecimal, which is invalid character.
+
+So, we have to traverse whole string and move only after checking unique prefixes.
+
+## The `.chars().nth()` method and TLE
+
+Rust has a method called `.chars()` , that is used to access string as chars. It takes **O( n )** time complexity, because it has to decode the complete string.
+
+Now, if we use, `.chars().nth(i).unwrap()` , it will run each time with **O( n )** time complexity, which is very inefficient. Let us see a program using this
+
+```rust
+fn main() {
+    let string1 = "Hello World";
+    println!("{}", string1.chars().nth(0).unwrap());
+}
+```
+
+**Output**
+
+>H
+
+As seen above, it takes **O( n )** Time Complexity for accessing character each time. Hence, it results in TLE in competitive programming very often. We should be able to access each character in **O( 1 )** or constant time complexity for each subsequent operations.
+
+## Converting String to Vector of Characters
+
+As seen above, if we use `.chars().nth().unwrap()` method, it will take **O( N )** or linear time complexity **for each operation**. So, let's say we have to print all the characters of the string. It will take **O( N <sup>2</sup> )** or quadratic time complexity.
+
+But we can access each element of Vector using **O( 1 )** or constant time complexity. So, printing all characters can be easily done in **O( N )** or Linear time complexity. We can convert string to vector of characters using **`.collect()`** method.
+
+Program to demonstrate this
+
+```rust
+fn main() {
+    let string1 = "Hello World";
+    let characters:Vec<char> = string1.chars().collect();
+    println!("{:?}", characters);
+}
+```
+
+**Output**
+
+>['H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd']
+
+## Function with input
+
+Now, in competitive programming as well as other string manipulation programmes, most of the programmers will want a function, that will take string input and automatically convert it to vector and return vector of characters.
+
+Function for this is
+
+```rust
+use std::io;
+
+fn take_string() -> Vec<char> {
+    // Initiate input variable
+    let mut input = String::new();
+
+    // Read into input
+    io::stdin().read_line(&mut input).unwrap();
+
+    // Convert input to vector of characters
+    let vec:Vec<char> = input.trim().chars().collect();
+
+    // Return vector
+    return vec;
+}
+```
+
+With Driver code, this looks like
+```rust
+use std::io;
+
+fn take_string() -> Vec<char> {
+    // Initiate input variable
+    let mut input = String::new();
+
+    // Read into input
+    io::stdin().read_line(&mut input).unwrap();
+
+    // Convert input to vector of characters
+    let vec:Vec<char> = input.trim().chars().collect();
+
+    // Return vector
+    return vec;
+}
+
+// Driver code
+fn main() {
+    let str1 = take_string();
+    println!("{:?}", str1);
+    println!("First and last characters : {} {}", str1[0], str1[str1.len()-1]);
+}
+```
+
+**Input**
+>This is rust programming
+
+**Output**
+>['T', 'h', 'i', 's', ' ', 'i', 's', ' ', 'r', 'u', 's', 't', ' ', 'p', 'r', 'o', 'g', 'r', 'a', 'm', 'm', 'i', 'n', 'g'] <br />
+First and last characters : T g
+
+## Conclusion
+
+For many applications, especially for many questions in competitive programming, it is very handy to have a function to input a string as a vector of characters.
+In this article, we made such function to take input string from user and return Vector of characters.
+
+Here is function for easy access
+
+```rust
+use std::io;
+
+fn take_string() -> Vec<char> {
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+    let vec:Vec<char> = input.trim().chars().collect();
+    return vec;
+}
+```
+This function should also be **included in your template**, if you are doing competitive programming in rust.<br/>
+Also, we should also be able to convert array / vector of characters back to string. We shall discuss that in next article.
+
+**Thank You**
+
+import {SEO} from "smooth-doc/src/components/SEO";
+
+<SEO title="Convert String to a Vector of characters - Rust Programming"
+     description="For many applications and competitive programming, it is very handy to have a function to input a string as a vector of characters. We make such a function here using chars() method."
+/>

@@ -1,0 +1,167 @@
+---
+title: LCM using Euclidean algorithm
+section: 2.2 Factors of a Number
+order: 4
+slug: /number-theory/lcm/
+description: Least Common Multiple of two natural numbers is the smallest natural number that is divisible by both the numbers. We will make function to find LCM of two numbers and optimize it to logarithmic time complexity using Euclidean algorithm in Rust.
+---
+
+# Least Common Multiple
+and program in Rust to calculate it using Euclidean algorithm.
+
+## What is Least Common Multiple ( LCM )
+
+Least Common Multiple of two natural numbers is the smallest natural number that is divisible by both the numbers.
+
+Lowest Common denominator is used for rational numbers, and it is LCM of denominators of both numbers.
+
+**For Example :** LCM of 100 and 75 is 300
+
+import lcm from "../../../images/Number Theory/lcm.webp"
+
+<div style={{textAlign: 'center'}} >
+    <img src={lcm} width="100%" alt="LCM of 150 and 210 is 1050" />
+</div>
+
+## Naive Approach
+
+Let us suppose we have to find Least Common Multiple ( LCM ) of 2 numbers, a and b.
+
+The naive or brute force approach would be to traverse all the numbers from max(a, b) to a × b and find if it is divisible by both a and b. If yes, print the number and return.
+
+We will not write its code, because it is very clumsy.
+
+
+**Time Complexity : O( a × b )** <br/>
+**Space Complexity : O( 1 )**
+
+## Efficient Euclidean algorithm
+
+We know that, product of 2 numbers is equal to product of their GCD and LCM. Mathematically,
+
+<center> <b> a × b = GCD(a, b) × LCM(a, b)</b> </center>
+
+We already saw [How To find HCF of 2 numbers using Euclidean Algorithm Here](/number-theory/gcd-or-hcf/). We will use this function to find LCM of 2 numbers.
+
+So,
+
+<center> <b> LCM (a, b) = (a × b) / HCF(a, b)</b> </center>
+
+Function using this approach is
+
+```rust
+// Find GCD
+fn gcd(mut a:i128, mut b:i128) -> i128{
+    if a==b { return a; }
+    if b > a {
+        let temp = a;
+        a = b;
+        b = temp;
+    }
+    while b>0 {
+        let temp = a;
+        a = b;
+        b = temp%b;
+    }
+    return a;
+}
+
+fn lcm(a:i128, b:i128) -> i128{
+    // LCM = a*b / gcd
+    return a*(b/gcd(a,b));
+}
+```
+
+With driver code
+
+```rust
+use std::io::stdin;
+
+// Read Input
+
+fn take_vector() -> Vec<i128> {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    let arr: Vec<i128> = input.trim()
+        .split_whitespace().map(|x| x.parse().unwrap()).collect();
+    return arr;
+}
+
+// Magic Starts here
+
+// Find GCD
+fn gcd(mut a:i128, mut b:i128) -> i128{
+    if a==b { return a; }
+    if b > a {
+        let temp = a;
+        a = b;
+        b = temp;
+    }
+    while b>0 {
+        let temp = a;
+        a = b;
+        b = temp%b;
+    }
+    return a;
+}
+
+fn lcm(a:i128, b:i128) -> i128{
+    // LCM = a*b / gcd
+    return a * (b/gcd(a,b));
+}
+
+// Driver Code
+
+pub fn main() {
+    let numbers = take_vector();
+    println!("{}", lcm(numbers[0], numbers[1]));
+}
+```
+
+**Input**
+
+>210 150
+
+**Output**
+
+> 1050
+
+
+**Time Complexity : O( log(min (a, b)) )** <br/>
+**Space Complexity : O( 1 )**
+
+## Conclusion
+
+Least Common Multiple of two natural numbers is the smallest natural number that is divisible by both the numbers.
+In this article, we made a program to compute Least Common Multiple (LCM) of two numbers in **Logarithmic Time Complexity** using Euclidean algorithm in Rust.
+
+Here is optimized function for easy access.
+
+```rust
+fn gcd(mut a:i128, mut b:i128) -> i128{
+    if a==b { return a; }
+    if b > a {
+        let temp = a;
+        a = b;
+        b = temp;
+    }
+    while b>0 {
+        let temp = a;
+        a = b;
+        b = temp%b;
+    }
+    return a;
+}
+
+fn lcm(a:i128, b:i128) -> i128{
+    return a*(b/gcd(a,b));
+}
+```
+
+**Thank You**
+
+import {SEO} from "smooth-doc/src/components/SEO";
+
+<SEO title="LCM or Least Common Multiple using Euclidean algorithm - Rust Programming"
+     description= 'Least Common Multiple of two natural numbers is the smallest natural number that is divisible by both the numbers. We will make function to find LCM of two numbers and optimize it to logarithmic time complexity using Euclidean algorithm in Rust.'
+/>

@@ -1,0 +1,104 @@
+---
+title: Modular Arithmetic
+section: 2.1 Arithmetic Operations
+order: 1
+slug: /number-theory/modular-multiplication/
+description: Many times, the results become so large that it becomes impossible to store them in any numerical data structure. This article covers basics of Modular Arithmetic.
+---
+
+# Modular Arithmetic in Rust
+And basic properties with Examples
+
+## What is Modular Arithmetic
+
+From <a target="_blank" rel="noreferrer noopener" href="https://en.wikipedia.org/wiki/Modular_arithmetic#:~:text=In%20mathematics%2C%20modular%20arithmetic%20is,Disquisitiones%20Arithmeticae%2C%20published%20in%201801."> Wikipedia </a>:
+
+In Number Theory, modular arithmetic is a system of arithmetic for integers, where numbers "wrap around" when reaching a certain value, called the modulus.
+
+In Modular Arithmetic in competitive programming, we simply have to find answers modulo a given number. 
+
+**Example :** Find remainder when 123 x 234 is divided by 10
+
+**Solution :** 123 x 234 = 15252 and clearly, answer is 2, because we know that 15250 is divisible by 10
+
+## Need of Modular Arithmetic
+
+In many questions, the answer grow so large that it becomes impossible to store it in any numerical data structure, especially when answer is factorial, exponent, permutation or combination of a number.
+
+The largest numerical data structure in rust is **`i128`** for integers, **`u128`** for unsigned integers and **`f64`** for decimals.
+
+Now, both **`i128`** and **`u128`** can store numbers upto order of **`10³⁸`**, which is pretty large, and both take 128 bits to represent.
+
+But now suppose you have to tell the answer of **¹⁰⁰⁰C₅₀₀** , which is of order of **10²⁹⁹** . Clearly it is impossible to calculate using traditional computation methods. Even if it is possible in certain languages like python, it takes really long time to compute it and is certainly not suitable for competitive programming.
+
+So, answers are judged on the basis of modulo of answer from a given a number, generally **`10⁹ + 7 or 1000000007`**. So, it is necessary to know the properties of Modular Arithmetic and their application in order to compute the results efficiently.
+
+## Basic Properties
+### 1. Addition Property
+
+Mathematically,
+<center> <b>(a + b) mod m = ((a mod m) + (b mod m)) mod m</b> </center>
+
+It can be extended to multiple numbers.
+
+**Example :** Calculate remainder of 123 + 234 + 345 when divided by 45.
+
+**Solution :**<br />
+&nbsp; &nbsp; 123 mod 45 = 33 <br />
+&nbsp; &nbsp; 234 mod 45 = 9 <br />
+&nbsp; &nbsp; 345 mod 45 = 30 <br />
+
+&nbsp; &nbsp; So, ( 123 + 234 + 345 ) mod 45 <br />
+&nbsp; &nbsp; = ( 33 + 9 + 30 ) mod 45 <br />
+&nbsp; &nbsp; = **27** <br />
+
+**Verifying :**
+123 + 234 + 345 = 702 <br />
+and 702 mod 45 = **27** <br />
+
+**Hence Verified**
+
+<hr />
+
+### 2. Multiplication Property
+
+Mathematically,
+<center> <b>(a x b) mod m = ((a mod m) x (b mod m)) mod m</b> </center>
+
+It can also be extended to multiple numbers.
+
+**Example :** Calculate remainder of 123 x 234 x 345 when divided by 47.
+
+**Solution :**<br />
+&nbsp; &nbsp; 123 mod 47 = 29 <br />
+&nbsp; &nbsp; 234 mod 47 = 46 <br />
+&nbsp; &nbsp; 345 mod 47 = 16 <br />
+
+&nbsp; &nbsp; So, ( 123 x 234 x 345 ) mod 47 <br />
+&nbsp; &nbsp; = ( 29 x  46 x  16 ) mod 47 <br />
+&nbsp; &nbsp; = **6** <br />
+
+**Verifying :**
+123 x 234 x 345 = 9929790 <br />
+and 9929790 mod 47 = **6** <br />
+
+**Hence Verified**
+
+<hr />
+
+**Note :** There is no division property. As an alternative, See [Modular Multiplicative Inverse in Rust](/number-theory/modular-inverse/).
+
+## Conclusion
+
+This article covered basics of Modular Arithmetic.
+
+In the next few articles, we will see more advanced properties of Modular Arithmetic.
+
+**Thank You**
+
+
+import {SEO} from "smooth-doc/src/components/SEO";
+
+<SEO title="Modular Arithmetic - Rust Programming"
+        description="Many times, the results become so large that it becomes impossible to store them in any numerical data structure. This article covers basics of Modular Arithmetic."
+/>

@@ -1,0 +1,233 @@
+---
+title: Modular Multiplicative Inverse
+section: 2.1 Arithmetic Operations
+order: 3
+slug: /number-theory/modular-inverse/
+description: Modular Multiplicative Inverse is a number that replaces the divide function in Modular Arithmetic. We will make a function to find Modular Multiplicative Inverse of a number in Rust, and optimize it to logarithmic time complexity using Fermat's little theorem.
+---
+
+# Modular Multiplicative Inverse in Rust
+And program in Rust to find it using Fermat's little theorem
+
+## What is Modular Multiplicative Inverse
+
+As we know that there is **no divide operation in Modular Arithmetic**. So, Modular Multiplicative Inverse is a number that *replaces* divide function  in Modular Arithmetic.
+Modular Multiplicative Inverse of **n** with respect to **p** is a natural number **between 1 and p-1**, let us say x, such that
+
+<center> <b> ( n × x )  mod p = 1 </b> </center>
+
+We can alternatively say that Modular Multiplicative Inverse is a number such that **( n × x ) - 1 is divisible by p**.
+
+x can also be written as **x = ( n<sup>-1</sup> ) mod p**
+
+**For Example :** Modular Multiplicative Inverse of 23 with respect to 10 is 7. ( Because 23 × 7 = 161 and 161 % 10 = 1 )
+
+<hr />
+
+**Note :** The multiplicative inverse of  **n** with respect to **p** exists if and only if **n and p are co prime numbers**
+
+**Proof :** Let us suppose n = q × p + r , where q is quotient and r is remainder. So, if n is divisible by gcd, and p is divisible by gcd, then r must be divisible by gcd too. ( From Euclidean Algorithm )
+
+Hence, if gcd > 1, then remainder must also be greater than 1.
+
+## Need of Modular Multiplicative Inverse
+
+1. For returning or printing fractional numbers in competitive programming. For example, we have to find ( p / q ) mod m. It is simply written as (p × q<sup>-1</sup>) mod m or ( (p mod) ×  (q<sup>-1</sup>) mod m ) mod m,
+where **( q<sup>-1</sup> ) mod m** is Modular Multiplicative Inverse of q with respect to m.
+
+
+2. To find Permutation and Combination of very large numbers. For example, we have to find <sup>100</sup>P<sub>50</sub>. We must first [generate factorial array](/number-theory/factorial-of-mutiple-numbers/),
+then compute Modular Multiplicative Inverse of 50! with respect to given number, and multiply it with 100! mod p, and then compute answer. We will discuss detailed method later.
+
+
+3. In Cryptography, especially in RSA algorithm.
+
+## Naive Approach
+
+Simplest brute force solution can be to simply traverse all numbers from 1 to p-1, and return the number if ( n × x  ) % p = 1  or ( n × x ) - 1 is divisible by p.
+
+Function using this approach
+
+```rust
+fn mod_inverse (n:i128, p:i128) -> i128{
+    // Checks numbers from 1 to p-1
+    for x in 1..p {
+        if (n*x) % p == 1 {
+            return x;
+        }
+    }
+
+    // Returns 0 if no Modular Multiplicative Inverse exist
+    return 0;
+}
+```
+
+With Driver Code
+
+```rust
+use std::io::stdin;
+
+fn take_int() -> i128 {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    input.trim().parse().unwrap()
+}
+
+// Magic starts here
+
+fn mod_inverse (n:i128, p:i128) -> i128{
+    // Checks numbers from 1 to p-1
+    for x in 1..p {
+        if (n*x) % p == 1 {
+            return x;
+        }
+    }
+
+    // Returns 0 if no Modular Multiplicative Inverse exist
+    return 0;
+}
+
+// Driver Code
+
+pub fn main() {
+    let n = take_int();
+    let p = take_int();
+
+    println!("{}", mod_inverse(n, p));
+}
+```
+
+**Input**
+>213 <br />
+1000000007 <br />
+
+**Output**
+>32863850
+
+**Time Complexity : O( p )** <br/>
+**Space Complexity : O( 1 )**
+<br />
+
+## Efficient Fermat's little theorem Solution
+
+Generally, especially in competitive programming, we are given that the number, p, is prime number. So, we can easily find Modular Multiplicative Inverse using [Fermat's little theorem](https://en.wikipedia.org/wiki/Fermat%27s_little_theorem)
+
+From Fermat's little theorem,
+
+<center> <b> ( n<sup> p-1</sup> )  mod p = 1 </b> </center>
+
+Now, n<sup> p-1</sup>  = n<sup> p-2</sup> × n. So, multiplying with n<sup>-1</sup> both sides, we get.
+
+<center> <b> ( n<sup> p-2</sup> )  mod p = ( n<sup> -1</sup> )  mod p </b> </center>
+
+We can easily calculate ( n<sup> p-2</sup> ) mod p using [Modular Exponentiation in Rust](/number-theory/modular-exponentiation/).
+
+Function using this approach is given below.
+
+```rust
+// Function for Modular Exponentiation in Rust
+
+// Calculates (n^x) % p
+fn modular_exponent(mut n:i128 ,mut x:i128 , p:i128) -> i128{
+    let mut ans = 1;
+    if x<=0 { return 1; }
+    loop {
+        if x==1 { return (ans * n) % p; }
+        if x&1==0 {
+            n=( n * n ) % p;
+            x>>=1;
+            continue;
+        }
+        else {
+            ans = (ans*n) % p;
+            x-=1;
+        }
+    }
+}
+
+// Check GCD
+fn gcd(mut a:i128, mut b:i128) -> i128{
+    if a==b { return a; }
+    if b > a {
+        let temp = a;
+        a = b;
+        b = temp;
+    }
+    while b>0 {
+        let temp = a;
+        a = b;
+        b = temp%b;
+    }
+    return a;
+}
+
+// Magic starts here
+fn mod_inverse (n:i128, p:i128) -> i128{
+
+    // Returns 0 if no Modular Multiplicative Inverse exist
+    if p<=1 || gcd(n, p)>1 {
+        return 0;
+    }
+
+    // Return Modular Multiplicative Inverse, that is (n^(p-2)) mod p
+    // From Fermat's little theorem
+    return modular_exponent(n, p-2, p);
+}
+```
+
+Use the same driver code.
+
+**Input**
+>213 <br />
+1000000007 <br />
+
+**Output**
+>32863850
+
+**Time Complexity : O( log <sub> 2 </sub> p)** <br/>
+**Space Complexity : O( 1 )**
+
+## Conclusion
+
+Modular Multiplicative Inverse is a number that replaces the divide function in Modular Arithmetic.
+
+In this Article, we made a function to calculate Modular Multiplicative Inverse of a number with respect to a prime number using Fermat's little theorem in logarithmic time complexity.
+
+Code is pretty easier to understand, as compared to equivalent Extended Euclidean Algorithm.
+
+Here is function for easy access
+
+```rust
+
+// Calculates (n^x) % p
+fn modular_exponent(mut n:i128 ,mut x:i128 , p:i128) -> i128{
+    let mut ans = 1;
+    if x<=0 { return 1; }
+    loop {
+        if x==1 { return (ans * n) % p; }
+        if x&1==0 { n=( n * n ) % p; x>>=1;continue; }
+        else { ans = (ans*n) % p; x-=1; }
+    }
+}
+// Find GCD
+fn gcd(mut a:i128, mut b:i128) -> i128{
+    if a==b { return a; }
+    if b > a { let temp = a;a = b;b = temp; }
+    while b>0 { let temp = a;a = b;b = temp%b; }
+    return a;
+}
+// Magic starts here
+fn mod_inverse (n:i128, p:i128) -> i128{
+    if p<=1 || gcd(n, p)>1 { return 0; }
+    return modular_exponent(n, p-2, p);
+}
+
+```
+**Thank You**
+
+
+import {SEO} from "smooth-doc/src/components/SEO";
+
+<SEO title="Modular Multiplicative Inverse - Rust Programming"
+        description="Modular Multiplicative Inverse is a number that replaces the divide function in Modular Arithmetic. We will make a function to find Modular Multiplicative Inverse of a number in Rust, and optimize it to logarithmic time complexity using Fermat's little theorem"
+/>

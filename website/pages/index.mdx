@@ -3,133 +3,103 @@ slug: /
 ---
 
 import {
-  Article,
-  ScreenContainer,
-  Button,
-  HeroSection,
-  Hero,
-  HeroBody,
-  HeroTitle,
-  HeroTeaser,
-  HeroActionList,
-  HeroAction,
-  FeatureSection,
-  FeatureList,
-  Feature,
-  FeatureTitle,
-  FeatureText,
-  FeatureImage,
-  SiblingNav,
-  SiblingNavLink,
-} from 'smooth-doc/components'
-import { graphql, useStaticQuery, Link } from 'gatsby'
-import codeImageURL from '../images/icons8-code-100.png'
-import inspectCodeImageURL from '../images/icons8-inspect-code-100.png'
-import markdownImageURL from '../images/icons8-markdown-100.png'
-import variableImageURL from '../images/icons8-variable-100.png'
-import registryEditorImageURL from '../images/icons8-registry-editor-100.png'
-import systemTaskImageURL from '../images/icons8-system-task-100.png'
-import webDesignImageURL from '../images/icons8-web-design-100.png'
-import moduleImageURL from '../images/icons8-module-100.png'
-import heroBackgroundURL from '../images/hero-background.png'
-import GettingStarted from '../partials/getting-started.mdx'
+    FeatureSection,
+    FeatureList,
+    Feature,
+    FeatureTitle,
+    FeatureText,
+} from "smooth-doc/components";
+import logo from "../images/logo-manifest.webp";
+import efficiency from "../images/icon/efficiency.webp"
+import security from "../images/icon/file-shield-solid.webp"
+import community from "../images/icon/users-between-lines-solid.webp"
+import borrowChecker from "../images/icon/borrow.webp"
+import llvmIcon from "../images/icon/llvm.webp"
+import openSource from "../images/icon/open-source.webp"
+import cargoIcon from "../images/icon/cargoIcon.png"
+import motherBoard from "../images/icon/motherboard.webp"
+import "../styles/home.css"
 
-<HeroSection>
-  <ScreenContainer>
-    <Hero backgroundImageURL={heroBackgroundURL}>
-      <HeroBody>
-        <HeroTitle>Create awesome docs without compromise</HeroTitle>
-        <HeroTeaser>
-          A ready-to-use Gatsby theme to build docs for all your projects.
-          Smooth DOC makes documentation easy.
-        </HeroTeaser>
-        <HeroActionList>
-          <HeroAction>
-            <Button as={Link} to="/docs/getting-started/">
-              Explore Docs
-            </Button>
-          </HeroAction>
-        </HeroActionList>
-      </HeroBody>
-    </Hero>
-  </ScreenContainer>
-</HeroSection>
+<div className="wrapper">
+
+<h1>
+<img className="logo" src={logo} alt="rustp logo"/>
+Rust Programming
+</h1>
+
+</div>
+
+<div className="feature-wrapper">
+<h2 className="feature">
+    Why use <span className="rust">Rust? </span>
+</h2>
+
 <FeatureSection>
-  <FeatureList>
-    <Feature>
-      <FeatureImage src={registryEditorImageURL} />
-      <FeatureTitle>Use Gatsby</FeatureTitle>
-      <FeatureText>
-        Gatsby is a powerful static website generator. It gives you amazing web
-        perf.
-      </FeatureText>
-    </Feature>
-    <Feature>
-      <FeatureImage src={markdownImageURL} />
-      <FeatureTitle>Powered by MDX</FeatureTitle>
-      <FeatureText>
-        MDX combines Markdown and JSX. You can use your own components in
-        Markdown-style files.
-      </FeatureText>
-    </Feature>
-    <Feature>
-      <FeatureImage src={webDesignImageURL} />
-      <FeatureTitle>Custom Theme & Dark Mode</FeatureTitle>
-      <FeatureText>
-        Dark mode is natively supported and theme is fully customizable!
-      </FeatureText>
-    </Feature>
-    <Feature>
-      <FeatureImage src={moduleImageURL} />
-      <FeatureTitle>Ready-to-use components</FeatureTitle>
-      <FeatureText>
-        A set of ready-to-use components to build great landing pages.
-      </FeatureText>
-    </Feature>
-    <Feature>
-      <FeatureImage src={codeImageURL} />
-      <FeatureTitle>React Live Code Editor</FeatureTitle>
-      <FeatureText>
-        Give life to your docs with Live Code Editing. Users can edit examples
-        and see changes in real-time!
-      </FeatureText>
-    </Feature>
-    <Feature>
-      <FeatureImage src={systemTaskImageURL} />
-      <FeatureTitle>Enhanced SEO</FeatureTitle>
-      <FeatureText>
-        Smooth DOC handles all SEO metadata, sitemap and social sharing for you.
-      </FeatureText>
-    </Feature>
-    <Feature>
-      <FeatureImage src={inspectCodeImageURL} />
-      <FeatureTitle>Algolia DocSearch</FeatureTitle>
-      <FeatureText>
-        A good search is a real asset for a documentation. Algolia DocSearch is
-        built-in!
-      </FeatureText>
-    </Feature>
-    <Feature>
-      <FeatureImage src={variableImageURL} />
-      <FeatureTitle>Carbon Ads</FeatureTitle>
-      <FeatureText>
-        Monetizing your open source project is often hard. Carbon Ads support
-        makes it easier!
-      </FeatureText>
-    </Feature>
-  </FeatureList>
+    <FeatureList>
+        <Feature className="feature-item">
+            <img className="feature-image" src={efficiency} load = "lazy" alt="Time and memory efficient" />
+            <FeatureTitle class="FeatureTitle">Fast and memory efficient</FeatureTitle>
+            <FeatureText className="feature-text">
+                The programs written in Rust are much faster and memory efficient as compared to other languages in general, as there are no runtime Garbage Collectors. Use of compiler instead of interpreter also boosts performance.
+            </FeatureText>
+        </Feature>
+        <Feature className="feature-item">
+            <img className="feature-image" src={security} load = "lazy" alt="Memory safe" />
+            <FeatureTitle class="FeatureTitle">Memory Safety</FeatureTitle>
+            <FeatureText className="feature-text">
+                Rust ensures that there are no null pointers, dangling pointers, or data races, unlike C / C++. Moreover, you can not access elements outside of array in Rust. Rust also provides unsafe option for more flexibility.
+            </FeatureText>
+        </Feature>
+        <Feature className="feature-item">
+            <img className="feature-image" src={borrowChecker} load = "lazy" alt="Borrow Checker" />
+            <FeatureTitle class="FeatureTitle">Borrow Checker</FeatureTitle>
+            <FeatureText className="feature-text">
+                Borrow checker is one of the key features of Rust. Its concept is similar to reference counters. It helps to prevent data races and memory leaks. It is implemented by default in Rust for default ADT like Vectors, Dequeue etc.
+            </FeatureText>
+        </Feature>
+        <Feature className="feature-item">
+            <img className="feature-image" src={llvmIcon} load = "lazy" alt="Use LLVM Compiler Infrastructure" />
+            <FeatureTitle class="FeatureTitle">Use LLVM Compiler Infrastructure</FeatureTitle>
+            <FeatureText className="feature-text">
+                Rust uses LLVM Compiler Infrastructure, which is also used by C compilers (GCC), C++ compilers, Swift, Python, etc. which helps to optimize the code and provide enhanced security.
+            </FeatureText>
+        </Feature>
+        <Feature className="feature-item">
+            <img className="feature-image" src={motherBoard} load = "lazy" alt="Low Level Programming Support" />
+            <FeatureTitle class="FeatureTitle">Low Level Programming support</FeatureTitle>
+            <FeatureText className="feature-text">
+                Rust supports Low Level Programming and control over memory, like C and C++. Rust also allows the use of Pointers and References as well as executing Assembly Language Instructions and Embedded device support.
+            </FeatureText>
+        </Feature>
+        <Feature className="feature-item">
+            <img className="feature-image" src={openSource} load = "lazy" alt="Open Source" />
+            <FeatureTitle class="FeatureTitle">Rust is Open Source</FeatureTitle>
+            <FeatureText className="feature-text">
+                Rust is an Open Source Project supported by Mozilla Research. Its source code can by found at <a href="https://github.com/rust-lang" target="_blank">Rust's Github Repo </a> and is well documented as well. See <a href="https://en.wikipedia.org/wiki/Rust_(programming_language)" target="_blank">Wikipedia page for reference </a>
+            </FeatureText>
+        </Feature>
+        <Feature className="feature-item">
+            <img className="feature-image" src={cargoIcon} load = "lazy" alt="Cargo Package Manager" />
+            <FeatureTitle class="FeatureTitle">Cargo Package Manager</FeatureTitle>
+            <FeatureText className="feature-text">
+                Cargo is the Rust package manager. Cargo downloads the Rust package's dependencies, compiles the packages, makes distributable packages, and helps to share them, on <a href="https://crates.io/" target="_blank">crates.io</a>
+            </FeatureText>
+        </Feature>
+        <Feature className="feature-item">
+            <img className="feature-image" src={community} load = "lazy" alt="Strong community support" />
+            <FeatureTitle class="FeatureTitle">Strong and active Community</FeatureTitle>
+            <FeatureText className="feature-text">
+                Rust has strong and welcoming community. You can contact Rust devs and other community members via forums, various chat platforms as well as email. See <a href="https://www.rust-lang.org/community" target="_blank">Rust Official Community Page.</a>
+            </FeatureText>
+        </Feature>
+    </FeatureList>
 </FeatureSection>
-<ScreenContainer as="section" py={5}>
-  <Article>
-    <GettingStarted />
-    <SiblingNav>
-      <SiblingNavLink type="next" to="/docs/getting-started/">
-        Read full documentation
-      </SiblingNavLink>
-    </SiblingNav>
-  </Article>
-</ScreenContainer>
+    <a href="basic-programs/input-single-number/" className="browse_guides">
+        Browse Guides →
+    </a>
+</div>
 
-import { SEO } from "smooth-doc/src/components/SEO"
+import {SEO} from "smooth-doc/src/components/SEO";
 
-<SEO title="Hello World" description="This is sample desc" />
+<SEO title="Home Page - Rust Programming"
+    description="Providing Guides and ready to use codes in Rust Language for development as well as competitive programming. Rust is fast, memory efficient, memory safe, uses borrow checker, provide Low Level Programming support and is lot more interesting." />

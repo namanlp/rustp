@@ -33,9 +33,9 @@ const SEOQuery = graphql`
   }
 `
 
-export function SEO({ title }) {
+export function SEO({ title, description }) {
   const data = useStaticQuery(SEOQuery)
-  const metaDescription = data.site.siteMetadata.description
+  const metaDescription = description || data.site.siteMetadata.description
   const metaTitle = title || data.site.siteMetadata.title
   const url = data.site.siteMetadata.siteUrl
   const socialImage = data.defaultSocialImage || data.socialImage

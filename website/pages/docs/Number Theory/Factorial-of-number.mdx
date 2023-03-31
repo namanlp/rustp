@@ -1,0 +1,181 @@
+---
+title: Factorial Of a Number
+section: 2.3 Factorials
+order: 1
+slug: /number-theory/factorial-of-number/
+description: Factorial is an important value of a number. This article covers the basic definition factorial, properties and simple functions to find factorial of a number in Rust in both Iterative and Recursive manner. 
+---
+
+# Factorial Of A Number
+And Program in Rust to find the factorial of a number
+
+## What is Factorial of a number?
+Factorial of a whole number is defined as the product of all natural numbers from 1 to the number itself, both inclusive.
+For example, factorial of **5** would be
+
+5 × 4 × 3 × 2 × 1 = **120**
+
+It is denoted using symbol exclamation mark, i.e., '!'. So, **5! = 120**. or 120 is factorial of 5.
+
+Interestingly, factorial of 0 is 1 or **0! = 1**
+
+Factorials of number upto 15 are
+
+| Number | Factorial     |     |     |
+|--------|---------------|-----|-----|
+| 0      | 1             |
+| 1      | 1             |
+| 2      | 2             |
+| 3      | 6             |
+| 4      | 24            |
+| 5      | 120           |
+| 6      | 720           |
+| 7      | 5040          |
+| 8      | 40320         |
+| 9      | 362880        |
+| 10     | 3628800       |
+| 11     | 39916800      |
+| 12     | 479001600     |
+| 13     | 6227020800    |
+| 14     | 87178291200   |
+| 15     | 1307674368000 |
+
+<br />
+<br />
+
+As you can see, factorial of a number grows very fast. For example,
+**40! = 8.15×10⁴⁷ , which is so large that no numerical data structure in rust can store this value.**
+
+Before discussing how to store it, let's see some properties of factorial
+
+## Properties of Factorial of a number
+
+There are just 2 main properties of factorial used in programming
+
+**1. n! = n × (n-1)!**
+
+For example, 5! = 5 × 4! = 5 × 24 = 120
+
+**2. n! = (n+1)! / (n+1)**
+
+For example, 5! = 6! / 6 = 720/6 = 120
+
+## Iterative Approach
+
+**Note :** We will take maximum integer data type in rust, that is `i128` so that we can find factorial of the largest number possible to store
+
+It is the simplest method, just take the number, and multiply it with all the natural numbers less than it.
+
+```rust
+fn factorial(number : i128) -> i128{
+
+    // initialize factorial to 1, explicitly type i128
+    let mut factorial : i128 = 1;
+
+    // Multiply factorial by all numbers from 1 to the given number
+    for i in 1..(number+1) {
+        factorial*=i;
+    }
+
+    // Return factorial
+    return factorial
+}
+```
+
+Program with Driver Code
+```rust
+use std::io::stdin;
+
+fn factorial(number : i128) -> i128{
+
+    // initialize factorial to 1, explicitly type i128
+    let mut factorial : i128 = 1;
+
+    // Multiply factorial by all numbers from 1 to the given number
+    for i in 1..(number+1) {
+        factorial*=i;
+    }
+
+    // Return factorial
+    return factorial
+}
+
+// Driver Code
+
+pub fn main() {
+    // Read and parse number to i128
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    let number : i128 = input.trim().parse().unwrap();
+
+    // Find and print factorial
+    let factorial = factorial(number);
+    println!("Factorial of {} is : {}", number,  factorial);
+}
+```
+
+**Output**
+
+>20 <br/>
+Factorial of 20 is : 2432902008176640000
+
+
+**Time Complexity : O(n)** <br/>
+**Space Complexity : O(1)**
+
+
+## Recursive Approach
+
+In this, we compute the factorial using property of factorial **n! = n × (n-1)!** 
+
+So, we find the factorial of n by computing the factorial of n-1 recursively. Factorial of 0 and 1 are 1, as already known. Program is
+
+```rust
+fn factorial_recursive(number : i128) -> i128{
+
+    // Base Case
+    if number<=1 {
+        return 1;
+    }
+
+    // Recursive Case
+    return number * factorial_recursive(number-1);
+}
+```
+**Output**
+
+>20 <br/>
+Factorial of 20 is : 2432902008176640000
+
+
+**Time Complexity : O(n)** <br/>
+**Space Complexity : O(n)**
+
+( Space complexity is O(n) because all the intermediate are stored in stack memory till factorial of n-1 is found. )
+
+**Note :** Iterative approach is more efficient than recursive approach !
+
+## Conclusion
+
+This article covers the basic definition factorial, properties and simple functions to find factorial of a number in Rust in both Iterative and Recursive manner.
+
+Here is function for easy access
+
+```rust
+fn factorial(number : i128) -> i128{
+    let mut factorial : i128 = 1;
+    for i in 1..(number+1) {
+        factorial*=i;
+    }
+    return factorial
+}
+```
+
+Factorial of Larger Numbers and array will be covered in the coming articles.
+
+**Thank You**
+
+import {SEO} from "smooth-doc/src/components/SEO";
+
+<SEO title="Factorial Of a Number - Rust Programming"
+     description="Factorial is an important value of a number. This article covers the basic definition factorial, properties and simple functions to find factorial of a number in Rust in both Iterative and Recursive manner" />

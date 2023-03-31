@@ -1,0 +1,204 @@
+---
+title: Factorial Of Multiple Numbers
+section: 2.3 Factorials
+order: 3
+slug: /number-theory/factorial-of-mutiple-numbers/
+description: Calculating factorial of multiple numbers may take time O( m × n ) . But, we can calculate it in linear space and time complexity using Dynamic Programming and generating Factorial Array.
+---
+
+# Factorial Of Multiple Numbers
+Using Dynamic Programming and Factorial Array
+
+## Program without  Dynamic Programming
+
+In the previous article, we discussed how to [find factorial of a number](/number-theory/factorial-of-number/) and how to [find factorial of very large numbers using Modular Arithmetic.](/number-theory/factorial-of-large-numbers/)
+
+As we have already seen in these article, the **Time Complexity for calculating the factorial of each number is O( n )**
+So, if we find the factorial of m numbers, clearly the time complexity will be **O( m × n )** , where n is the largest number among m numbers.
+
+Now, let's see a code to demonstrate this. We will use the Iterative function used in [find factorial of very large numbers using Modular Arithmetic.](/number-theory/factorial-of-large-numbers/)
+
+Program
+
+```rust
+use std::io::stdin;
+
+fn factorial(number : i128, divisor: i128) -> i128 {
+    let mut factorial: i128 = 1;
+    for i in 1..(number + 1) {
+        factorial *= i;
+        factorial %= divisor;
+    }
+    return factorial;
+}
+
+pub fn main() {
+    println!("Enter array : ");
+
+    // Read Array of Integers
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    let arr: Vec<i128> = input.trim().split_whitespace().map(|x| x.parse().unwrap()).collect();
+
+    // For all number in array, find and print factorial, modulo 1000000007
+    // You can replace 1000000007 with any number you like
+    // Also, I am using borrowing, so that we can reuse the array again later
+
+    for number in &arr {
+        let factorial = factorial(*number, 1000000007);
+        println!("Factorial of {} is : {}", number,  factorial);
+    }
+}
+```
+**Output**
+
+>Enter array : <br />
+12 13 14 15 16 <br />
+Factorial of 12 is : 479001600 <br />
+Factorial of 13 is : 227020758 <br />
+Factorial of 14 is : 178290591 <br />
+Factorial of 15 is : 674358851 <br />
+Factorial of 16 is : 789741546
+
+**Time Complexity : O( m×n )** <br/>
+**Space Complexity : O(1)**
+
+## Overlapping Sub-problems
+
+In the above example, we are calculating the factorial of array [12, 13, 14, 15, 16].
+
+For this, we are first calculating 12!, then again 12! and multiply it with 13, to get 13!, then again calculate 13! and multiply with 14 to get 14! and so on. It is depicted by picture below
+
+import MultipleNumberOverlapping from "../../../images/Number Theory/factorial-multiple-numbers.webp"
+
+<div style={{textAlign: 'center'}} >
+    <img src={MultipleNumberOverlapping} width="100%" alt="Overlapping Sub-problems" />
+</div>
+
+So, instead of calculating factorial of 12 5 times, we calculate it once and store it,  and again access it, when needed
+
+## Tabulation Method ( Dynamic Programming )
+
+In Tabulation method, we simply create an array, in which index represents the factorial of number.
+So,
+
+* factorial_array[0] = 0! = 1
+* factorial_array[1] = 1! = 1
+* factorial_array[2] = 2! = 2
+* factorial_array[3] = 3! = 6
+
+and so on.
+
+We can easily use it in the code, any way we like.
+
+If we already have factorial array, then finding factorial of any number is done in **Time Complexity = O( 1 )**, like in above permutation, it takes constant time complexity !
+
+Following function generates factorial array, ** which contains factorial of all numbers upto given maximum number**. It also receives a divisor, to store modulo of number, instead of given number itself
+
+### Function to generate factorial array
+
+```rust
+fn generate_factorial_array(max_number : i128, divisor : i128) -> Vec<i128>{
+    // This function generates and returns an array,
+    // with index representing factorial of the number
+
+    // Convert i128 to usize, so that we can access array slices in rust
+    let max_number : usize = max_number as usize;
+
+    // Initially set every element to 0
+    let mut factorial_array : Vec<i128> = vec![0; max_number+1];
+    factorial_array[0] = 1;
+    factorial_array[1] = 1;
+
+    // Set next factorial to i * previous factorial % divisor
+    for i in 2..(max_number + 1) {
+        factorial_array[i] = (factorial_array[i-1] * (i as i128)) % divisor;
+    }
+
+    return factorial_array
+}
+```
+
+### With driver code, or the implementation of above function
+
+```rust
+use std::io::stdin;
+
+fn generate_factorial_array(max_number : i128, divisor : i128) -> Vec<i128>{
+    // This function generates and returns an array, with index representing factorial of the number
+
+    // Convert i128 to usize, so that we can access array slices in rust
+    let max_number : usize = max_number as usize;
+
+    // Initially set every element to 0
+    let mut factorial_array : Vec<i128> = vec![0; max_number+1];
+    factorial_array[0] = 1;
+    factorial_array[1] = 1;
+
+    // Set next factorial to i * previous factorial % divisor
+    for i in 2..(max_number + 1) {
+        factorial_array[i] = (factorial_array[i-1] * (i as i128)) % divisor;
+    }
+
+    return factorial_array
+}
+
+pub fn main() {
+    // Read Array of Integers
+    println!("Enter array : ");
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    let arr: Vec<i128> = input.trim().split_whitespace().map(|x| x.parse().unwrap()).collect();
+
+    // Read Divisor
+    println!("Enter divisor : ");
+    input.clear();
+    stdin().read_line(&mut input).unwrap();
+    let divisor : i128 = input.trim().parse().unwrap();
+
+    // Find Maximum number in the array
+    let mut max_number: i128 = arr[0];
+    for i in &arr {
+        if *i > max_number {
+            max_number = *i;
+        }
+    }
+
+    // Now, generate the factorial array for the maximum number and divisor
+    let factorial_array = generate_factorial_array(max_number, divisor);
+
+    // Now, print the factorial of each element in array, using above generated factorial array.
+    for i in &arr {
+        print!(" {} ", factorial_array[*i as usize])
+    }
+}
+```
+
+**Output**
+
+>Enter array : <br />
+12 13 14 15 16 <br />
+Factorial of 12 is : 479001600 <br />
+Factorial of 13 is : 227020758 <br />
+Factorial of 14 is : 178290591 <br />
+Factorial of 15 is : 674358851 <br />
+Factorial of 16 is : 789741546
+
+
+**Time Complexity : O( n + m )** <br/>
+**Space Complexity : O( n )**
+
+**Note :** Complexity O( m+n ) signifies that time complexity is maximum O( m ) and O ( n ). Hence, it is **Linear Time and Space Complexity**
+
+## Conclusion
+
+If we find the factorial of multiple numbers one by one, it may take time O( m × n ) or quadratic time complexity. But, we can calculate it in linear space and time complexity using Dynamic Programming and generating Factorial Array.
+
+Reading these articles, you now know much about factorials and how to efficiently code factorial programs in rust.
+
+**Thank You**
+
+import {SEO} from "smooth-doc/src/components/SEO";
+
+<SEO title="Factorial Of Multiple Numbers - Rust Programming"
+     description="Calculating factorial of multiple numbers may take time O( m × n ) . But, we can calculate it in linear space and time complexity using Dynamic Programming and generating Factorial Array." />

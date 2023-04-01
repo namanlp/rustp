@@ -110,7 +110,7 @@ export const theme = {
     'control-focus': th.shadow('focus'),
   },
   sizes: {
-    screen: 1440,
+    screen: 1700,
   },
   space: {
     0: 0,

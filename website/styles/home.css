@@ -21,6 +21,7 @@
     padding-bottom: 5vh;
     font-size:calc(16px + 5vw);
     transition: all 0.5s linear;
+    font-weight: bolder;
 }
 
 .wrapper h1:hover{
@@ -58,6 +59,7 @@ body.xstyled-color-mode-dark .feature-wrapper:hover .rust{
 }
 
 .feature{
+    font-weight: bolder;
     text-align: center;
     font-size: 3rem;
 }

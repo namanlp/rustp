@@ -58,10 +58,11 @@ body.xstyled-color-mode-dark .feature-wrapper:hover .rust{
     text-shadow: 0.4vh 0.4vw #b7410e;
 }
 
-.feature{
+.feature-caption{
     font-weight: bolder;
     text-align: center;
     font-size: 3rem;
+    margin: 3rem auto;
 }
 
 .rust{
@@ -74,6 +75,7 @@ body.xstyled-color-mode-dark .feature-wrapper:hover .rust{
 }
 
 img.feature-image{
+    margin: 0.5rem auto;
     height: 48px;
     transition: all 1s;
 }

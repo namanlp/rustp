@@ -1,67 +1,44 @@
+import { RiGithubFill } from 'react-icons/ri'
+
+
 import React from 'react'
-import { graphql, useStaticQuery } from 'gatsby'
-import { RiGithubFill, RiTwitterFill } from 'react-icons/ri'
 import { Nav, NavList, NavListItem, NavLink } from './Nav'
 import { ColorModeSwitcher } from './ColorModeSwitcher'
 
-const AppNavQuery = graphql`
-  query AppNav {
-    site {
-      siteMetadata {
-        twitterAccount
-        githubRepositoryURL
-        navItems {
-          title
-          url
-        }
-      }
-    }
-  }
-`
+import book from "./book-solid.svg"
+import "./AppNavStyle.css"
 
 export function AppNav() {
-  const data = useStaticQuery(AppNavQuery)
+    return (
+        <Nav>
+            <NavList>
+                <NavListItem>
 
-  return (
-    <Nav>
-      <NavList>
-        {(data.site.siteMetadata.navItems || []).map(
-          ({ title, url }, index) => (
-            <NavListItem key={index}>
-              <NavLink to={url}>{title}</NavLink>
-            </NavListItem>
-          ),
-        )}
-        {data.site.siteMetadata.githubRepositoryURL ? (
-          <NavListItem>
-            <NavLink
-              as="a"
-              href={data.site.siteMetadata.githubRepositoryURL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Github"
-            >
-              <RiGithubFill style={{ width: 24, height: 24 }} />
-            </NavLink>
-          </NavListItem>
-        ) : null}
-        {data.site.siteMetadata.twitterAccount ? (
-          <NavListItem>
-            <NavLink
-              as="a"
-              href={`https://twitter.com/${data.site.siteMetadata.twitterAccount}`}
-              aria-label="Twitter"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <RiTwitterFill style={{ width: 24, height: 24 }} />
-            </NavLink>
-          </NavListItem>
-        ) : null}
-        <NavListItem>
-          <NavLink aria-label="Switch Theme" as={ColorModeSwitcher} />
-        </NavListItem>
-      </NavList>
-    </Nav>
-  )
+                    <NavLink
+                        forwardedAs="a"
+                        href="/basic-programs/input-single-number/"
+                        aria-label="Browse Guides"
+                        className = "nav_link"
+                    >
+                        <img alt="Browse Guides" src={book} height="24" className="navBook" />
+                    </NavLink>
+                </NavListItem>
+
+                <NavListItem>
+                    <NavLink
+                        forwardedAs="a"
+                        href="https://github.com/namanlp/rustp/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Website's Github Repository"
+                    >
+                        <RiGithubFill style={{ width: 24, height: 24 }} />
+                    </NavLink>
+                </NavListItem>
+                <NavListItem>
+                    <NavLink aria-label="Switch Theme" as={ColorModeSwitcher} />
+                </NavListItem>
+            </NavList>
+        </Nav>
+    )
 }

@@ -15,7 +15,6 @@ body.xstyled-color-mode-dark .navBook:hover{
 }
 
 header{
-    backdrop-filter: blur(10px);
     border-bottom: 1px solid #b7410e !important;
 }
 

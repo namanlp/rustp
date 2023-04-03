@@ -43,6 +43,7 @@ const OuterHeader = styled.header`
   border-bottom-style: solid;
   border-bottom-width: base;
   border-bottom-color: layout-border;
+  backdrop-filter: blur(10px);
   padding: 2 0;
   height: 50;
 

@@ -1,7 +1,5 @@
 import { RiGithubFill } from 'react-icons/ri'
-
-import {FaBook} from "react-icons/all";
-
+import {FaBook} from "react-icons/fa";
 
 import React from 'react'
 import { Nav, NavList, NavListItem, NavLink } from './Nav'

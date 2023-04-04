@@ -5,8 +5,6 @@ import React from 'react'
 import { Nav, NavList, NavListItem, NavLink } from './Nav'
 import { ColorModeSwitcher } from './ColorModeSwitcher'
 
-import "./AppNavStyle.css"
-
 export function AppNav() {
     return (
         <Nav>

@@ -2,14 +2,30 @@
 
 This is base repo for the website hosted at [Rust Programming](https://rustp.org/)
 
-To make a copy, clone this repo and in the rustp folder, run
+To make a local instance, first clone the repository using
+
 ```
-yarn install
+git clone https://github.com/namanlp/rustp.git
 ```
-Then, export Node Option ( in Linux and Mac)
+
+And go to `rustp` folder
+
 ```
-export NODE_OPTIONS=--openssl-legacy-provider
+cd rustp
 ```
+
+And install dependencies
+
+```
+npm install
+```
+
+Then, go to the website folder
+
+```
+cd website
+```
+
 And finally,
 ```
 gatsby develop

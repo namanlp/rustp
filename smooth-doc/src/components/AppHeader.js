@@ -39,7 +39,7 @@ const AppHeaderQuery = graphql`
 `
 
 const OuterHeader = styled.header`
-  background-color: background;
+  background-color: background-header;
   border-bottom-style: solid;
   border-bottom-width: base;
   border-bottom-color: layout-border;

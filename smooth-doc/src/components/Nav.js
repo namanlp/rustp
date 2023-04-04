@@ -40,7 +40,7 @@ export const NavListItem = styled.liBox`
   list-style-type: none;
   white-space: nowrap;
   margin: 0;
-  padding: 0 2;
+  padding: 0 5px;
   display: flex;
   align-items: center;
 `

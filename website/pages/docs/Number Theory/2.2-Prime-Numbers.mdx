@@ -25,3 +25,101 @@ import primeNumber from "../../../images/Number Theory/prime-numbers.webp"
     <img src={primeNumber} width="100%" alt="Prime Numbers less than 20" />
 </div>
 
+## Properties of Prime Numbers
+
+* All prime numbers except 2 are odd numbers. 2 is also the smallest prime number.
+* 2 prime numbers are always co prime to each other, that is their GCD = 1.
+* Every natural number greater than 1 can be expressed as product of powers of prime numbers, which is unique. See [Prime Factorization of a number](/number-theory/prime-factorization-of-a-number/)
+* Every even natural number greater than 2 can be expressed as the sum of two prime numbers.
+* [Fermat's little theorem](https://en.wikipedia.org/wiki/Fermat's_little_theorem), for any number n, and a prime number p,  <b> ( n<sup> p-1</sup> )  mod p = 1 </b>
+* Every prime number greater than 3 can be written as 6n+1 or 6n-1, where n is any natural number.
+
+## Check if a number is Prime
+
+Let us now make a function to check if a given number is prime or not. We iterate through all the number from 2 to square root of number and check if it divides the number. If yes, return false.
+
+Finally, return true because it not divisible by any number.
+
+**Proof**
+
+Let us suppose, that some number, N is not prime. So, we can write it as
+
+N = A × B
+
+and 1 < A ≤ B < N. So, A must be less than or equal to square root of N, else A × B will become greater than N, because A × A > N and A ≤ B \=> A × B > N.
+
+Hence, we have to check for the numbers only upto sqrt( N ).
+
+### Program
+
+```rust
+
+fn check_prime(n:usize) -> bool{
+
+    // Iterate from i = 2 to sqrt ( n )
+    let mut i:usize = 2;
+    while i*i<=n {
+        // Return false if the number is divisible
+        if n%i == 0 {
+            return false;
+        }
+        i+=1;
+    }
+
+    // Return true finally
+    return true;
+}
+```
+
+with Driver code
+
+```rust
+use std::io::stdin;
+
+fn take_int() -> usize {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    return input.trim().parse().unwrap();
+}
+
+fn check_prime(n:usize) -> bool{
+
+    // Iterate from i = 2 to sqrt ( n )
+    let mut i:usize = 2;
+    while i*i<=n {
+        // Return false if the number is divisible
+        if n%i == 0 {
+            return false;
+        }
+        i+=1;
+    }
+
+    // Return true finally
+    return true;
+}
+
+pub fn main() {
+    // Take the number from user
+    let n = take_int();
+
+    // Output on the basis of if the number is prime or not
+
+    if check_prime(n) {
+        println!("Yes, given number is a prime number");
+    }
+    else {
+        println!("No, given number is not a prime number");
+    }
+}
+```
+
+**Input**
+
+>1000000007
+
+**Output**
+
+> Yes, given number is a prime number
+
+**Time Complexity : O( sqrt ( N ) )** <br/>
+**Space Complexity : O( 1 )**

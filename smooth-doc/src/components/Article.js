@@ -185,13 +185,21 @@ export const Article = styled.article`
   }
 
   > blockquote {
-    font-size: 1rem;
+    opacity: 0.7;
+    font-size: 1.05rem;
+    font-weight: 500;
     background-color: blockquote-background;
-    border-left: 8;
-    border-color: blockquote-border;
-    padding: 1rem;
+    border: 2px solid;
+    border-color:  blockquote-border;
+    padding: 1.15rem;
     margin: 3 -2;
     border-radius: blockquote;
+    transition: all 0.3s ease-out;
+    
+    &:hover{
+      opacity: 1;
+      padding-left: 1.3rem;
+    }
 
     code {
       background-color: rgba(255, 255, 255, 0.1);

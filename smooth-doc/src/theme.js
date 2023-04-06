@@ -161,8 +161,8 @@ export const theme = {
     'editor-border': th.color('layout-border'),
 
     'blockquote-link': th.color('yellow-800'),
-    'blockquote-background': th.color('yellow-200'),
-    'blockquote-border': th.color('yellow'),
+    'blockquote-background': th.color('rgba(230, 230, 220, 0.9)'),
+    'blockquote-border': th.color('rgba(183,65,14, 1)'),
 
     'doc-search-suggestion-highlight-background': th.color('primary-200'),
     'doc-search-suggestion-highlight-on-background': th.color('primary-800'),

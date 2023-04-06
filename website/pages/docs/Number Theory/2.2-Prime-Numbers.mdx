@@ -85,7 +85,7 @@ fn take_int() -> usize {
 fn check_prime(n:usize) -> bool{
 
     // Iterate from i = 2 to sqrt ( n )
-    let mut i:usize = 2;
+    let mut i = 2;
     while i*i<=n {
         // Return false if the number is divisible
         if n%i == 0 {
@@ -121,5 +121,26 @@ pub fn main() {
 
 > Yes, given number is a prime number
 
-**Time Complexity : O( sqrt ( N ) )** <br/>
+**Time Complexity : O( sqrt( N ) )** <br/>
 **Space Complexity : O( 1 )**
+
+## Conclusion
+
+Prime numbers is a very important concept, especially from Competitive programming point of view. They have plenty of interesting properties and interesting patterns.
+
+In this article, we discussed some of the properties of prime numbers, as well as made a program to check whether a given number is prime or not in square root time complexity.
+
+Here is the optimized function for easy access
+
+```rust
+fn check_prime(n:usize) -> bool{
+    let mut i = 2;
+    while i*i<=n {
+        if n%i == 0 { return false; }
+        i+=1;
+    }
+    return true;
+}
+```
+
+**Thank You**

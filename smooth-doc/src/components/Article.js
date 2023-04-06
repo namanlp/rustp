@@ -25,14 +25,14 @@ export const Article = styled.article`
 
   > p {
     margin: 3 0;
-    font-size: 16;
-    line-height: 1.6;
+    font-size: 1.1rem;
+    line-height: 1.6rem;
     max-width: 100%;
   }
 
   /* Intro */
   > h1 + p {
-    font-size: 18;
+    font-size: 1.45rem;
     font-weight: 300;
     color: on-background-light;
     margin: 2 0 !important;
@@ -40,7 +40,6 @@ export const Article = styled.article`
     ${up(
       'xl',
       css`
-        font-size: 22;
         line-height: 1.2;
       `,
     )};
@@ -65,19 +64,20 @@ export const Article = styled.article`
   }
 
   > h1 {
-    font-size: 32;
-    line-height: 1.1;
+    font-size: 2.3rem;
+    line-height: 1.25;
     font-weight: 600;
     margin: 40 0 2;
   }
 
   > h2 {
-    font-size: 24;
+    font-size: 1.8rem;
     line-height: 1.2;
     font-weight: 600;
-    margin: 4 0;
-    padding-top: 3;
-    border-top: 1;
+    margin-top: 1.5rem;
+    margin-bottom: 1.8rem;
+    padding-top: 1.8rem;
+    border-top: 1px solid;
     border-color: layout-border;
   }
 
@@ -89,10 +89,10 @@ export const Article = styled.article`
   }
 
   > h3 {
-    font-size: 18;
-    line-height: 1.2;
+    font-size: 1.3rem;
+    line-height: 1.2rem;
     font-weight: 600;
-    margin: 4 0 3;
+    margin-top: 2.5rem;
 
     ${down(
       'sm',
@@ -155,14 +155,14 @@ export const Article = styled.article`
   ol,
   ul {
     margin-top: 4;
-    font-size: 16;
+    font-size: 1.14rem;
     padding-left: 4;
 
     p,
     p:first-of-type {
-      font-size: 16;
+      font-size: 1.14rem;
       margin-top: 0;
-      line-height: 1.2;
+      line-height: 1.8rem;
     }
 
     li {
@@ -185,11 +185,11 @@ export const Article = styled.article`
   }
 
   > blockquote {
-    font-size: 16;
+    font-size: 1rem;
     background-color: blockquote-background;
     border-left: 8;
     border-color: blockquote-border;
-    padding: 3;
+    padding: 1rem;
     margin: 3 -2;
     border-radius: blockquote;
 

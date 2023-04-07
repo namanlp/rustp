@@ -14,7 +14,8 @@
 ## Number Theory
 
 * Sieve method
-* Permutation And Combination
+* Replace Factorial section with Permutation And Combination
+* Redesign intro to Number Theory page
 
 ## Arrays
 

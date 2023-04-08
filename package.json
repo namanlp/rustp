@@ -15,8 +15,5 @@
   },
   "overrides": {
     "babel-plugin-styled-components": "2.0.2"
-  },
-  "dependencies": {
-    "gatsby-plugin-google-analytics": "^5.8.0"
   }
 }

@@ -11,6 +11,7 @@
     "@xstyled/styled-components": "^3.5.1",
     "eslint": "^8.37.0",
     "gatsby": "^4.6.0",
+    "gatsby-plugin-google-gtag": "^5.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",

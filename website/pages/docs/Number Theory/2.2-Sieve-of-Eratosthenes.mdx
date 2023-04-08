@@ -18,3 +18,15 @@ It can print all the prime numbers upto a given number in **nearly linear time c
 It also generates a complete list, which number upto N are primes and which are not. We can now check if a given number is prime or not in **constant time complexity !**
 
 Sounds interesting? It is simple enough to understand also.
+
+## Algorithm
+
+In Sieve of Eratosthenes, we will be storing if a number is prime or not at the index. So, to check if 5 is prime, we just have to check for value at array[5], if it is true or false.
+
+1. Initially, take a boolean array / vector of size n+1 and set initially every element to true. Now, set 0 and 1 to false ( Obviously number 0 and 1 are not prime numbers. )
+
+import sieve1 from "../../../images/Number Theory/Sieve-1.webp"
+
+<div style={{textAlign: 'center'}} >
+    <img src={sieve1} width="100%" alt="Initialize array for Sieve method" />
+</div>

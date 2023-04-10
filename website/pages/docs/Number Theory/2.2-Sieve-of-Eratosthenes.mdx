@@ -31,4 +31,29 @@ import sieve1 from "../../../images/Number Theory/sieve/sieve-1.webp"
     <img src={sieve1} width="100%" alt="Initialize array for Sieve method" />
 </div>
 
-2. Now, traverse from 2 to n, and if the number is marked as true, mark all its multiple as false.
+2. Now, traverse from 2 to n, and if the number is marked as true, mark all its multiple as false. Because if obviously, a number is multiple of a number greater than or equal to 2, it is not prime.
+
+import sieve2 from "../../../images/Number Theory/sieve/sieve-2.webp"
+
+<div style={{textAlign: 'center'}} >
+    <img src={sieve2} width="100%" alt="Mark multiples of 2 as false" />
+</div>
+
+3. If any number, say x,  is marked as false, there is no need to traverse through its multiples, because the multiples of x will be already be marked as false by the least prime number that divides x.
+
+4. Repeat step 2 and 3 for all numbers upto n
+
+import sieve3 from "../../../images/Number Theory/sieve/sieve-3.webp"
+
+<div style={{textAlign: 'center'}} >
+    <img src={sieve3} width="100%" alt="Mark multiples of 3 as false" />
+</div>
+
+
+5. After traversing all the numbers, we are left with a boolean array / vector in which the i index is set true, if number is prime, and false otherwise.
+
+import sieve4 from "../../../images/Number Theory/sieve/sieve-4.webp"
+
+<div style={{textAlign: 'center'}} >
+    <img src={sieve4} width="100%" alt="Mark multiples of 5 as false" />
+</div>

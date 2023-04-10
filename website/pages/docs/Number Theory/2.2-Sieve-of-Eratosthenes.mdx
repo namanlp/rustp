@@ -25,8 +25,10 @@ In Sieve of Eratosthenes, we will be storing if a number is prime or not at the 
 
 1. Initially, take a boolean array / vector of size n+1 and set initially every element to true. Now, set 0 and 1 to false ( Obviously number 0 and 1 are not prime numbers. )
 
-import sieve1 from "../../../images/Number Theory/Sieve-1.webp"
+import sieve1 from "../../../images/Number Theory/sieve/sieve-1.webp"
 
 <div style={{textAlign: 'center'}} >
     <img src={sieve1} width="100%" alt="Initialize array for Sieve method" />
 </div>
+
+2. Now, traverse from 2 to n, and if the number is marked as true, mark all its multiple as false.

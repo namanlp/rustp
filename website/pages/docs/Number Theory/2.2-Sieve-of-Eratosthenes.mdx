@@ -29,17 +29,18 @@ import sieve1 from "../../../images/Number Theory/sieve/sieve-1.webp"
 
 <div style={{textAlign: 'center'}} >
     <img src={sieve1} width="100%" alt="Initialize array for Sieve method" />
+    *Initial Array*
 </div>
 
 2. Now, traverse from 2 to n, and if the number is marked as true, mark all its multiple as false. Because if obviously, a number is multiple of a number greater than or equal to 2, it is not prime.
 Also, if a number is marked true, it must be prime because it was not marked as False by any smaller number. So, it is not a multiple of any smaller number, hence it is prime number.
 
-*After marking for multiples of 2, array looks like*
 
 import sieve2 from "../../../images/Number Theory/sieve/sieve-2.webp"
 
 <div style={{textAlign: 'center'}} >
     <img src={sieve2} width="100%" alt="Mark multiples of 2 as false" />
+    *After marking false all the multiples of 2*
 </div>
 
 3. If any number, say x,  is marked as false, there is no need to traverse through its multiples, because the multiples of x will be already be marked as false by the least prime number that divides x.
@@ -52,6 +53,9 @@ import sieve4 from "../../../images/Number Theory/sieve/sieve-4.webp"
 
 <div style={{textAlign: 'center'}} >
     <img src={sieve4} width="100%" alt="Final Sieve Array" />
+    *Final Array*
 </div>
 
 I hope you understood the Algorithm and liked it. Now, let us implement it.
+
+

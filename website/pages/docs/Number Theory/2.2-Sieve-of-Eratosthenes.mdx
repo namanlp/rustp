@@ -163,3 +163,21 @@ No, 6 is not a prime number <br />
 
 **Time Complexity : O( n log(log(n)) )** <br/>
 **Space Complexity : O( n )**
+
+## Optimized Sieve
+
+1. If we observe carefully, we can see that if a number is marked as prime, its smallest multiple that is not already marked as prime is its square. <br />
+**For example :** for number 5, <br />
+5×1 = 5 <br />
+5×2 = 10 <br />
+5×3 = 15 <br />
+5×4 = 20 <br />
+5×5 = 25 <br />
+We can see that all the numbers upto 25 will already be marked as non-prime by numbers smaller than 5, that is 2, 3, 4 and so on. So, we do not have to traverse them again.
+
+2. We have to check numbers upto square root of N only, because if a number is not divisible by any number upto square root of N, it will not be divisible by any larger number. <br />
+We used the same logic to optimize code to [Check whether a number is Prime or not](/number-theory/prime-numbers/#check-if-a-number-is-prime)
+
+3. We have to check only odd multiples of  numbers ( except 2 ), because even multiples are already marked false by 2.
+
+These optimizations can make Sieve method **faster by more than 50%** , though it do not affect the time complexity of the code.

@@ -58,4 +58,91 @@ import sieve4 from "../../../images/Number Theory/sieve/sieve-4.webp"
 
 I hope you understood the Algorithm and liked it. Now, let us implement it.
 
+## Program without optimization
 
+Below is the basic implementation of Sieve of Eratosthenes.
+
+```rust
+
+fn sieve(n: usize) -> Vec<bool>{
+
+    // Initialize Sieve Array with all elements initially set to True
+    let mut sieve_array = vec![true; n+1];
+
+    // Set arr[0] and arr[1] to false, because 0 and 1 are not prime
+    sieve_array[0] =  false;
+    sieve_array[1] = false;
+
+    // Traverse from 2 to n
+    // If a number is prime, mark all its multiples except number itself as false
+    for i in 2..n+1 {
+        if sieve_array[i] {
+
+            // Mark all the multiples except number itself as false
+            for j in (2*i..n+1).step_by(i) {
+                sieve_array[j] = false;
+            }
+        }
+    }
+
+    return sieve_array;
+}
+```
+Program With driver code
+
+```rust
+use std::io::stdin;
+
+fn take_int() -> usize {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    return input.trim().parse().unwrap();
+}
+
+
+fn sieve(n: usize) -> Vec<bool>{
+
+    // Initialize Sieve Array with all elements initially set to True
+    let mut sieve_array = vec![true; n+1];
+
+    // Set arr[0] and arr[1] to false, because 0 and 1 are not prime
+    sieve_array[0] =  false;
+    sieve_array[1] = false;
+
+    // Traverse from 2 to n
+    // If a number is prime, mark all its multiples except number itself as false
+    for i in 2..n+1 {
+        if sieve_array[i] {
+
+            // Mark all the multiples except number itself as false
+            for j in (2*i..n+1).step_by(i) {
+                sieve_array[j] = false;
+            }
+        }
+    }
+
+    return sieve_array;
+}
+
+// Driver Code
+pub fn main() {
+    // Take input and print all the numbers upto number
+    // And tell if they are prime
+    let number = take_int();
+
+    // Generate a sieve array for the given number
+    let sieve_array = sieve(number);
+
+    // Output if the number is prime or not
+    // We can now tell whether a number less than equal to N
+    // is Prime or not in O( 1 ) or constant time complexity
+    for i in 2..number+1 {
+        if sieve_array[i] {
+            println!("Yes, {}  is a prime number", i);
+        }
+        else {
+            println!("No, {} is not a prime number", i);
+        }
+    }
+}
+```

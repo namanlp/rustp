@@ -205,7 +205,7 @@ fn sieve(n: usize) -> Vec<bool>{
     // If a number is prime, mark all its multiples except number itself as false
     // Optimization : Check numbers only upto square root of n
     let mut i = 3;
-    while i*i<= n {
+    while i*i<= n+1 {
         if sieve_array[i] {
 
             // Mark all the multiples except number itself as false
@@ -215,7 +215,9 @@ fn sieve(n: usize) -> Vec<bool>{
                 sieve_array[j] = false;
             }
         }
-        i+=1;
+        // We do not have to check even numbers.
+        // So, we increment i by 2
+        i+=2;
     }
 
     return sieve_array;

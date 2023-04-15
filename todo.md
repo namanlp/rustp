@@ -13,7 +13,6 @@
 
 ## Number Theory
 
-* Replace Factorial section with Permutation And Combination
 * Redesign intro to Number Theory page
 * nth root page
 

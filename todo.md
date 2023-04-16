@@ -16,6 +16,11 @@
 * Redesign intro to Number Theory page
 * nth root page
 
+## Combinatorics
+
+* Rewrite Factorial page from scratch
+* Write Permutation and Combination pages
+
 ## Arrays
 
 * Difference Array
@@ -26,3 +31,4 @@
 ## Data Structures in Rust
 
 * Using in built data structures in Rust.
+

@@ -44,7 +44,7 @@ Factorials of number upto 15 are
 <br />
 
 As you can see, factorial of a number grows very fast. For example,
-**40! = 8.15×10⁴⁷ , which is so large that no numerical data structure in rust can store this value.**
+**40! = 8.15×10<sup>47</sup> , which is so large that no numerical data structure in rust can store this value.**
 
 Before discussing how to store it, let's see some properties of factorial
 
@@ -60,73 +60,11 @@ For example, 5! = 5 × 4! = 5 × 24 = 120
 
 For example, 5! = 6! / 6 = 720/6 = 120
 
-## Iterative Approach
-
 **Note :** We will take maximum integer data type in rust, that is `i128` so that we can find factorial of the largest number possible to store
-
-It is the simplest method, just take the number, and multiply it with all the natural numbers less than it.
-
-```rust
-fn factorial(number : i128) -> i128{
-
-    // initialize factorial to 1, explicitly type i128
-    let mut factorial : i128 = 1;
-
-    // Multiply factorial by all numbers from 1 to the given number
-    for i in 1..(number+1) {
-        factorial*=i;
-    }
-
-    // Return factorial
-    return factorial
-}
-```
-
-Program with Driver Code
-```rust
-use std::io::stdin;
-
-fn factorial(number : i128) -> i128{
-
-    // initialize factorial to 1, explicitly type i128
-    let mut factorial : i128 = 1;
-
-    // Multiply factorial by all numbers from 1 to the given number
-    for i in 1..(number+1) {
-        factorial*=i;
-    }
-
-    // Return factorial
-    return factorial
-}
-
-// Driver Code
-
-pub fn main() {
-    // Read and parse number to i128
-    let mut input = String::new();
-    stdin().read_line(&mut input).unwrap();
-    let number : i128 = input.trim().parse().unwrap();
-
-    // Find and print factorial
-    let factorial = factorial(number);
-    println!("Factorial of {} is : {}", number,  factorial);
-}
-```
-
-**Output**
-
->20 <br/>
-Factorial of 20 is : 2432902008176640000
-
-
-**Time Complexity : O(n)** <br/>
-**Space Complexity : O(1)**
-
 
 ## Recursive Approach
 
-In this, we compute the factorial using property of factorial **n! = n × (n-1)!** 
+In this, we compute the factorial using property of factorial **n! = n × (n-1)!**
 
 So, we find the factorial of n by computing the factorial of n-1 recursively. Factorial of 0 and 1 are 1, as already known. Program is
 
@@ -142,6 +80,36 @@ fn factorial_recursive(number : i128) -> i128{
     return number * factorial_recursive(number-1);
 }
 ```
+
+Program with Driver Code
+
+```rust
+use std::io::stdin;
+fn factorial_recursive(number : i128) -> i128{
+
+    // Base Case
+    if number<=1 {
+        return 1;
+    }
+
+    // Recursive Case
+    return number * factorial_recursive(number-1);
+}
+
+// Driver Code
+
+pub fn main() {
+    // Read and parse number to i128
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    let number : i128 = input.trim().parse().unwrap();
+
+    // Find and print factorial
+    let factorial = factorial_recursive(number);
+    println!("Factorial of {} is : {}", number,  factorial);
+}
+```
+
 **Output**
 
 >20 <br/>
@@ -153,7 +121,36 @@ Factorial of 20 is : 2432902008176640000
 
 ( Space complexity is O(n) because all the intermediate are stored in stack memory till factorial of n-1 is found. )
 
-**Note :** Iterative approach is more efficient than recursive approach !
+## Iterative Approach
+
+
+It is more efficient method, just take the number, and multiply it with all the natural numbers less than it.
+
+```rust
+fn factorial(number : i128) -> i128{
+
+    // initialize factorial to 1, explicitly type i128
+    let mut factorial : i128 = 1;
+
+    // Multiply factorial by all numbers from 1 to the given number
+    for i in 1..(number+1) {
+        factorial*=i;
+    }
+
+    // Return factorial
+    return factorial
+}
+```
+
+**Output**
+
+>20 <br/>
+Factorial of 20 is : 2432902008176640000
+
+
+**Time Complexity : O(n)** <br/>
+**Space Complexity : O(1)**
+
 
 ## Conclusion
 

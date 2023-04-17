@@ -7,7 +7,7 @@ description: Factorial is an important value of a number. This article covers th
 ---
 
 # Factorial Of A Number
-And Program in Rust to find the factorial of a number
+And Program to find the factorial of a number in Rust.
 
 ## What is Factorial of a number?
 Factorial of a whole number is defined as the product of all natural numbers from 1 to the number itself, both inclusive.
@@ -161,9 +161,7 @@ Here is function for easy access
 ```rust
 fn factorial(number : i128) -> i128{
     let mut factorial : i128 = 1;
-    for i in 1..(number+1) {
-        factorial*=i;
-    }
+    for i in 1..(number+1) { factorial*=i; }
     return factorial
 }
 ```

@@ -4,6 +4,7 @@
 
 * Add copy to clipboard button
 * warn gatsby-plugin-react-helmet: Gatsby now has built-in support for modifying the document head. Learn more at https://gatsby.dev/gatsby-head
+* Expandable sidebar
 
 ## Basic Programs
 

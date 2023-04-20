@@ -35,3 +35,42 @@ So, total number of ways of arranging *n* items taking *r* at a time is written 
 
 <center> n! / n<sub>1</sub>! × n<sub>2</sub>! × ... n<sub>k</sub>!  </center>
 
+## Program to find Permutation
+
+Now, let us write a program in Rust Language to find the number of permutations when we are given *n* distinct objects, and we can arrange *r* at a time.
+
+```rust
+fn permutation(n: i128, r: i128) -> i128{
+    // nPr = n! / (n-r)!
+    return factorial(n)/factorial(n-r);
+}
+```
+With driver code
+
+```rust
+
+fn permutation(n: i128, r: i128) -> i128{
+    // nPr = n! / (n-r)!
+    return factorial(n)/factorial(n-r);
+}
+
+// Driver code
+
+use std::io::stdin;
+fn take_int() -> i128 {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    return input.trim().parse().unwrap();
+}
+fn factorial(number : i128) -> i128{
+    let mut factorial : i128 = 1;
+    for i in 1..(number+1) { factorial*=i; }
+    return factorial;
+}
+
+pub fn main() {
+    let n = take_int();
+    let r = take_int();
+    println!("{}", permutation(n, r));
+}
+```

@@ -23,7 +23,6 @@ module.exports = {
           "G-D0G3P087MQ", // Google Analytics
         ],
         gtagConfig: {
-          // optimize_id: "OPT_CONTAINER_ID",
           anonymize_ip: true,
           // cookie_expires: 0,
         },

@@ -24,5 +24,14 @@ So, total number of ways of arranging *n* items taking *r* at a time is written 
 ## Permutation formulae
 
 ### When all Objects are distinct
+
 1. **When repetition is allowed :** If Repetition of an object is allowed, then we can simply write number of permutations = **n<sup>r</sup>**. We can calculate it using Exponent or Power function.
-2. **When repetition is not allowed :** If Repetition of an object is not allowed, then permutations can be written as  **<sup>n</sup>P<sub>r</sub> = n! / r!** We can calculate it using [Factorial function](combinatorics/factorial-of-number/)
+2. **When repetition is not allowed :** If Repetition of an object is not allowed, then permutations can be written as  **<sup>n</sup>P<sub>r</sub> = n! / (n-r)!** We can calculate it using [Factorial function](combinatorics/factorial-of-number/)
+
+### When some objects are identical
+
+3. **When repetition is allowed :** If Repetition of an object is allowed, then we can simply write number of permutations = **k<sup>r</sup>**, where k are total number of unique objects. We can calculate it using Exponent or Power function.
+4. **When repetition is not allowed :** If repetition is not allowed, but there are *n<sub>1</sub>* identical objects of type 1, *n<sub>2</sub>* objects of type 2 ... *n<sub>k</sub>* objects of type k, then total permutations of all objects are
+
+<center> n! / n<sub>1</sub>! × n<sub>2</sub>! × ... n<sub>k</sub>!  </center>
+

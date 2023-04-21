@@ -3,7 +3,7 @@ title: Permutation
 section: 3 Combinatorics
 order: 10
 slug: /combinatorics/permutation/
-description: Permutation
+description: Permutation is the number of ways in which things from a particular set of objects can be chosen and arranged. We will see permutation formulae and also write a program to find number of permutations in Rust.
 ---
 
 # Permutation
@@ -95,3 +95,24 @@ pub fn main() {
 **Time Complexity : O( n )** <br/>
 **Space Complexity : O( 1 )**
 
+## Conclusion
+
+Permutation is the number of ways in which things from a particular set of objects can be **chosen and arranged.**
+In this article, we saw the formulae for calculating number of permutation for given n and r and also made a program to find number of permutations in Rust.
+
+Here is the function for easy access
+
+```rust
+fn factorial(number : i128) -> i128{
+    let mut factorial : i128 = 1;
+    for i in 1..(number+1) { factorial*=i; }
+    return factorial;
+}
+
+fn permutation(n: i128, r: i128) -> i128{
+    return factorial(n)/factorial(n-r);
+}
+
+```
+
+**Thank You**

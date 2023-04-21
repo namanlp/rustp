@@ -19,13 +19,20 @@ If you want to read more about what Permutation means, I would recommend you to 
 
 In this article, we will use standard reference : the number of total objects to be arranged are denoted by **n** and the number of items chosen at a time are denoted by **r**.
 
-So, total number of ways of arranging *n* items taking *r* at a time is written **<sup>n</sup>P<sub>r</sub>**. It will also be written as **P(n, r)**
+So, total number of ways of arranging *n* unique items taking *r* at a time is written **<sup>n</sup>P<sub>r</sub>**. It will also be written as **P(n, r)**
+
+import permutation from "../../../images/Combinatorics/permutations.webp"
+
+<div style={{textAlign: 'center'}} >
+    <img src={permutation} width="100%" alt="Permutation of RUST" />
+</div>
 
 ## Permutation formulae
 
 ### When all Objects are distinct
 
 1. **When repetition is allowed :** If Repetition of an object is allowed, then we can simply write number of permutations = **n<sup>r</sup>**. We can calculate it using Exponent or Power function.
+
 2. **When repetition is not allowed :** If Repetition of an object is not allowed, then permutations can be written as  **<sup>n</sup>P<sub>r</sub> = n! / (n-r)!** We can calculate it using [Factorial function](combinatorics/factorial-of-number/)
 
 ### When some objects are identical
@@ -87,3 +94,4 @@ pub fn main() {
 
 **Time Complexity : O( n )** <br/>
 **Space Complexity : O( 1 )**
+

@@ -9,9 +9,9 @@ description: Calculating factorial of multiple numbers may take time O( m × n )
 # Modular Factorial Of Multiple Numbers
 Using Dynamic Programming and generating Modular Factorial Array in Rust
 
-## Program without  Dynamic Programming
+## Naive Approach
 
-In the previous article, we discussed how to [find factorial of a number](/number-theory/factorial-of-number/) and how to [find factorial of very large numbers using Modular Arithmetic.](/number-theory/factorial-of-large-numbers/)
+In the previous articles, we discussed how to [find factorial of a number](/number-theory/factorial-of-number/) and how to [find factorial of very large numbers using Modular Arithmetic.](/number-theory/factorial-of-large-numbers/)
 
 As we have already seen in these article, the **Time Complexity for calculating the factorial of each number is O( n )**
 So, if we find the factorial of m numbers, clearly the time complexity will be **O( m × n )** , where n is the largest number among m numbers.
@@ -119,7 +119,7 @@ fn generate_factorial_array(max_number : i128, divisor : i128) -> Vec<i128>{
 }
 ```
 
-### With driver code, or the implementation of above function
+### With driver code
 
 ```rust
 use std::io::stdin;

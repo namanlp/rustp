@@ -194,7 +194,21 @@ Factorial of 16 is : 789741546
 
 If we find the factorial of multiple numbers one by one, it may take time O( m × n ) or quadratic time complexity. But, we can calculate it in linear space and time complexity using Dynamic Programming and generating Factorial Array.
 
-Reading these articles, you now know much about factorials and how to efficiently code factorial programs in Rust.
+Here is function for easy access
+
+```rust
+
+fn generate_factorial_array(max_number : i128, divisor : i128) -> Vec<i128>{
+    let max_number : usize = max_number as usize;
+    let mut factorial_array : Vec<i128> = vec![1; max_number+1];
+    for i in 2..(max_number + 1) {
+        factorial_array[i] = (factorial_array[i-1] * (i as i128)) % divisor; }
+    return factorial_array
+}
+
+```
+
+Reading these articles, you now know enough about factorials and how to make efficient factorial programs in Rust.
 
 Now, we should see the Permutation and combination and learn how to apply the concept of Factorial.
 

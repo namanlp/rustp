@@ -140,16 +140,8 @@ Here is optimized function for easy access.
 ```rust
 fn gcd(mut a:i128, mut b:i128) -> i128{
     if a==b { return a; }
-    if b > a {
-        let temp = a;
-        a = b;
-        b = temp;
-    }
-    while b>0 {
-        let temp = a;
-        a = b;
-        b = temp%b;
-    }
+    if b > a { let temp = a; a = b; b = temp; }
+    while b>0 { let temp = a; a = b; b = temp%b; }
     return a;
 }
 

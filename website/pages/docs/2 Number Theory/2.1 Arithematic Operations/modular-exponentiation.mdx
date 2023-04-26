@@ -188,15 +188,8 @@ fn modular_exponent(mut n:i128 ,mut x:i128 , p:i128) -> i128{
     if x<=0 { return 1; }
     loop {
         if x==1 { return (ans * n) % p; }
-        if x&1==0 {
-            n=( n * n ) % p;
-            x>>=1;
-            continue;
-        }
-        else {
-            ans = (ans*n) % p;
-            x-=1;
-        }
+        if x&1==0 { n=( n * n ) % p; x>>=1;continue; }
+        else { ans = (ans*n) % p;x-=1; }
     }
 }
 ```

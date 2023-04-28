@@ -85,3 +85,24 @@ pub fn main() {
 **Time Complexity : O( n )** <br/>
 **Space Complexity : O( 1 )**
 
+## Conclusion
+
+Combination is the number of ways in which we can **choose** some objects from the given set of objects.
+In this article, we saw the frequently used formulae of combinations for given n and r and also made a program to find number of combinations in Rust.
+
+Here is the function for easy access
+
+```rust
+fn combination(n: i128, r: i128) -> i128{
+    return factorial(n)/(factorial(r) * factorial(n-r));
+}
+
+fn factorial(number : i128) -> i128{
+    let mut factorial : i128 = 1;
+    for i in 1..(number+1) { factorial*=i; }
+    return factorial;
+}
+
+```
+
+**Thank You**

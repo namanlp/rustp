@@ -11,9 +11,9 @@ And its Program in Rust
 
 ## What is Modular Exponentiation
 
-Many times, we have to compute exponents of a given number for various purposes. But it is notable that overflow may occur for large values. Largest number that we can store with numerical data type in rust is **`2¹²⁸`**, and is 2<sup>64</sup> in C / C++.
+Many times, we have to compute exponents of a given number for various purposes. But it is notable that overflow may occur for large values. Largest number that we can store with numerical data type in rust is **<code>2<sup>128</sup></code>**, and is 2<sup>64</sup> in C / C++.
 
-Now, suppose, in some question, we have to find **`2¹⁰⁰⁰`** modulo 1000000007. If we try to first compute **`2¹⁰⁰⁰`** and then find modulo, rust will throw overflow error.
+Now, suppose, in some question, we have to find **<code>2<sup>1000</sup></code>** modulo 1000000007. If we try to first compute **<code>2<sup>1000</sup></code>** and then find modulo, rust will throw overflow error.
 
 ```python
 thread 'main' panicked at 'attempt to multiply with overflow', src/iterative.rs:10:9

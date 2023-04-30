@@ -27,11 +27,11 @@ In many questions, the answer grow so large that it becomes impossible to store 
 
 The largest numerical data structure in rust is **`i128`** for integers, **`u128`** for unsigned integers and **`f64`** for decimals.
 
-Now, both **`i128`** and **`u128`** can store numbers upto order of **`10³⁸`**, which is pretty large, and both take 128 bits to represent.
+Now, both **`i128`** and **`u128`** can store numbers upto order of **<code>10<sup>38</sup></code>**, which is pretty large, and both take 128 bits to represent.
 
-But now suppose you have to tell the answer of **¹⁰⁰⁰C₅₀₀** , which is of order of **10²⁹⁹** . Clearly it is impossible to calculate using traditional computation methods. Even if it is possible in certain languages like python, it takes really long time to compute it and is certainly not suitable for competitive programming.
+But now suppose you have to tell the answer of **<sup>1000</sup>C <sub>500</sub>** , which is of order of **10<sup>299</sup>** . Clearly it is impossible to calculate using traditional computation methods. Even if it is possible in certain languages like python, it takes really long time to compute it and is certainly not suitable for competitive programming.
 
-So, answers are judged on the basis of modulo of answer from a given a number, generally **`10⁹ + 7 or 1000000007`**. So, it is necessary to know the properties of Modular Arithmetic and their application in order to compute the results efficiently.
+So, answers are judged on the basis of modulo of answer from a given a number, generally **<code>10<sup>9</sup>+7 or 1000000007</code>**. So, it is necessary to know the properties of Modular Arithmetic and their application in order to compute the results efficiently.
 
 ## Basic Properties
 ### 1. Addition Property

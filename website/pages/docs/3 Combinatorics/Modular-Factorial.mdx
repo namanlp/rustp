@@ -10,10 +10,10 @@ description: Factorial is an important value of a number. But calculating factor
 of a number and Program to find modular factorial using Modular Arithmetic in Rust.
 
 ## Why do we need Modulo
-The program discussed in [Finding Factorial Of a Number](/number-theory/factorial-of-number/) page finds the factorial of a given number. But factorial of number grows very fast with number. **Factorial of 100 is 9.33 × 10¹⁵⁷**
+The program discussed in [Finding Factorial Of a Number](/number-theory/factorial-of-number/) page finds the factorial of a given number. But factorial of number grows very fast with number. **Factorial of 100 is 9.33 × 10<sup>157</sup>**
 So, it becomes impossible to store such large number as number in many languages, like **C, C++, Rust** etc. ( Though some languages like Python allow number of any length being stored ).
 
-* Largest integer data type in rust is `i128` which can store data from `-170141183460469231731687303715884105728` to `170141183460469231731687303715884105727` which is roughly of order **`10³⁸`** <br /> <br />
+* Largest integer data type in rust is `i128` which can store only the numbers of 128 bits which is roughly of order **<code>10<sup>38</sup></code>** <br /> <br />
 * If we try to store a number beyond this range, **the number will overflow, and an error will be thrown!.** Like, if we try to find 100!
 
 ```python
@@ -26,7 +26,7 @@ Therefore, we must find an alternate to store and use the factorial of larger nu
 
 As we saw above, we can not store the complete number. But we can store it's modulo from a number.
 
-In most programming contest, a specific number is mentioned, generally **`10⁹ + 7 or 1000000007`** is used because It is *safe prime number*.
+In most programming contest, a specific number is mentioned, generally **<code>10<sup>9</sup> + 7 or 1000000007</code>** is used because It is *safe prime number*.
 
 But we will see a function that generates factorial of a number modulo any other number. Also, it is guaranteed that number will be less than the second number. That is, if we find factorial modulo 13, it is guaranteed that the answer will be less than 13.
 Hence, it will ensure that the number doesn't overflow.

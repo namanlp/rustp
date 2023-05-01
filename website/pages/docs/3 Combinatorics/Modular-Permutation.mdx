@@ -9,3 +9,13 @@ description: Modular Permutation
 # Modular Permutation
 and program to find the Modular Permutation using Modular factorial Array and Modular Multiplicative inverse in Rust
 
+## Introduction
+
+In many problems, it becomes unfeasible to calculate Permutation using traditional data types like `i64` or even `i128` due to `overflow`. The largest integer data type in rust, `u128` can hold the number upto order of 10<sup>38</sup>.
+But Permutations grows pretty fast with n and r. For example, **<sup>100</sup>P<sub>100</sub>** is approximately is 9.33 × 10<sup>157</sup>
+
+So, it becomes unfeasible from competitive programming point of view to compute exact values using C / C++ / Rust etc.
+So, in most programming contest, we have to find the answer modulo with respect to given number, generally **<code>10<sup>9</sup> + 7 or 1000000007</code>** is used because It is *safe prime number*.
+
+Hence, we will discuss how to find **Modular Permutation** or permutation of a large number with respect to a given number using [Modular factorial Array](/combinatorics/modular-factorial-array/) and [Modular Multiplicative inverse](/number-theory/modular-inverse/) in Rust.
+

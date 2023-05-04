@@ -41,3 +41,39 @@ fn modular_permutation(n: i128, r: i128, p:i128) -> i128{
     return ans;
 }
 ```
+
+With Driver Code
+
+```rust
+
+fn modular_permutation(n: i128, r: i128, p:i128) -> i128{
+
+    let mut ans = 1;
+
+    for i in (n-r+1)..(n+1) {
+        ans *= i;
+        if ans>=p {
+            ans = ans%p;
+        }
+    }
+
+    ans%=p;
+    return ans;
+}
+
+// Driver code
+
+use std::io::stdin;
+fn take_int() -> i128 {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    return input.trim().parse().unwrap();
+}
+
+pub fn main() {
+    let n = take_int();
+    let r = take_int();
+    let p = take_int();
+    println!("{}", permutation(n, r, p));
+}
+```

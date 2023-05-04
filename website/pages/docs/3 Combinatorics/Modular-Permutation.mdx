@@ -23,4 +23,21 @@ Hence, we will discuss how to find **Modular Permutation** or permutation of a l
 
 The basic naive approach can be just finding the modular permutation by using modular multiplication and multiplying numbers from `n-r+1` to `n`, inclusive.
 
+Here is code for above implementation.
 
+```rust
+fn modular_permutation(n: i128, r: i128, p:i128) -> i128{
+
+    let mut ans = 1;
+
+    for i in (n-r+1)..(n+1) {
+        ans *= i;
+        if ans>=p {
+            ans = ans%p;
+        }
+    }
+
+    ans%=p;
+    return ans;
+}
+```

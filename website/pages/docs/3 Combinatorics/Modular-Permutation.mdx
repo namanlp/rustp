@@ -88,3 +88,17 @@ pub fn main() {
 
 **Time Complexity : O( n )** <br/>
 **Space Complexity : O( 1 )**
+
+## Efficient Approach
+
+When we have to find large number of modular permutations, say 10<sup>5</sup> or 10<sup>6</sup> permutations and n can also range up to 10<sup>5</sup> or 10<sup>6</sup>, we can clearly see that above approach will result into
+TLE (Time Limit Exceeded) in Competitive Programming contests.
+
+So, we have to find Modular Permutation in Constant time for each test case.
+
+The idea is to first generate a [Modular Factorial Array](/combinatorics/modular-factorial-array/) and then generate 1 more array ,
+containing [Modular Multiplicative Inverse](/number-theory/modular-inverse/) of all numbers, with respect to given number.
+
+Then we can use equation
+
+(<sup>n</sup> P <sub>r</sub>) mod p = ((n!)  mod p * (n-r)! <sup>-1</sup> mod p) mod p

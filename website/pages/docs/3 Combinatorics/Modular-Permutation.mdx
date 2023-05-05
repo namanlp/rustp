@@ -53,17 +53,21 @@ With Driver Code
 ```rust
 
 fn modular_permutation(n: i128, r: i128, p:i128) -> i128{
-
+    // Take Answer to be 1
     let mut ans = 1;
 
+    // nPr = n! / (n-r)! = (n-r+1) × (n-r+2) × .... × n
     for i in (n-r+1)..(n+1) {
         ans *= i;
+
+        // Division and Modulo are expensive for cpu
+        // So, we find modulo if answer is greater than or equal to p
+        // It can never become p though, else, answer will become 0
         if ans>=p {
             ans = ans%p;
         }
     }
 
-    ans%=p;
     return ans;
 }
 
@@ -77,11 +81,13 @@ fn take_int() -> i128 {
 }
 
 pub fn main() {
+    // Take values of n, r and p
     let n = take_int();
     let r = take_int();
     let p = take_int();
     println!("{}", modular_permutation(n, r, p));
 }
+
 ```
 **Input**
 >100 <br/>

@@ -108,9 +108,13 @@ TLE (Time Limit Exceeded) in Competitive Programming contests.
 
 So, we have to find Modular Permutation in Constant time for each test case.
 
-The idea is to first generate a [Modular Factorial Array](/combinatorics/modular-factorial-array/) and then generate 1 more array ,
-containing [Modular Multiplicative Inverse](/number-theory/modular-inverse/) of all numbers, with respect to given number.
+The idea is to first generate a [Modular Factorial Array](/combinatorics/modular-factorial-array/) and then find the number of permutations using equation
 
-Then we can use equation
+<sup>n</sup>P<sub>r</sub> = n! / (n-r)!
+
+Using Modular Arithmetic, this equation becomes
 
 (<sup>n</sup> P <sub>r</sub>) mod p = ((n!)  mod p * (n-r)! <sup>-1</sup> mod p) mod p
+
+To find the number of permutations.
+

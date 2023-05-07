@@ -118,3 +118,61 @@ Using Modular Arithmetic, this equation becomes
 
 To find the number of permutations.
 
+The implementation using this approach is.
+
+```rust
+fn modular_permutation(n: usize, r: usize, p:usize, factorial_array:&Vec<usize>) -> usize{
+    return (factorial_array[n] * mod_inverse(factorial_array[n - r], p)) % p;
+}
+```
+
+With driver code
+
+```rust
+
+
+fn modular_permutation(n: usize, r: usize, p:usize, factorial_array:&Vec<usize>) -> usize{
+    return (factorial_array[n] * mod_inverse(factorial_array[n - r], p)) % p;
+}
+
+// Driver code
+
+use std::io::stdin;
+fn take_int() -> usize {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    return input.trim().parse().unwrap();
+}
+
+
+fn generate_factorial_array(max_number : usize, divisor : usize) -> Vec<usize>{
+    let mut factorial_array : Vec<usize> = vec![1; max_number+1];
+    for i in 2..(max_number + 1) {
+        factorial_array[i] = (factorial_array[i-1] * i) % divisor; }
+    return factorial_array;
+}
+
+fn modular_exponent(mut n:usize ,mut x:usize , p:usize) -> usize{
+    let mut ans = 1;
+    if x<=0 { return 1; }
+    loop { if x==1 { return (ans * n) % p; }
+        if x&1==0 { n=( n * n ) % p; x>>=1;continue; }
+        else { ans = (ans*n) % p; x-=1; }
+    }
+}
+
+fn mod_inverse (n:usize, p:usize) -> usize{
+    return modular_exponent(n, p-2, p);
+}
+
+pub fn main() {
+    // Take values of n, r and p
+    let n = take_int();
+    let r = take_int();
+    let p = take_int();
+    // Contains factorial of all numbers from 1 to 10^6, modulo 10^9 + 7
+    let factorial_array = generate_factorial_array(1_000_000, 1_000_000_007);
+    println!("{}", modular_permutation(n, r, p, &factorial_array));
+}
+```
+

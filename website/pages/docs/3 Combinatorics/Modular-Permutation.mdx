@@ -114,7 +114,7 @@ The idea is to first generate a [Modular Factorial Array](/combinatorics/modular
 
 Using Modular Arithmetic, this equation becomes
 
-(<sup>n</sup> P <sub>r</sub>) mod p = ((n!)  mod p * (n-r)! <sup>-1</sup> mod p) mod p
+<center><b>(<sup>n</sup> P <sub>r</sub>) mod p = ((n!)  mod p * (n-r)! <sup>-1</sup> mod p) mod p </b> </center>
 
 To find the number of permutations.
 
@@ -186,9 +186,10 @@ pub fn main() {
 >505671657
 
 **Time Complexity : O( nlog(n) )** <br/>
-**Space Complexity : O( 1 )**
+**Space Complexity : O( n )**
 
 <br />
 
 **Note:** Although the time complexity is higher in this approach, it will be very less for higher number of queries. For example, if we have n queries of  <sup>n</sup>P<sub>r</sub>, the time taken by this approach will still be O( log(n) ),
-whereas earlier approach will take O( n<sup>2</sup> ) time. So, this is efficient only when there are *higher number of queries*.
+whereas earlier approach will take O( n<sup>2</sup> ) time. So, this is efficient only when there are **higher number of queries**.
+

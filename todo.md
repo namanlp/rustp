@@ -20,7 +20,6 @@
 ## Combinatorics
 
 * Rewrite Factorial page from scratch
-* Write Permutation and Combination pages
 
 ## Arrays
 

@@ -193,3 +193,25 @@ pub fn main() {
 **Note:** Although the time complexity is higher in this approach, it will be very less for higher number of queries. For example, if we have n queries of  <sup>n</sup>P<sub>r</sub>, the time taken by this approach will still be O( log(n) ),
 whereas earlier approach will take O( n<sup>2</sup> ) time. So, this is efficient only when there are **higher number of queries**.
 
+## Summary
+
+```rust
+fn modular_exponent(mut n:usize ,mut x:usize , p:usize) -> usize{
+    let mut ans = 1;
+    if x<=0 { return 1; }
+    loop { if x==1 { return (ans * n) % p; }
+        if x&1==0 { n=( n * n ) % p; x>>=1;continue; }
+        else { ans = (ans*n) % p; x-=1; }
+    }
+}
+
+fn mod_inverse (n:usize, p:usize) -> usize{
+    return modular_exponent(n, p-2, p);
+}
+
+
+fn modular_permutation(n: usize, r: usize, p:usize, factorial_array:&Vec<usize>) -> usize{
+    return (factorial_array[n] * mod_inverse(factorial_array[n - r], p)) % p;
+}
+```
+

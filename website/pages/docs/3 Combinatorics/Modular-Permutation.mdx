@@ -3,7 +3,7 @@ title: Modular Permutation
 section: 3 Combinatorics
 order: 11
 slug: /combinatorics/modular-permutation/
-description: Modular Permutation
+description: In many problems, we may require to find number of possible permutations modulo with respect to a given number.So we will see how to find modular Permutation using Modular factorial Array and Modular Multiplicative inverse in Rust
 ---
 
 # Modular Permutation
@@ -23,7 +23,7 @@ Hence, we will discuss how to find **Modular Permutation** or permutation of a l
 
 When we have to find the value of 1 <sup>n</sup>P<sub>r</sub>, we can just find the modular permutation by using modular multiplication and multiplying numbers from `n-r+1` to `n`, inclusive.
 
-**Note:** This would take linear time complexity for each permutation.
+**Note:** This would take linear time complexity for each permutation. So, this is efficient when there are fewer of queries ( When there are less than log(n) queries to be precise.)
 
 Here is code for above implementation.
 

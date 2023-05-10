@@ -195,9 +195,9 @@ whereas earlier approach will take O( n<sup>2</sup> ) time. So, this is efficien
 
 ## Summary
 
-Finding Permutation is one of the standard problems in Combinatorics. But as we know, it grows pretty fast, and it becomes necessary to compute modulo of Permutation rather than permutations itself.
+Finding number of possible Permutations is one of the standard problems in Combinatorics. But as we know, it grows pretty fast, and it becomes necessary to compute modulo of number of Permutations in many problems.
 
-In this article, we saw how to find modular Permutation using Modular factorial Array and Modular Multiplicative inverse in Rust.
+So, in this article, we saw how to find modular Permutation using Modular factorial Array and Modular Multiplicative inverse in Rust.
 
 Here is code for easy access
 
@@ -215,10 +215,13 @@ fn mod_inverse (n:usize, p:usize) -> usize{
     return modular_exponent(n, p-2, p);
 }
 
-
+// Here is the function
 fn modular_permutation(n: usize, r: usize, p:usize, factorial_array:&Vec<usize>) -> usize{
     return (factorial_array[n] * mod_inverse(factorial_array[n - r], p)) % p;
 }
 ```
 
+import {SEO} from "smooth-doc/src/components/SEO";
 
+<SEO title="Modular Permutation - Rust Programming"
+    description="In many problems, we may require to find number of possible permutations modulo with respect to a given number.So we will see how to find modular Permutation using Modular factorial Array and Modular Multiplicative inverse in Rust."  />

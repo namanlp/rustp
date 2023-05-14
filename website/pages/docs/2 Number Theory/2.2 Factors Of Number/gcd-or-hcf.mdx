@@ -30,9 +30,9 @@ Let us suppose we have to find gcd or hcf of 2 numbers, a and b.
 Naive or brute force approach is to traverse all the numbers from 1 to min(a, b), and check if the number divides both numbers. Function using this approach is
 
 ```rust
-fn gcd(a:i128, b:i128) -> i128{
+fn gcd(a:usize, b:usize) -> usize{
     // Initialize ans, or answer and limit
-    let mut ans:i128 = 1;
+    let mut ans:usize = 1;
     let limit = min(a,b);
 
     // Loop from 2 to limit, both inclusive
@@ -54,19 +54,19 @@ use std::io::stdin;
 
 // Read Input
 
-fn take_vector() -> Vec<i128> {
+fn take_vector() -> Vec<usize> {
     let mut input = String::new();
     stdin().read_line(&mut input).unwrap();
-    let arr: Vec<i128> = input.trim().
+    let arr: Vec<usize> = input.trim().
         split_whitespace().map(|x| x.parse().unwrap()).collect();
     return arr;
 }
 
 // Magic Starts here
 
-fn gcd(a:i128, b:i128) -> i128{
+fn gcd(a:usize, b:usize) -> usize{
     // Initialize ans, or answer and limit
-    let mut ans:i128 = 1;
+    let mut ans:usize = 1;
     let limit = min(a,b);
 
     // Loop from 2 to limit, both inclusive
@@ -114,7 +114,7 @@ Also, clearly, b > a%b.
 Function using this approach is
 
 ```rust
-fn gcd(mut a:i128, mut b:i128) -> i128{
+fn gcd(mut a:usize, mut b:usize) -> usize{
     // If equal, return any of them
     if a==b {
         return a;
@@ -161,7 +161,7 @@ Greatest Common Divisor ( GCD ) or Highest Common Factor ( HCF ) of two natural 
 Here is the optimized function for easy access
 
 ```rust
-fn gcd(mut a:i128, mut b:i128) -> i128{
+fn gcd(mut a:usize, mut b:usize) -> usize{
     if a==b { return a; }
     if b > a {
         let temp = a;

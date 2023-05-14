@@ -51,7 +51,7 @@ Function using this approach is
 
 ```rust
 // Find GCD
-fn gcd(mut a:i128, mut b:i128) -> i128{
+fn gcd(mut a:usize, mut b:usize) -> usize{
     if a==b { return a; }
     if b > a {
         let temp = a;
@@ -66,7 +66,7 @@ fn gcd(mut a:i128, mut b:i128) -> i128{
     return a;
 }
 
-fn lcm(a:i128, b:i128) -> i128{
+fn lcm(a:usize, b:usize) -> usize{
     // LCM = a*b / gcd
     return a*(b/gcd(a,b));
 }
@@ -79,10 +79,10 @@ use std::io::stdin;
 
 // Read Input
 
-fn take_vector() -> Vec<i128> {
+fn take_vector() -> Vec<usize> {
     let mut input = String::new();
     stdin().read_line(&mut input).unwrap();
-    let arr: Vec<i128> = input.trim()
+    let arr: Vec<usize> = input.trim()
         .split_whitespace().map(|x| x.parse().unwrap()).collect();
     return arr;
 }
@@ -90,7 +90,7 @@ fn take_vector() -> Vec<i128> {
 // Magic Starts here
 
 // Find GCD
-fn gcd(mut a:i128, mut b:i128) -> i128{
+fn gcd(mut a:usize, mut b:usize) -> usize{
     if a==b { return a; }
     if b > a {
         let temp = a;
@@ -105,7 +105,7 @@ fn gcd(mut a:i128, mut b:i128) -> i128{
     return a;
 }
 
-fn lcm(a:i128, b:i128) -> i128{
+fn lcm(a:usize, b:usize) -> usize{
     // LCM = a*b / gcd
     return a * (b/gcd(a,b));
 }
@@ -138,14 +138,14 @@ In this article, we made a program to compute Least Common Multiple (LCM) of two
 Here is optimized function for easy access.
 
 ```rust
-fn gcd(mut a:i128, mut b:i128) -> i128{
+fn gcd(mut a:usize, mut b:usize) -> usize{
     if a==b { return a; }
     if b > a { let temp = a; a = b; b = temp; }
     while b>0 { let temp = a; a = b; b = temp%b; }
     return a;
 }
 
-fn lcm(a:i128, b:i128) -> i128{
+fn lcm(a:usize, b:usize) -> usize{
     return a*(b/gcd(a,b));
 }
 ```

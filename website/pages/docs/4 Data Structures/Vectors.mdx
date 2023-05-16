@@ -19,6 +19,7 @@ Now, as you might have noticed, Vectors are **contiguous as well as growable**, 
 
 Actually, Rust vectors are allocated more memory than needed at the time of allocation. As soon as we need more memory, the complete array is copied to another location, and it is reallocated more memory.
 
-So, for example, you create a Vector of 5 objects, using `vec![0;5]`. Rust will initially allocate capacity of 5 objects (`i32` in this case). Now, if you push any object, a new chunk of memory will be allocated for the vector.
-Each time the allocated space becomes full, **Double memory space is allocated**. So in above example, a vector with capacity to hold 10 objects will be created.
+So, for example, you create a Vector of 5 instances, using `vec![0;5]`. Rust will initially allocate capacity of 5 instances (`i32` in this case). Now, if you push any object, a new chunk of memory will be allocated for the vector.
+Each time the allocated space becomes full, **Double memory space is allocated**. So in above example, a vector with capacity to hold 10 instances will be created.
 
+However, the size or length of above vector will remain 6 itself, although the vector can now hold upto 10 instances. Let us see a code for better clarity.

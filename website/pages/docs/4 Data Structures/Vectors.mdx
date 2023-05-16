@@ -9,4 +9,16 @@ description: Vectors are array like contiguous growable storage with a lot more 
 # Vectors
 and the default vector functions in Rust
 
+## Introduction
+
+From [Rust standard library documentation On Vectors](https://doc.rust-lang.org/std/vec/struct.Vec.html), we define vectors as *contiguous growable array type*.
+They are represented as `Vec<T>` , where the vector contains multiple instances of type **`T`**.
+**`T`** can be any data type, like `usize`, `i128` or other class / structs, for example `Hashmap<usize, usize>` or another Vector, like `Vec<usize>` etc.
+
+Now, as you might have noticed, Vectors are **contiguous as well as growable**, so how is that possible? The answer is concept of capacity and size.
+
+Actually, Rust vectors are allocated more memory than needed at the time of allocation. As soon as we need more memory, the complete array is copied to another location, and it is reallocated more memory.
+
+So, for example, you create a Vector of 5 objects, using `vec![0;5]`. Rust will initially allocate capacity of 5 objects (`i32` in this case). Now, if you push any object, a new chunk of memory will be allocated for the vector.
+Each time the allocated space becomes full, **Double memory space is allocated**. So in above example, a vector with capacity to hold 10 objects will be created.
 

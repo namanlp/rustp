@@ -23,3 +23,25 @@ So, for example, you create a Vector of 5 instances, using `vec![0;5]`. Rust wil
 Each time the allocated space becomes full, **Double memory space is allocated**. So in above example, a vector with capacity to hold 10 instances will be created.
 
 However, the size or length of above vector will remain 6 itself, although the vector can now hold upto 10 instances. Let us see a code for better clarity.
+
+
+```rust
+fn main() {
+    // Create a vector of length 5, with all elements as 0
+    let mut vecky = vec![0; 5];
+
+    // Print Size and capacity
+    println!("Before adding element, size is {} and capacity is {}", vecky.len(), vecky.capacity());
+
+    // Push 1 more 0
+    vecky.push(0);
+
+    // Print Size and capacity
+    println!("After adding element, size is {} and capacity is {}", vecky.len(), vecky.capacity());
+}
+```
+
+**Output**
+
+> Before adding element, size is 5 and capacity is 5 <br />
+After adding element, size is 6 and capacity is 10

@@ -34,7 +34,7 @@ But this will be done in **O( x )** or **Linear time complexity.**
 Here's the code for this approach
 
 ```rust
-fn modular_exponent(n:i128 , x:i128 , p:i128) -> i128{
+fn modular_exponent(n:usize , x:usize , p:usize) -> usize{
     // Initialize ans = 1
     let mut ans = 1;
 
@@ -52,7 +52,7 @@ fn modular_exponent(n:i128 , x:i128 , p:i128) -> i128{
 With Driver Code
 
 ```rust
-fn modular_exponent(n:i128 , x:i128 , p:i128) -> i128{
+fn modular_exponent(n:usize , x:usize , p:usize) -> usize{
     // Initialize ans = 1
     let mut ans = 1;
 
@@ -70,7 +70,7 @@ fn modular_exponent(n:i128 , x:i128 , p:i128) -> i128{
 
 use std::io;
 
-fn take_int() -> i128 {
+fn take_int() -> usize {
     let mut input = String::new();
     io::stdin().read_line(&mut input).unwrap();
     return input.trim().parse().unwrap();

@@ -129,7 +129,7 @@ Implementation of above algorithm is written below
 
 ```rust
 
-fn modular_exponent(mut n:i128 ,mut x:i128 , p:i128) -> i128{
+fn modular_exponent(mut n:usize ,mut x:usize , p:usize) -> usize{
     // Initialize ans = 1
     let mut ans = 1;
 
@@ -183,7 +183,7 @@ In this article, we made a program for modular exponentiation in rust in logarit
 
 ```rust
 
-fn modular_exponent(mut n:i128 ,mut x:i128 , p:i128) -> i128{
+fn modular_exponent(mut n:usize ,mut x:usize , p:usize) -> usize{
     let mut ans = 1;
     if x<=0 { return 1; }
     loop {

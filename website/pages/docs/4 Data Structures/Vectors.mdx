@@ -17,6 +17,8 @@ They are represented as `Vec<T>` , where the vector contains multiple instances 
 
 Now, as you might have noticed, Vectors are **contiguous as well as growable**, so how is that possible? The answer is concept of capacity and size.
 
+## Capacity and Size
+
 Actually, Rust vectors are allocated more memory than needed at the time of allocation. As soon as we need more memory, the complete array is copied to another location, and it is reallocated more memory.
 
 So, for example, you create a Vector of 5 instances, using `vec![0;5]`. Rust will initially allocate capacity of 5 instances (`i32` in this case). Now, if you push any object, a new chunk of memory will be allocated for the vector.
@@ -45,3 +47,8 @@ fn main() {
 
 > Before adding element, size is 5 and capacity is 5 <br />
 After adding element, size is 6 and capacity is 10
+
+## Creating a vector
+
+Vector crate ( std::vec::Vec ) is included in Rust **Prelude**, that means you don't have to include  std::vec::Vec explicitly.
+

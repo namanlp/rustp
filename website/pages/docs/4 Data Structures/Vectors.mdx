@@ -61,7 +61,7 @@ The `Vec::new()` method is used to initialize an empty vector, that is, with **0
 
 You should use it when you just want a vector, and don't have any information about it, like capacity, size etc.
 
-Here is sample declaration
+Here is sample initialization.
 
 ```rust
 let mut vecky = Vec::new();
@@ -79,8 +79,13 @@ So, the allocator doesn't have to reallocate again and again. Also, it doesn't i
 
 Therefore, it is perhaps the most efficient way of creating dynamic vectors, when you have rough idea about how many elements will be stored in the vector and know the type of elements while initializing.
 
+Here is sample initialization, to initialize a vector of type `usize` with maximum capacity to hold 5 numbers.
+
 ```rust
 let mut vecky: Vec<usize> = Vec::with_capacity(5);
 ```
 
+**Note :** Capacity is not fixed, that is, if you insert more elements than initially declared capacity, it will reallocate the space and copy the vector elements to the new location.
+
 <br />
+

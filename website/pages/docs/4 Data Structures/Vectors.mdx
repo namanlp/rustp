@@ -52,7 +52,7 @@ After adding element, size is 6 and capacity is 10
 
 **Vector** module ( std::vec::Vec ) is part of standard crate, and it is included in Rust **Prelude**, that means you don't have to include  std::vec::Vec explicitly for using vectors.
 
-So, let's get started by creating a vector.
+So, let's get started by creating, that is initializing a vector in rust.
 
 
 ### Vec::new()
@@ -85,7 +85,10 @@ Here is sample initialization, to initialize a vector of type `usize` with maxim
 let mut vecky: Vec<usize> = Vec::with_capacity(5);
 ```
 
-**Note :** Capacity is not fixed, that is, if you insert more elements than initially declared capacity, it will reallocate the space and copy the vector elements to the new location.
+**Note :** Capacity is not fixed, that is, if you insert more elements than initially declared capacity, it will still reallocate the space and copy the vector elements to the new location. It is handy and make this method more *flexible*
 
 <br />
 
+### vec![] Macro
+
+The `vec![]` is a macro for initialising a vector as well as inserting the elements into the vector.

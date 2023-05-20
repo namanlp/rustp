@@ -50,5 +50,17 @@ After adding element, size is 6 and capacity is 10
 
 ## Creating a vector
 
-Vector crate ( std::vec::Vec ) is included in Rust **Prelude**, that means you don't have to include  std::vec::Vec explicitly.
+**Vector** module ( std::vec::Vec ) is part of standard crate, and it is included in Rust **Prelude**, that means you don't have to include  std::vec::Vec explicitly.
+
+### Vec::new()
+
+The `Vec::new()` method is used to initialize an empty vector, that is, with **0 size and capacity.** You don't have to specify the type of vector, because Rust will automatically determine the type, when you push any element into it.
+
+You should use it when you just want a vector, and don't have any information about it, like capacity, size etc.
+
+Here is sample declaration
+
+```rust
+let vecky = Vec::new();
+```
 

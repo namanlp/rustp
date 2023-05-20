@@ -50,7 +50,10 @@ After adding element, size is 6 and capacity is 10
 
 ## Creating a vector
 
-**Vector** module ( std::vec::Vec ) is part of standard crate, and it is included in Rust **Prelude**, that means you don't have to include  std::vec::Vec explicitly.
+**Vector** module ( std::vec::Vec ) is part of standard crate, and it is included in Rust **Prelude**, that means you don't have to include  std::vec::Vec explicitly for using vectors.
+
+So, let's get started by creating a vector.
+
 
 ### Vec::new()
 
@@ -61,6 +64,23 @@ You should use it when you just want a vector, and don't have any information ab
 Here is sample declaration
 
 ```rust
-let vecky = Vec::new();
+let mut vecky = Vec::new();
 ```
 
+<br />
+
+### Vec::with_capacity()
+
+The `Vec::with_capacity()` method is the best method to initialize a vector when you have an idea how many elements will it contain and the type of elements stored, but don't know all the elements beforehand.
+
+This is my *personal preference* to use in any competitive programming contest, because it is simply most efficient, because most of the time, the size of array and type of elements will already be provided in the testcase.
+
+So, the allocator doesn't have to reallocate again and again. Also, it doesn't initialize the elements, making it more efficient the `vec![]` macro.
+
+Therefore, it is perhaps the most efficient way of creating dynamic vectors, when you have rough idea about how many elements will be stored in the vector and know the type of elements while initializing.
+
+```rust
+let mut vecky: Vec<usize> = Vec::with_capacity(5);
+```
+
+<br />

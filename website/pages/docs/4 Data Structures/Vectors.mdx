@@ -91,4 +91,20 @@ let mut vecky: Vec<usize> = Vec::with_capacity(5);
 
 ### vec![] Macro
 
-The `vec![]` is a macro for initialising a vector as well as inserting the elements into the vector.
+The `vec![]` is a macro for initialising a vector as well as inserting the elements into the vector. It is commonly used to create a vector when you want to initialise the vector with a given value.
+
+It can be done in two ways
+
+```rust
+let vecky = vec![1, 2, 3, 4, 5];
+```
+
+This creates a vector [1, 2, 3, 4, 5] itself.
+
+```rust
+let vecky = vec![0;5]
+```
+
+This automates the initialising of vector. It takes a vector of size 5, and set all the values to 0. So, vector created is [0, 0, 0, 0, 0].
+
+**Note :** This method will create vector with exact capacity, like 5 for both of the above cases.

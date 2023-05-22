@@ -108,3 +108,16 @@ let vecky = vec![0;5]
 This automates the initialising of vector. It takes a vector of size 5, and set all the values to 0. So, vector created is [0, 0, 0, 0, 0].
 
 **Note :** This method will create vector with exact capacity, like 5 for both of the above cases.
+
+### to_vec() method
+
+The `to_vec()` method is a special method based on `collect` for collecting objects to create a vector.
+
+It is useful when you want to **convert an array or string or a slice of it** to a vector.
+For example
+
+```rust
+let vec1 = [1, 2, 3, 4, 5];
+let vecky = vec1.to_vec();
+```
+

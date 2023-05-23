@@ -120,3 +120,20 @@ For example
 let vec1 = [1, 2, 3, 4, 5];
 let vecky = vec1[0..2].to_vec();
 ```
+
+## Inserting in a vector
+
+After we have created a vector, we may want to insert some elements to a vector. This can be done only if the vector is **mutable**. If the maximum capacity is reached, vector is reallocated the space at new location.
+
+We can insert into vector in mainly two ways.
+
+### Pushing or appending
+
+In the `push()` method, we will simply add the element to the end of the vector. This is done in **O(1)** time complexity.
+
+```rust
+let mut vecky = vec![1, 2, 3, 4, 5];
+vecky.push(6);
+```
+
+In this, 6 is added to the end of the vector.

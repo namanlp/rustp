@@ -137,3 +137,19 @@ vecky.push(6);
 ```
 
 In this, 6 is added to the end of the vector.
+
+### Inserting anywhere
+
+In the `insert()` method inserts the given element at given index in the vector. All the elements to the right are shifted by 1 place to make space for the new element. Hence, this method take **O( n )** Time complexity.
+
+```rust
+let mut vecky = vec!['a', 'b', 'd', 'e'];
+vecky.insert(2, 'c');
+```
+
+The vector is ['a', 'b', 'c', 'd', 'e'] now
+
+**Note :**
+1. This method uses 0 based indexing, that is first element is 0th element. Also, index is mentioned before the element, as you can see above.
+2. If given index > length of vector, this method will panic!
+

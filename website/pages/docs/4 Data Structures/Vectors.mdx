@@ -164,6 +164,9 @@ We can access each element as well as the slice of a vector using indexing using
 
 **Note :** We must ensure that the argument inside the [] must be usize to access the elements. This helps to ensure memory safety in rust.
 
-* If only 1 argument is passed, it is matched with the given index, and the value is returned.
+* If only 1 argument is passed, it is matched with the given index, and the value at given index is returned.
 
-
+```rust
+let mut vecky = vec!['a', 'b', 'c', 'd', 'e'];
+println!("{}", vecky[2]);
+```

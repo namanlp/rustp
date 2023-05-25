@@ -170,3 +170,14 @@ We can access each element as well as the slice of a vector using indexing using
 let mut vecky = vec!['a', 'b', 'c', 'd', 'e'];
 println!("{}", vecky[2]);
 ```
+
+We can also use slicing using square brackets, which we will discuss latter
+
+### get() method
+
+The `get()` method is similar to using square brackets, except that it *does not panic on out of bound index*.It returns the reference to the element or slice as `Option` type. So, you can manually handle the not found case with `expect()` or `match`.
+
+```rust
+let mut vecky = vec!['a', 'b', 'c', 'd', 'e'];
+println!("{}", vecky.get(2).expect("Not found"));
+```

@@ -181,3 +181,6 @@ The `get()` method is similar to using square brackets, except that it *does not
 let mut vecky = vec!['a', 'b', 'c', 'd', 'e'];
 println!("{}", vecky.get(2).expect("Not found"));
 ```
+
+**Note :** This method returns an immutable reference by default. You can use `get_mut()` to get mutable reference instead.
+

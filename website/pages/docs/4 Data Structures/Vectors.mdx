@@ -184,3 +184,14 @@ println!("{}", vecky.get(2).expect("Not found"));
 
 **Note :** This method returns an immutable reference by default. You can use `get_mut()` to get mutable reference instead.
 
+## Removing Elements from a vector
+
+### pop()
+
+The `pop()` method is used to remove the last or the right most element from the vector. This method removes the right most element and also returns the removed element.
+
+```rust
+let mut vecky = vec!['a', 'b', 'c', 'd', 'e'];
+println!("{}", vecky.pop().expect("Sorry, empty vector!"));
+```
+This method returns `None` if vector is empty, and takes **O(1)** Time complexity.

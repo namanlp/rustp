@@ -195,3 +195,14 @@ let mut vecky = vec!['a', 'b', 'c', 'd', 'e'];
 println!("{}", vecky.pop().expect("Sorry, empty vector!"));
 ```
 This method returns `None` if vector is empty, and takes **O(1)** Time complexity.
+
+### remove()
+
+The `remove()` method is used to remove an element from a given index from the vector. This method **preserves the order** by shifting all the elements on the right side by one place, and hence takes **O(N)** Time complexity.
+
+This method takes only 1 argument, that is index of the element to be removed.
+
+```rust
+let mut vecky = vec!['a', 'b', 'c', 'd', 'e'];
+vecky.remove(2);
+```

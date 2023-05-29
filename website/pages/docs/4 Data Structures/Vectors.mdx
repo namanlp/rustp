@@ -206,3 +206,19 @@ This method takes only 1 argument, that is index of the element to be removed.
 let mut vecky = vec!['a', 'b', 'c', 'd', 'e'];
 vecky.remove(2);
 ```
+
+### swap_remove()
+
+The `swap_remove()` method is used to remove an element from the given index in the vector, when **order of vector does not matter**, by swapping the given index element with the last element, and removing the last element.
+
+This method is done in **O(1)** time complexity, and takes 1 argument, index of the element to be removed.
+
+```rust
+let mut vecky = vec!['a', 'b', 'c', 'd', 'e'];
+vecky.swap_remove(2);
+println!("{:?}", vecky);
+```
+
+**Output**
+
+> ['a', 'b', 'e', 'd']

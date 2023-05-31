@@ -196,7 +196,7 @@ println!("{}", vecky.pop().expect("Sorry, empty vector!"));
 ```
 This method returns `None` if vector is empty, and takes **O(1)** Time complexity.
 
-### remove()
+### 6.2 remove()
 
 The `remove()` method is used to remove an element from a given index from the vector. This method **preserves the order** by shifting all the elements on the right side by one place, and hence takes **O(N)** Time complexity.
 
@@ -207,7 +207,7 @@ let mut vecky = vec!['a', 'b', 'c', 'd', 'e'];
 vecky.remove(2);
 ```
 
-### 6.2 swap_remove()
+### 6.3 swap_remove()
 
 The `swap_remove()` method is used to remove an element from the given index in the vector, when **order of vector does not matter**, by swapping the given index element with the last element, and removing the last element.
 

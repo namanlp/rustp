@@ -9,7 +9,7 @@ description: Vectors are array like contiguous and growable storage with a lot m
 # Vectors
 and the default vector functions in Rust
 
-## Introduction
+## 1. Introduction
 
 From [Rust standard library documentation On Vectors](https://doc.rust-lang.org/std/vec/struct.Vec.html), we define vectors as *contiguous growable array type*.
 They are represented as `Vec<T>` , where the vector contains multiple instances of type **`T`**.
@@ -17,7 +17,7 @@ They are represented as `Vec<T>` , where the vector contains multiple instances 
 
 Now, as you might have noticed, Vectors are **contiguous as well as growable**, so how is that possible? The answer is concept of capacity and size.
 
-## Capacity and Size
+## 2. Capacity and Size
 
 Actually, Rust vectors are allocated more memory than needed at the time of allocation. As soon as we need more memory, the complete array is copied to another location, and it is reallocated more memory.
 
@@ -48,14 +48,14 @@ fn main() {
 > Before adding element, size is 5 and capacity is 5 <br />
 After adding element, size is 6 and capacity is 10
 
-## Creating a vector
+## 3. Creating a vector
 
 **Vector** module ( std::vec::Vec ) is part of standard crate, and it is included in Rust **Prelude**, that means you don't have to include  std::vec::Vec explicitly for using vectors.
 
 So, let's get started by creating, that is initializing a vector in rust.
 
 
-### Vec::new()
+### 3.1 Vec::new()
 
 The `Vec::new()` method is used to initialize an empty vector, that is, with **0 size and capacity.** You don't have to specify the type of vector, because Rust will automatically determine the type, when you push any element into it.
 
@@ -69,7 +69,7 @@ let mut vecky = Vec::new();
 
 <br />
 
-### Vec::with_capacity()
+### 3.2 Vec::with_capacity()
 
 The `Vec::with_capacity()` method is the best method to initialize a vector when you have an idea how many elements will it contain and the type of elements stored, but don't know all the elements beforehand.
 
@@ -89,7 +89,7 @@ let mut vecky: Vec<usize> = Vec::with_capacity(5);
 
 <br />
 
-### vec![] Macro
+### 3.3 vec![] Macro
 
 The `vec![]` is a macro for initialising a vector as well as inserting the elements into the vector. It is commonly used to create a vector when you want to initialise the vector with a given value.
 
@@ -109,7 +109,7 @@ This automates the initialising of vector. It takes a vector of size 5, and set 
 
 **Note :** This method will create vector with exact capacity, like 5 for both of the above cases.
 
-### to_vec() method
+### 3.4 to_vec() method
 
 The `to_vec()` method is a special method based on `collect` for collecting objects to create a vector.
 
@@ -121,13 +121,13 @@ let vec1 = [1, 2, 3, 4, 5];
 let vecky = vec1[0..2].to_vec();
 ```
 
-## Inserting in a vector
+## 4 Inserting in a vector
 
 After we have created a vector, we may want to insert some elements to a vector. This can be done only if the vector is **mutable**. If the maximum capacity is reached, vector is reallocated the space at new location.
 
 We can insert into vector in mainly two ways.
 
-### Pushing or appending
+### 4.1 Pushing or appending
 
 In the `push()` method, we will simply add the element to the end of the vector. This is done in **O(1)** time complexity.
 
@@ -138,7 +138,7 @@ vecky.push(6);
 
 In this, 6 is added to the end of the vector.
 
-### Inserting anywhere
+### 4.2 Inserting anywhere
 
 In the `insert()` method inserts the given element at given index in the vector. All the elements to the right are shifted by 1 place to make space for the new element. Hence, this method take **O( n )** Time complexity.
 
@@ -154,11 +154,11 @@ The vector is ['a', 'b', 'c', 'd', 'e'] now
 2. If given index > length of vector, this method will panic!
 
 
-## Accessing elements in a Vector
+## 5. Accessing elements in a Vector
 
 We should also be able to access the individual elements in the vector as well as the slice of it. We will discuss about it in this section.
 
-### Indexing using []
+### 5.1 Indexing using []
 
 We can access each element as well as the slice of a vector using indexing using square brackets or `[]`.
 
@@ -173,7 +173,7 @@ println!("{}", vecky[2]);
 
 We can also use slicing using square brackets, which we will discuss latter
 
-### get() method
+### 5.2 get() method
 
 The `get()` method is similar to using square brackets, except that it *does not panic on out of bound index*.It returns the reference to the element or slice as `Option` type. So, you can manually handle the not found case with `expect()` or `match`.
 
@@ -184,9 +184,9 @@ println!("{}", vecky.get(2).expect("Not found"));
 
 **Note :** This method returns an immutable reference by default. You can use `get_mut()` to get mutable reference instead.
 
-## Removing Elements from a vector
+## 6. Removing Elements from a vector
 
-### pop()
+### 6.1 pop()
 
 The `pop()` method is used to remove the last or the right most element from the vector. This method removes the right most element and also returns the removed element.
 
@@ -207,7 +207,7 @@ let mut vecky = vec!['a', 'b', 'c', 'd', 'e'];
 vecky.remove(2);
 ```
 
-### swap_remove()
+### 6.2 swap_remove()
 
 The `swap_remove()` method is used to remove an element from the given index in the vector, when **order of vector does not matter**, by swapping the given index element with the last element, and removing the last element.
 

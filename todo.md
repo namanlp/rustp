@@ -4,6 +4,7 @@
 
 * Add copy to clipboard button
 * Expandable sidebar
+* Add search option to mobile sidenav
 
 ## Basic Programs
 

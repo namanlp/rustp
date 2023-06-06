@@ -29,7 +29,20 @@ But here, in this article, we will not discuss the algorithm itself. We will lea
 
 The **`sort()`** method is used to sort the whole array. It is **stable sorting** algorithm, inspired by [Timsort](https://en.wikipedia.org/wiki/Timsort)
 
-**Note :** You can use it to sort a slice of array as well.
-
 For Example
+
+```rust
+fn main() {
+    let mut vecky = vec![10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+    vecky.sort();
+    println!("{:?}", vecky);
+}
+```
+
+**Output**
+
+>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+**Time Complexity (Average case) : O(n log(n) )** <br />
+**Space Complexity : O (n)**
 

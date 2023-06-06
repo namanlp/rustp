@@ -46,3 +46,25 @@ fn main() {
 **Time Complexity (Average case) : O(n log(n) )** <br />
 **Space Complexity : O (n)**
 
+## sort_unstable() method
+
+The **`sort_unstable()`** method, as suggested by name, is unstable sorting method, but **provides much better performance** in general. It uses pattern defeating quick sort algorithm to sort the elements.
+
+For Example
+
+```rust
+fn main() {
+    let mut vecky = vec![10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+    vecky.sort_unstable();
+    println!("{:?}", vecky);
+}
+```
+
+**Output**
+
+>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+**Time Complexity (Average case) : O(n log(n) )** <br />
+**Space Complexity : O ( log (n) )**
+
+**Note :** Although the time complexity is similar, **`sort_unstable()`** is much faster than stable sort in general.

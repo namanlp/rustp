@@ -68,3 +68,20 @@ fn main() {
 **Space Complexity : O ( log (n) )**
 
 **Note :** Although the time complexity is similar, **`sort_unstable()`** can be faster than stable sort.
+
+## Sort a slice of a Vector
+
+We can use both `sort()` and `sort_unstable()` to sort a slice of a vector. We simply have to use slice of the vector instead of vector itself. For example
+
+```rust
+vecky[0..5].sort();
+```
+or
+
+```rust
+vecky[0..5].sort_unstable();
+```
+
+**Output**
+
+>[6, 7, 8, 9, 10, 5, 4, 3, 2, 1]

@@ -108,9 +108,8 @@ and use it
 
 ```rust
 fn main() {
-
     let mut vecky = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    vecky[0..5].sort_by(|a, b| compare(a, b));
+    vecky[0..5].sort_by(compare);
     println!("{:?}", vecky);
 }
 ```

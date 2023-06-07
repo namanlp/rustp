@@ -118,4 +118,5 @@ fn main() {
 
 > [5, 4, 3, 2, 1, 6, 7, 8, 9, 10]
 
-**Note :** The compare function must return value of `std::cmp::Ordering` type
+**Note :** 1. The compare function must return value of `std::cmp::Ordering` type.
+2. We can alternatively use `sort_by(|a, b| compare(a, b))` in case you need it.

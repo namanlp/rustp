@@ -90,3 +90,27 @@ vecky[0..5].sort_unstable();
 
 To sort a vector using our custom function, we have to use **`sort_by()`** method. We can simply provide a method to use as function in this.
 
+For example, to sort a vector in descending order, we can define a compare function
+
+```rust
+fn compare(a: &i32, b: &i32) ->std::cmp::Ordering{
+    if a<b {
+        return std::cmp::Ordering::Greater;
+    }
+    if a==b{
+        return  std::cmp::Ordering::Equal;
+    }
+    return std::cmp::Ordering::Less;
+}
+```
+
+and use it
+
+```rust
+fn main() {
+
+    let mut vecky = vec![10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+    vecky[0..5].sort_by(|a, b| compare(a, b));
+    println!("{:?}", vecky);
+}
+```

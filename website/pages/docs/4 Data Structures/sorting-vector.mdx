@@ -109,8 +109,14 @@ and use it
 ```rust
 fn main() {
 
-    let mut vecky = vec![10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+    let mut vecky = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     vecky[0..5].sort_by(|a, b| compare(a, b));
     println!("{:?}", vecky);
 }
 ```
+
+**Output**
+
+> [5, 4, 3, 2, 1, 6, 7, 8, 9, 10]
+
+**Note :** The compare function must return value of `std::cmp::Ordering` type

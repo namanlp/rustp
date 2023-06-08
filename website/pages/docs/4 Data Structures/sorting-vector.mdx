@@ -120,3 +120,29 @@ fn main() {
 
 **Note :** 1. The compare function must return value of `std::cmp::Ordering` type.
 2. We can alternatively use `sort_by(|a, b| compare(a, b))` in case you need it.
+
+## sort_unstable_by()
+
+We can use `sort_unstable_by()` in similar manner. For example
+
+```rust
+fn compare(a: &i32, b: &i32) ->std::cmp::Ordering{
+    if a<b {
+        return std::cmp::Ordering::Greater;
+    }
+    if a==b{
+        return  std::cmp::Ordering::Equal;
+    }
+    return std::cmp::Ordering::Less;
+}
+
+fn main() {
+    let mut vecky = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    vecky[0..5].sort_unstable_by(compare);
+    println!("{:?}", vecky);
+}
+```
+
+**Output**
+
+> [5, 4, 3, 2, 1, 6, 7, 8, 9, 10]

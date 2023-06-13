@@ -24,9 +24,45 @@ In the Linear Search, we traverse the whole vector, and check if the given eleme
 
 As it traverses the whole array, it takes **O( n )** time complexity. 
 
-Also, order of array does not matter.
+Also, **order of array does not matter** for linear search. It is very simple to implement. Here is a simple function demonstrating Linear Search
 
+```rust
+fn search(vecky:&Vec<usize>, key:usize) -> usize{
+    for i in 0..vecky.len() {
+        if vecky[i] == key {
+            return i;
+        }
+    }
+
+    // If element is not found
+    return vecky.len();
+}
+```
+
+Program With driver code
+
+```rust
+fn search(vecky:&Vec<usize>, key:usize) -> usize{
+    for i in 0..vecky.len() {
+        if vecky[i] == key {
+            return i;
+        }
+    }
+
+    // If element is not found
+    return vecky.len();
+}
+
+// Driver code
+
+fn main() {
+    let vecky = vec![0, 1, 2, 3, 4, 5];
+    println!("{}", search(&vecky, 4) );
+    println!("{}", search(&vecky, 100) );
+}
+```
 
 ## Binary Search
 
 In the Binary Search, we only check the midpoints of a **sorted list**. Each time, we have to search only in half of the list. Hence, its complexity is **O( log(n) )**
+

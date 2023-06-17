@@ -129,3 +129,24 @@ Use the same driver code.
 
 **Time Complexity : O( log(n) )** <br/>
 **Space Complexity : O( 1 )**
+
+## binary_search() function
+
+Rust already has **`binary_search()`** function built into it. It is already there in `std::vec::Vec` and hence, included in prelude. So, you don't even have to import it explicitly.
+
+For example,
+
+```rust
+fn main() {
+    let vecky = vec![0, 1, 2, 3, 4, 5];
+    println!("{}", vecky.binary_search(&4).expect("Not found") );
+    println!("{}", vecky.binary_search( &100).expect("Not Found") );
+}
+```
+
+**Output**
+
+> 4
+thread 'main' panicked at 'Not Found: 6'
+
+Hence, you can easily use `binary_search()` function on any vector or  a slice of vector in Rust.

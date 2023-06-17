@@ -87,26 +87,26 @@ Here is the Algorithm
 Here is the function for Binary Search in Rust
 
 ```rust
-fn search(vecky:&Vec<usize>, key:usize) -> usize{
-    let mut l = 0;
-    let mut r = vecky.len()-1;
+fn binary_search(vecky:&Vec<usize>, key:usize) -> usize{
+    let mut low = 0;
+    let mut high = vecky.len()-1;
 
-    while l <= r {
-        let m = l + (r - l) / 2;
+    while low <= high {
+        let mid = low + (high - low) / 2;
 
         // If key is middle element, return it
-        if vecky[m] == key {
-            return m;
+        if vecky[mid] == key {
+            return mid;
         }
 
         // If key is greater than middle element, we ignore left half
-        if vecky[m] < key {
-            l = m + 1;
+        if vecky[mid] < key {
+            low = mid + 1;
         }
 
         // If key is less than middle element, we ignore right half
         else{
-            r = m - 1;
+            high = mid - 1;
         }
     }
     // If the element is not found

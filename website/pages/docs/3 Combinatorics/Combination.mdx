@@ -38,7 +38,7 @@ Here are some frequently used formulae for Combinations.
 Now, let us write a program in Rust Language to find the number of permutations when we are given *n* distinct objects, and we can arrange *r* at a time.
 
 ```rust
-fn combination(n: i128, r: i128) -> i128{
+fn combination(n: usize, r: usize) -> usize{
     // nCr = n! / (r! * (n-r)!)
     return factorial(n)/(factorial(r) * factorial(n-r));
 }
@@ -47,7 +47,7 @@ With driver code
 
 ```rust
 
-fn combination(n: i128, r: i128) -> i128{
+fn combination(n: usize, r: usize) -> usize{
     // nCr = n! / (r! * (n-r)!)
     return factorial(n)/(factorial(r) * factorial(n-r));
 }
@@ -55,13 +55,13 @@ fn combination(n: i128, r: i128) -> i128{
 // Driver code
 
 use std::io::stdin;
-fn take_int() -> i128 {
+fn take_int() -> usize {
     let mut input = String::new();
     stdin().read_line(&mut input).unwrap();
     return input.trim().parse().unwrap();
 }
-fn factorial(number : i128) -> i128{
-    let mut factorial : i128 = 1;
+fn factorial(number : usize) -> usize{
+    let mut factorial : usize = 1;
     for i in 1..(number+1) { factorial*=i; }
     return factorial;
 }
@@ -93,12 +93,12 @@ In this article, we saw the frequently used formulae of combinations for given n
 Here is the function for easy access
 
 ```rust
-fn combination(n: i128, r: i128) -> i128{
+fn combination(n: usize, r: usize) -> usize{
     return factorial(n)/(factorial(r) * factorial(n-r));
 }
 
-fn factorial(number : i128) -> i128{
-    let mut factorial : i128 = 1;
+fn factorial(number : usize) -> usize{
+    let mut factorial : usize = 1;
     for i in 1..(number+1) { factorial*=i; }
     return factorial;
 }

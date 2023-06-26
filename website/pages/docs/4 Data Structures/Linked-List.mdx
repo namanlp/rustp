@@ -26,3 +26,7 @@ In this, we can classify Linked List in two ways
 1. **Singly Linked List :** In this, each node contains the address of the next node only. Hence, it is not possible to get the address or pointer of the next node easily, and hence, only **forward traversal** is possible.
 2. **Doubly Linked List :** In this, each node contains the address of the previous as well as the next node. Hence, both **forward and backward traversal** is possible.
 
+### Ending
+
+1. **Null Terminated :** In this, the last element of the linked list is pointing to *NULL* or it is a NULL Pointer. As we know that in Rust, Null pointer is not allowed for memory safety. Hence Option:None is used instead.
+2. **Circular Linked List :** In this, the last element of the list is pointing  towards the first element, forming a Circular Linked List. Hence, traversing this list may make an *infinite loop* if not handled carefully.

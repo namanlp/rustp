@@ -23,3 +23,83 @@ import kadane from "../../../../images/Algorithms/Kadane.webp"
     <img src={kadane} width="100%" alt="Maximum Subarray Sum" />
 </div>
 
+## Naive Approach
+
+Naive or brute force approach is to find the sum of all the subarray and return the maximum of them. Function using this approach is
+
+```rust
+fn max_subarray_sum(arr : Vec<i128>) -> i128{
+
+    // it is not initialized to 0 because array can be all negative elements.
+    let mut max_sum = arr[0];
+
+    // Traverse through all the subarray
+    for i in 0..arr.len() {
+
+        // We use from i+1 to N inclusive
+        // Because j is ending range of the slice.
+        for j in i+1..arr.len()+1 {
+
+            // We find the sum of the subarray [i..j]
+            let mut sum = 0;
+            for k in i..j {
+                sum+=arr[k];
+            }
+
+            // Now compare the sum of this subarray with the max_sum
+            if max_sum < sum {
+                max_sum = sum;
+            }
+        }
+    }
+
+    return max_sum;
+}
+```
+
+With driver code
+
+```rust
+fn max_subarray_sum(arr : Vec<i128>) -> i128{
+
+    // it is not initialized to 0 because array can be all negative elements.
+    let mut max_sum = arr[0];
+
+    // Traverse through all the subarray
+    for i in 0..arr.len() {
+
+        // We use from i+1 to N inclusive
+        // Because j is ending range of the slice.
+        for j in i+1..arr.len()+1 {
+
+            // We find the sum of the subarray [i..j]
+            let mut sum = 0;
+            for k in i..j {
+                sum+=arr[k];
+            }
+
+            // Now compare the sum of this subarray with the max_sum
+            if max_sum < sum {
+                max_sum = sum;
+            }
+        }
+    }
+
+    return max_sum;
+}
+
+// Driver Code
+
+fn main() {
+    let arr:Vec<i128> = vec![4, -5, 3, -2, 1, 5, -6, 3];
+    println!("{}", max_subarray_sum(arr));
+}
+
+```
+
+**Output**
+
+> 7
+
+**Time Complexity : O( n<sup>3</sup> )** <br/>
+**Space Complexity : O( 1 )**

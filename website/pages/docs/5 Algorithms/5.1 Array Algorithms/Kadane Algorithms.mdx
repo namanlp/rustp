@@ -7,7 +7,7 @@ description: Largest Sum of a subarray
 ---
 
 # Maximum Subarray Sum
-in an array using Kadane’s Algorithm in Rust
+in an array using **Kadane’s Algorithm** in Rust
 
 ## Problem Statement
 
@@ -103,3 +103,22 @@ fn main() {
 
 **Time Complexity : O( n<sup>3</sup> )** <br/>
 **Space Complexity : O( 1 )**
+
+## Efficient Kadane’s Algorithm
+
+Using Kadane’s Algorithm, we can find Maximum Subarray Sum in **Linear time complexity** and constant space complexity.
+
+### Observation
+
+In Kadane’s Algorithm, we use a simple **Observation**, that if the sum of the elements upto a given element is negative, we can discard this sum.
+For example, in array,
+
+> [4, **-5**, 3, -2, 1, 5, -6, 3]
+
+We can see that sum of subarray [4, -5] is negative. So, we can easily discard this, because it will only decrease the sum of the elements. We can not include 4 without including -5. So, it is better to drop this subarray.
+
+But in the array
+
+>[4, **-3**, 3, -2, 1, 5, -6, 3]
+
+We can include the subarray [4, -3] because its sum is positive.

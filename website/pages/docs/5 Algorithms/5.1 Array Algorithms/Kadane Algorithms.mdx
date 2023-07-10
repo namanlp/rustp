@@ -122,3 +122,12 @@ But in the array
 >[4, **-3**, 3, -2, 1, 5, -6, 3]
 
 We can include the subarray [4, -3] because its sum is positive.
+
+### Algorithm
+
+1. Initialise max_sum to any element of arr[] and current_sum to 0.
+2. Add the first element to the current_sum.
+3. If current_sum  is greater than the max_sum, set max_sum to current sum.
+4. If current sum is less than 0, set current_sum = 0.
+5. Repeat step 2 to 5 for each element of the arr[] and return the max_sum.
+

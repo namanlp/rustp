@@ -131,3 +131,32 @@ We can include the subarray [4, -3] because its sum is positive.
 4. If current sum is less than 0, set current_sum = 0.
 5. Repeat step 2 to 5 for each element of the arr[] and return the max_sum.
 
+Function using this approach is
+
+```rust
+fn max_subarray_sum(arr : Vec<i128>) -> i128{
+
+    // max sum is not initialized to 0 because array can be all negative elements.
+    let mut max_sum = arr[0];
+    let mut current_sum = 0;
+
+
+    for i in 0..arr.len() {
+        // We add element to the current sum first
+        // because we have to consider single element also
+        current_sum+=arr[i];
+
+        // If current sum is greater than max sum, it becomes max.
+        if current_sum>max_sum {
+            max_sum = current_sum;
+        }
+
+        // Discard the current sum if it is less than 0
+        if current_sum < 0 {
+            current_sum = 0;
+        }
+    }
+
+    return max_sum;
+}
+```

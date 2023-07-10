@@ -177,6 +177,21 @@ Kadane's Algorithm is used to find the Maximum Subarray Sum in an array that may
 
 In this article, we saw the Kadane's Algorithm and also wrote the function to find the Maximum Subarray Sum in Rust Language.
 
+Here is the optimized function for easy access
+
+```rust
+fn max_subarray_sum(arr : Vec<i128>) -> i128{
+    let mut mx = arr[0];
+    let mut curr = 0;
+    for i in 0..arr.len() {
+        curr+=arr[i];
+        if curr>mx { mx = curr; }
+        if curr < 0 { curr = 0; }
+    }
+    return mx;
+}
+```
+
 **Thank You**
 
 import {SEO} from "smooth-doc/src/components/SEO";

@@ -122,9 +122,7 @@ fn gcd(mut a:usize, mut b:usize) -> usize{
 
     // Swap a with b, if b is greater than a
     if b > a {
-        let temp = a;
-        a = b;
-        b = temp;
+        std::mem::swap(&mut a, &mut b);
     }
 
     while b>0 {
@@ -163,11 +161,7 @@ Here is the optimized function for easy access
 ```rust
 fn gcd(mut a:usize, mut b:usize) -> usize{
     if a==b { return a; }
-    if b > a {
-        let temp = a;
-        a = b;
-        b = temp;
-    }
+    if b > a { std::mem::swap(&mut a, &mut b); }
     while b>0 {
         let temp = a;
         a = b;

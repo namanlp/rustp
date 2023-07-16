@@ -27,7 +27,6 @@
 * Count Sort
 * Prefix Array
 * Suffix Array
-* Kadane Algo
 
 ## Data Structures in Rust
 

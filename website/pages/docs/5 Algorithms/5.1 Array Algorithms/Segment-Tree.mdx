@@ -22,3 +22,15 @@ The example of range queries on a given array are :
 3. Minimum and Maximum in a given range.
 
 If you got any of these queries to perform in Logarithmic time, segment tree is a good option.
+
+## Size of Segment Tree
+
+For a given array containing **n** integers, size of segment tree is
+
+* 2n-1 : If n is a power of 2
+* 2k-1 : If n is not the power of 2, and k is the smallest power of 2 greater than n.
+
+So, for example, if n = 9 => k = 16, and hence, size of segment tree = 31.
+
+Also, it is not hard to see that space complexity of a segment tree = **O( n )**
+

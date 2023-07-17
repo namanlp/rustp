@@ -34,3 +34,23 @@ So, for example, if n = 9 => k = 16, and hence, size of segment tree = 31.
 
 Also, it is not hard to see that space complexity of a segment tree = **O( n )**
 
+Here is the function to calculate the height of a Segment Tree in Rust
+
+```rust
+fn calc_size(n:usize)->usize{
+    // If n is a power of 2, return 2n-1
+    if n.count_ones() == 1 {
+        // Left shift is used to multiply n by 2.
+        return (n<<1)-1;
+    }
+
+    // If n is not the power of 2, we have to take 2*k - 1
+    // k can be calculated by 2^(position of MSB+1)
+    // For example, for n = 7, position of MSB = 2, so k = 8
+    // Hence k = 2^(64 - leading zeroes)
+
+    let k = 1<<(64 - n.leading_zeros());
+    return (k<<1)-1;
+}
+```
+

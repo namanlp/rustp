@@ -11,7 +11,7 @@ and program to create a segment tree in Rust
 
 ## Introduction
 
-The Segment Tree is a commonly used tree like data structure that is used for **range based queries**.
+The Segment Tree is a commonly used tree like data structure that is used for **range queries**, like minimum element in a given range of integers.
 
 By using the Segment Tree, we can reduce the time taken for each range query to **O(log n )**, that takes **O( n )** otherwise.
 
@@ -54,4 +54,11 @@ fn calc_size(n:usize)->usize{
     return (k<<1)-1;
 }
 ```
+
+## Structure of Segment Tree
+
+The Segment Trees have a **Binary Tree** like structure, where each node has at most two children, each representing the left and right half of parent range respectively.
+
+**For Example :** If a node has elements from [0..N], then its Left Child will have elements from [0..N/2-1] and right child has elements from [N/2..N].
+
 

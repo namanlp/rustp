@@ -59,6 +59,8 @@ fn calc_size(n:usize)->usize{
 
 The Segment Trees have a **Binary Tree** like structure, where each node has at most two children, each representing the left and right half of parent range respectively.
 
-**For Example :** If a node has elements from [0..N], then its Left Child will have elements from [0..N/2-1] and right child has elements from [N/2..N].
+**For Example :** If a node represents the *N* elements from [0..N-1] ( inclusive ), then its Left Child will represent the elements from [0..N/2-1] and right child will represent the elements from [N/2..N-1].
+
+Hence, we keep on dividing each node, until the node is representing a single element only.
 
 

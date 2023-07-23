@@ -71,3 +71,14 @@ Also, we store the elements in the array form. So, for ith node, its
 * Right Node is represented by element at index 2*i +2
 
 ## Constructing a segment tree
+
+Before we can perform our Range Queries, we have to construct a Segment Tree from the given array.
+
+### Algorithm
+
+1. Calculate the size of segment tree and initialize an empty array/vector for segment tree with default value.
+2. Initially, set low to 0, high to n-1 and position to 0, where size of original array is n.
+3. If high is equal to low, then the current range represent only 1 element, and hence update it on the given position in the segment tree, and return.
+4. If high is greater than low, then the current range represent 2 or more elements. So, we divide the range into 2 halves.
+5. Recursively follow the steps 3 and 4 for left and right half of the range, for position 2 * pos+1 and 2 * pos+2 respectively.
+6. Now, set the node at position to result of **desired operator** of left and right child.

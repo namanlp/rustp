@@ -11,9 +11,9 @@ and program to create a segment tree in Rust
 
 ## Introduction
 
-The Segment Tree is a commonly used tree like data structure that is used for **range queries**, like minimum element or sum of elements in a given subarray.
+The Segment Tree is a commonly used tree like data structure that is used for **range queries** or subarray queries, like minimum element or sum of elements in a given subarray.
 
-By using the Segment Tree, we can reduce the time taken for each range query to **O( log n )**, that takes **O( n )** otherwise.
+By using the Segment Tree, we can reduce the time taken for each range query to **O( log n )**, that takes **O( n )** otherwise, but uses **O( n )** auxiliary space.
 
 The example of range queries on a given array are :
 
@@ -142,3 +142,14 @@ fn construct_segment_tree_util(arr:&Vec<usize>, tree:&mut Vec<usize>, low:usize,
 
 **Time Complexity : O( n )** <br/>
 **Space Complexity : O( n )**
+
+## Conclusion
+
+Segment tree is used frequently for Range Queries or Subarray Queries, especially in competitive programming.
+
+It reduces the time complexity for each range query to **O( log n )** from **O( n )**, but uses **O( n )** auxiliary space.
+So, when you have large number of range queries, you can easily use Segment tree to save time.
+
+In this article, we saw the code to construct a Segment Tree in Rust. We will see Range Queries in the next article.
+
+**Thank You**

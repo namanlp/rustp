@@ -45,6 +45,8 @@ fn calc_size(n:usize)->usize{
         return (n<<1)-1;
     }
 
+    // k denotes the height of the tree.
+
     // If n is not the power of 2, we have to take 2*k - 1
     // k can be calculated by 2^(position of MSB+1)
     // For example, for n = 7, position of MSB = 2, so k = 8

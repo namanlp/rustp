@@ -150,7 +150,35 @@ Segment tree is used frequently for Range Queries or Subarray Queries, especiall
 It reduces the time complexity for each range query to **O( log n )** from **O( n )**, but uses **O( n )** auxiliary space.
 So, when you have large number of range queries, you can easily use Segment tree to save time.
 
-In this article, we saw the code to construct a Segment Tree in Rust. We will see Range Queries in the next article.
+In this article, we saw the code to construct a Segment Tree in Rust. We will see Range Queries in the next article. Here is the optimized function for easy access
+
+```rust
+fn cs(n:usize) ->usize{
+    if n.count_ones() == 1 { return (n<<1)-1; }
+    let k = 1<<(64 - n.leading_zeros());
+    return (k<<1)-1;
+}
+
+fn cons_st(arr:&Vec<usize>, n:usize) -> Vec<usize> {
+    let s = cs(n);
+    let mut segment_tree = vec![0 as usize; s];
+    cons_st_util(arr, &mut segment_tree, 0, n-1, 0);
+    return segment_tree;
+}
+
+fn cons_st_util(arr:&Vec<usize>, tree:&mut Vec<usize>, l:usize, h:usize, pos:usize){
+    if h<l { return; }
+    if h == l { tree[pos] = arr[l];return; }
+    let mid = (h+l)/2;
+    cons_st_util(arr, tree, l, mid, pos*2+1);
+    cons_st_util(arr, tree, mid+1, h, pos*2+2);
+
+    // Here, you can change operation as per requirement
+    // I am using product operator for reference
+    tree[pos] = tree[pos*2+1]*tree[pos*2+2];
+}
+
+```
 
 **Thank You**
 

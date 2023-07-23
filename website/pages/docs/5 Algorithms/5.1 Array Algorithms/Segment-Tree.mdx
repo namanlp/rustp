@@ -82,3 +82,59 @@ Before we can perform our Range Queries, we have to construct a Segment Tree fro
 4. If high is greater than low, then the current range represent 2 or more elements. So, we divide the range into 2 halves.
 5. Recursively follow the steps 3 and 4 for left and right half of the range, for position 2 * pos+1 and 2 * pos+2 respectively.
 6. Now, set the node at position to result of **desired operator** of left and right child.
+
+
+### Function
+
+The program using above algorithm is given below. I used Multiplication operator for the reference.
+
+All you have to do is call `construct_segment_tree()` function, and pass the reference to the original array and `n`, the size of the array.
+
+**Note :** To change the operator, you can change the last line of `construct_segment_tree_util()` function.
+
+```rust
+fn calc_size(n:usize) ->usize{
+    if n.count_ones() == 1 { return (n<<1)-1; }
+    let k = 1<<(64 - n.leading_zeros());
+    return (k<<1)-1;
+}
+
+// I am taking Vector of unsigned integers.
+// You can take it as per your requirement
+fn construct_segment_tree(arr:&Vec<usize>, n:usize) -> Vec<usize> {
+    // Calculate the size of the segment tree array first
+    let s = calc_size(n);
+
+    // Initialize the segment tree as an array of size s, and all elements are 0
+    let mut segment_tree = vec![0 as usize; s];
+
+    // Now, call the construct_segment_tree_util function to build the tree
+    // Note : we use n-1 here, because we are using inclusive range.
+    construct_segment_tree_util(arr, &mut segment_tree, 0, n-1, 0);
+
+    return segment_tree;
+}
+
+fn construct_segment_tree_util(arr:&Vec<usize>, tree:&mut Vec<usize>, low:usize, high:usize, pos:usize){
+    // The range is empty
+    if high<low { return; }
+
+    // Only 1 element in the range.
+    // So, this is right position for the element
+    if high == low {
+        tree[pos] = arr[low];
+        return;
+    }
+
+    // Now, multiple elements exist in the given range.
+    // So, recursively perform this function for left and right half of range
+    let mid = (high+low)/2;
+
+    construct_segment_tree_util(arr, tree, low, mid, pos*2+1);
+    construct_segment_tree_util(arr, tree, mid+1, high, pos*2+2);
+
+    // Here, you can change operation as per requirement
+    // I am using multiplication operator for reference
+    tree[pos] = tree[pos*2+1]*tree[pos*2+2];
+}
+```

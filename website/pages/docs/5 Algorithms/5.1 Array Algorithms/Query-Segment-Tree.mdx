@@ -15,3 +15,9 @@ I have already discussed the use cases as well as how to [Construct the  Segment
 If you have not already read that article, please visit that before, because this is continuation of that article.
 
 Here, we will actually perform Range Query on a segment tree to find output of a given subarray of an Array.
+
+## Approach
+
+Now, if we look at our Segment Tree and Range Queries carefully, we can categorize them in one of 3 categories.
+
+1. **No Overlap :** In this, the Range of our Query and Given Node does not contain any common element. So, we return identity element in this case.

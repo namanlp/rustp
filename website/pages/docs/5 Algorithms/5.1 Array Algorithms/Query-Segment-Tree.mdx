@@ -23,3 +23,10 @@ Now, if we look at our Segment Tree and Range Queries carefully, we can categori
 1. **No Overlap :** In this, the Range of our Query and Given Node does not contain any common element. So, we return identity element in this case.
 2. **Total Overlap :** In this, all the elements of the **given node** are covered in the query. In this, we simply return the value of node.
 3. **Partial Overlap :** In this, there exists some elements that are covered in a node, but not in the query. In this, we have to search in its children nodes recursively.
+
+**For example :** If a node contains value from [2, 5] (inclusive)
+
+1. **No Overlap :** will contain range query such as [0, 1], [6, 7] etc.
+2. **Total Overlap :** Will contain range query such [1, 7] , [2, 10] etc.
+2. **Total Overlap :** Will contain range query such [3, 7] , [2, 3] etc.
+

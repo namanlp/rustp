@@ -26,7 +26,28 @@ Now, if we look at our Segment Tree and Range Queries carefully, we can categori
 
 **For example :** If a node contains value from [2, 5] (inclusive)
 
-1. **No Overlap :** will contain range query such as [0, 1], [6, 7] etc.
+1. **No Overlap :** Will contain range query such as [0, 1], [6, 7] etc.
 2. **Total Overlap :** Will contain range query such [1, 7] , [2, 10] etc.
-2. **Total Overlap :** Will contain range query such [3, 7] , [2, 3] etc.
+3. **Partial Overlap :** Will contain range query such [3, 7] , [2, 3] etc.
 
+## Function
+
+```rust
+fn range_query(st:&Vec<usize>, nl:usize, nh:usize, ql:usize, qh:usize, pos : usize) -> usize{
+    //nl, nh == node low and node high respectively
+    // ql, qh == query low and query high respectively
+
+    // No Overlap, identity element in product is 1
+    if nh < ql || qh < nl {
+        return 1;
+    }
+
+    // Total overlap, return element at given node
+    if nh<= qh && nl>=ql {
+        return st[pos]
+    }
+
+    let mid = (h+l)/2;
+    return range_query(st, nl, mid, ql, qh, 2*pos + 1) * range_query(st, mid+1, nh, ql, qh, 2*pos + 1);
+}
+```

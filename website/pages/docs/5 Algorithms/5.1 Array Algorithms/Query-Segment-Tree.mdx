@@ -51,3 +51,67 @@ fn range_query(st:&Vec<usize>, nl:usize, nh:usize, ql:usize, qh:usize, pos : usi
     return range_query(st, nl, mid, ql, qh, 2*pos + 1) * range_query(st, mid+1, nh, ql, qh, 2*pos + 1);
 }
 ```
+
+Program with driver code
+
+```rust
+
+fn range_query(st:&Vec<usize>, nl:usize, nh:usize, ql:usize, qh:usize, pos : usize) -> usize{
+    //nl, nh == node low and node high respectively
+    // ql, qh == query low and query high respectively
+
+    // Total overlap, return element at given node
+    if ql <= nl && qh>= nh {
+        return st[pos];
+    }
+
+    // No Overlap, identity element in product is 1
+    if nh < ql || qh < nl {
+        return 1;
+    }
+
+    let mid = (nh+nl)/2;
+    return range_query(st, nl, mid, ql, qh, pos*2 + 1) * range_query(st, mid+1, nh, ql, qh, pos*2 + 2);
+}
+
+// Construct the Segment Tree
+
+fn cs(n:usize) ->usize{
+    if n.count_ones() == 1 { return (n<<1)-1; }
+    let k = 1<<(64 - n.leading_zeros());
+    return (k<<1)-1;
+}
+
+fn cons_st(arr:&Vec<usize>, n:usize) -> Vec<usize> {
+    let s = cs(n);
+    let mut segment_tree = vec![1 as usize; s];
+    cons_st_util(arr, &mut segment_tree, 0, n-1, 0);
+    return segment_tree;
+}
+
+fn cons_st_util(arr:&Vec<usize>, tree:&mut Vec<usize>, l:usize, h:usize, pos:usize){
+    if h<l { return; }
+    if h == l { tree[pos] = arr[l];return; }
+    let mid = (h+l)/2;
+    cons_st_util(arr, tree, l, mid, pos*2+1);
+    cons_st_util(arr, tree, mid+1, h, pos*2+2);
+
+    // Here, you can change operation as per requirement
+    // I am using product operator for reference
+    tree[pos] = tree[pos*2+1]*tree[pos*2+2];
+}
+
+fn main() {
+    let arr = vec![1,];
+    let st = cons_st(&arr, 10);
+
+    println!("{}", range_query(&st, 0, 9, 0, 0, 0));
+
+    for i in 0..10 {
+        for j in i..10 {
+            println!("Product of range [{}, {}] is {}",i, j,   range_query(&st, 0, 9, i, j, 0));
+        }
+    }
+    println!("{:?}", st);
+}
+```

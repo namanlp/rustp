@@ -56,6 +56,7 @@ Program with driver code
 
 ```rust
 
+
 fn range_query(st:&Vec<usize>, nl:usize, nh:usize, ql:usize, qh:usize, pos : usize) -> usize{
     //nl, nh == node low and node high respectively
     // ql, qh == query low and query high respectively
@@ -82,8 +83,11 @@ fn cs(n:usize) ->usize{
     return (k<<1)-1;
 }
 
-fn cons_st(arr:&Vec<usize>, n:usize) -> Vec<usize> {
+fn cons_st(arr:&Vec<usize>) -> Vec<usize> {
+    let n = arr.len();
     let s = cs(n);
+
+    // This is set as 1 by default for product only
     let mut segment_tree = vec![1 as usize; s];
     cons_st_util(arr, &mut segment_tree, 0, n-1, 0);
     return segment_tree;
@@ -102,18 +106,25 @@ fn cons_st_util(arr:&Vec<usize>, tree:&mut Vec<usize>, l:usize, h:usize, pos:usi
 }
 
 fn main() {
-    let arr = vec![1,];
-    let st = cons_st(&arr, 10);
+    let arr = vec![1,2, 3, 4, 5, 6, 7, 8, 9, 10];
+    let st = cons_st(&arr);
 
-    println!("{}", range_query(&st, 0, 9, 0, 0, 0));
+    // We have to use arr.len() -1 as nh because inclusive range
 
-    for i in 0..10 {
-        for j in i..10 {
-            println!("Product of range [{}, {}] is {}",i, j,   range_query(&st, 0, 9, i, j, 0));
-        }
-    }
-    println!("{:?}", st);
+    // Prints product of first element
+    println!("{}", range_query(&st, 0, arr.len()-1, 0, 0, 0));
+
+    // Prints product of first 10 elements
+    println!("{}", range_query(&st, 0, arr.len()-1, 0, 9, 0));
+
+    // Prints product of elements 2 to 5 ( inclusive )
+    // So, the answer would be product of 3, 4, 5, 6
+    println!("{}", range_query(&st, 0, arr.len()-1, 2, 5, 0));
+
+    // Prints product of elements 1 to 7 (inclusive),  arr[7] = 8
+    println!("{}", range_query(&st, 0, arr.len()-1, 1, 7, 0));
 }
+
 ```
 
 If there are Q queries,

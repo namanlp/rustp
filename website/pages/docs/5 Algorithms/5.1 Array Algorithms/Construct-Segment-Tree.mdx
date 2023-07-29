@@ -101,8 +101,9 @@ fn calc_size(n:usize) ->usize{
 
 // I am taking Vector of unsigned integers.
 // You can take it as per your requirement
-fn construct_segment_tree(arr:&Vec<usize>, n:usize) -> Vec<usize> {
+fn construct_segment_tree(arr:&Vec<usize>) -> Vec<usize> {
     // Calculate the size of the segment tree array first
+    let n = arr.len();
     let s = calc_size(n);
 
     // Initialize the segment tree as an array of size s, and all elements are 0
@@ -159,7 +160,8 @@ fn cs(n:usize) ->usize{
     return (k<<1)-1;
 }
 
-fn cons_st(arr:&Vec<usize>, n:usize) -> Vec<usize> {
+fn cons_st(arr:&Vec<usize>) -> Vec<usize> {
+    let n = arr.len();
     let s = cs(n);
     let mut segment_tree = vec![0 as usize; s];
     cons_st_util(arr, &mut segment_tree, 0, n-1, 0);

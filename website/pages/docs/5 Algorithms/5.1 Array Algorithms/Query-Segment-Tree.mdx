@@ -47,6 +47,8 @@ fn range_query(st:&Vec<usize>, nl:usize, nh:usize, ql:usize, qh:usize, pos : usi
         return st[pos]
     }
 
+    // Here, you can change operation as per requirement
+    // I am using product operator for reference
     let mid = (h+l)/2;
     return range_query(st, nl, mid, ql, qh, 2*pos + 1) * range_query(st, mid+1, nh, ql, qh, 2*pos + 1);
 }

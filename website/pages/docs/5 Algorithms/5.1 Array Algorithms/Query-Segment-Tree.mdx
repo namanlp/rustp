@@ -71,6 +71,8 @@ fn range_query(st:&Vec<usize>, nl:usize, nh:usize, ql:usize, qh:usize, pos : usi
         return 1;
     }
 
+    // Partial Overlap, we search for both left and right children nodes
+    // You have to edit below as per required function.
     let mid = (nh+nl)/2;
     return range_query(st, nl, mid, ql, qh, pos*2 + 1) * range_query(st, mid+1, nh, ql, qh, pos*2 + 2);
 }
@@ -149,20 +151,11 @@ Here is the optimized function for easy access
 ```rust
 
 fn range_query(st:&Vec<usize>, nl:usize, nh:usize, ql:usize, qh:usize, pos : usize) -> usize{
-    //nl, nh == node low and node high respectively
-    // ql, qh == query low and query high respectively
-
-    // Total overlap, return element at given node
-    if ql <= nl && qh>= nh {
-        return st[pos];
-    }
-
-    // No Overlap, identity element in product is 1
-    if nh < ql || qh < nl {
-        return 1;
-    }
-
+    if ql <= nl && qh>= nh { return st[pos]; }
+    if nh < ql || qh < nl { return 1; }
     let mid = (nh+nl)/2;
+
+    // You have to edit below as per required function.
     return range_query(st, nl, mid, ql, qh, pos*2 + 1) * range_query(st, mid+1, nh, ql, qh, pos*2 + 2);
 }
 ```

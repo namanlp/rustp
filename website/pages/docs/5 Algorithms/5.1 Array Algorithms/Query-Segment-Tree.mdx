@@ -52,7 +52,7 @@ fn range_query(st:&Vec<usize>, nl:usize, nh:usize, ql:usize, qh:usize, pos : usi
 }
 ```
 
-Program with driver code
+With driver code
 
 ```rust
 
@@ -121,13 +121,20 @@ fn main() {
     // So, the answer would be product of 3, 4, 5, 6
     println!("{}", range_query(&st, 0, arr.len()-1, 2, 5, 0));
 
-    // Prints product of elements 1 to 7 (inclusive),  arr[7] = 8
+    // Prints product of elements 1 to 7 (inclusive), arr[1] = 2 and arr[7] = 8
     println!("{}", range_query(&st, 0, arr.len()-1, 1, 7, 0));
 }
 
 ```
 
+**Output**
+>1  <br/>
+3628800 <br/>
+360 <br/>
+40320 <br/>
+
 If there are Q queries,
 
 **Time Complexity : O( n + q*log(n) )** <br/>
 **Space Complexity : O( n )**
+

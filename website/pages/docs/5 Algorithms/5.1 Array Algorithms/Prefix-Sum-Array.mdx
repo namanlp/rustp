@@ -14,4 +14,11 @@ and their interesting properties along with implementation in Rust Language
 Prefix Sum Array is widely used in Competitive Programming for reducing time complexity, generally in arrays or vectors.
 Using Prefix Sum Array, we can perform Range Queries in **constant, or O(1)** time complexity.
 
-In this article, we will discuss some interesting properties of prefix array, and see the code in Rust Language to build a prefix array.
+In this article, we will discuss some interesting properties of prefix sum array, and see the code in Rust Language to build a prefix sum array.
+
+**Definition :** Prefix sum array, `p` of an array `a` is defined such that every index of array `p`, contains sum of all elements of `a` upto that index.
+
+Formally, for all 0<= i < N,
+
+p[i] = a[0] + a[1] + a[2]... + a[i-1] + a[i]
+

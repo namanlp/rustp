@@ -50,3 +50,32 @@ fn prefix_sum(array:&Vec<usize>)->Vec<usize>{
     return prefix_array;
 }
 ```
+
+With driver code
+
+```rust
+fn prefix_sum(array:&Vec<usize>)->Vec<usize>{
+
+    // Initialize the array with all 0
+    let mut prefix_array = vec![0; array.len()];
+
+    // First element of prefix array is first element of array
+    prefix_array[0] = array[0];
+
+    // Generate prefix array using property
+    // p[i] = a[i] + p[i-1]
+    for i in 1..array.len() {
+        prefix_array[i] = prefix_array[i-1]+array[i];
+    }
+
+    return prefix_array;
+}
+
+// Driver code
+
+fn main() {
+    println!("Hello, world!");
+    let arr = vec![1, 2, 3, 4, 5, 6, 7];
+    println!("{:?}", prefix_sum(&arr));
+}
+```

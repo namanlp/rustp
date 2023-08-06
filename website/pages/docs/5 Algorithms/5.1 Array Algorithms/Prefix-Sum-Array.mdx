@@ -24,8 +24,29 @@ p[i] = a[0] + a[1] + a[2]... + a[i-1] + a[i]
 
 ### Interesting properties
 
-1. i<sup>th</sup> element of prefix sum array = a[i]+p[i-1],  for all 1<= i < n
+1. i<sup>th</sup> element of prefix sum array, p[i] = a[i]+p[i-1],  for all 1<= i < n
 2. Prefix sum array of positive elements is **always sorted**, in ascending order.
 3. If there are common element in prefix array, this means that sum of the subarray between them is 0.
 
+## Generate Prefix Array
 
+Here is the function to generate a prefix array in Rust Language.
+
+```rust
+fn prefix_sum(array:&Vec<usize>)->Vec<usize>{
+
+    // Initialize the array with all 0
+    let mut prefix_array = vec![0; array.len()];
+
+    // First element of prefix array is first element of array
+    prefix_array[0] = array[0];
+
+    // Generate prefix array using property
+    // p[i] = a[i] + p[i-1]
+    for i in 1..array.len() {
+        prefix_array[i] = prefix_array[i-1]+array[i];
+    }
+
+    return prefix_array;
+}
+```

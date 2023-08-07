@@ -91,3 +91,21 @@ fn main() {
 1. **Range Queries :** By using prefix sum array, the Range Queries such as find sum of elements from [l, r] can be done in constant or **O(1)** time complexity.
 2. **Subarray with 0 sum :** In prefix array, if there is any repeating element, that means that the sum of that subarray is 0.
 
+and so on...
+
+## Conclusion
+
+Prefix sum array is an array that contains sum of all elements of another array upto the given index for all indices of the array.
+
+In this article, we discussed various properties and applications of prefix sum array and saw how to implement it in Rust Language.
+
+Here is the function for easy access
+
+```rust
+fn prefix_sum(array:&Vec<usize>)->Vec<usize>{
+    let mut prefix_array = vec![0; array.len()];
+    prefix_array[0] = array[0];
+    for i in 1..array.len() { prefix_array[i] = prefix_array[i-1]+array[i]; }
+    return prefix_array;
+}
+```

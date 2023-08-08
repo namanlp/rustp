@@ -18,13 +18,13 @@ In this article, we will discuss some interesting properties of prefix sum array
 
 **Definition :** Prefix sum array, `p` of an array `a` is defined such that every index of array `p`, contains sum of all elements of `a` upto that index.
 
-Formally, for all 0<= i < N,
+Formally, for all `0 <= i < N`,
 
 p[i] = a[0] + a[1] + a[2]... + a[i-1] + a[i]
 
 ### Interesting properties
 
-1. i<sup>th</sup> element of prefix sum array, p[i] = a[i]+p[i-1],  for all 1<= i < n
+1. i<sup>th</sup> element of prefix sum array, p[i] = a[i]+p[i-1],  for all `1 <= i < n`
 2. Prefix sum array of positive elements is **always sorted**, in ascending order.
 3. If there are common element in prefix array, this means that sum of the subarray between them is 0.
 

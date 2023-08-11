@@ -60,3 +60,48 @@ fn longest_common_subsequence(string1:&Vec<char>, string2:&Vec<char>, n:usize, m
 }
 ```
 
+With driver code
+
+```rust
+use std::cmp::max;
+use std::io;
+
+fn longest_common_subsequence(string1:&Vec<char>, string2:&Vec<char>, n:usize, m:usize) -> usize {
+
+    // If there is no character in any of the string, return 0
+    if n==0 || m==0 {
+        return 0;
+    }
+
+    // If last character of both strings is same, we include that in our lcs
+    // Hence, we return 1 + lcs of remaining parts of both strings
+    if string1[n-1] == string2[m-1] {
+        return 1+longest_common_subsequence(string1, string2, n-1, m-1);
+    }
+
+    // Now, if the last character is not same, we check by removing 1 letter from each string
+    // And return their max as answer
+    return max( longest_common_subsequence(string1, string2, n-1, m), longest_common_subsequence(string1, string2, n, m-1));
+}
+
+// Driver Code
+
+// Take vector of characters
+fn take_string() -> Vec<char> {
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+    let vec:Vec<char> = input.trim().chars().collect();
+    return vec;
+}
+
+fn main() {
+
+    // Input String
+    let string1 = take_string();
+    let string2 = take_string();
+
+    // Print the length of longest common subsequence
+    println!("Length of longest common subsequence is : {}", longest_common_subsequence(&string1, &string2, string1.len(), string2.len()));
+}
+```
+

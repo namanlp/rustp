@@ -28,8 +28,35 @@ So, we are given 2 strings, say `string1` and `string2` we have to find length o
 
 Before jumping into dynamic programming solution, we will first have a look at recursive solution.
 
-In recursive solution, we apply the logic.
+### Algorithm
+
+In recursive solution, we apply the given algorithm.
 
 1. If the last character of both the string is same, we must include it to our solution and recursively find the LCS of remaining string.
 2. Else, we first check by removing last character from first string and then the last character from second string, and return the maximum of both the cases.
 3. Repeat steps 1 and 2 till either of string is empty.
+
+### Function
+
+Here is the function using above algorithm
+
+```rust
+fn longest_common_subsequence(string1:&Vec<char>, string2:&Vec<char>, n:usize, m:usize) -> usize {
+
+    // If there is no character in any of the string, return 0
+    if n==0 || m==0 {
+        return 0;
+    }
+
+    // If last character of both strings is same, we include that in our lcs
+    // Hence, we return 1 + lcs of remaining parts of both strings
+    if string1[n-1] == string2[m-1] {
+        return 1+longest_common_subsequence(string1, string2, n-1, m-1);
+    }
+
+    // Now, if the last character is not same, we check by removing 1 letter from each string
+    // And return their max as answer
+    return max( longest_common_subsequence(string1, string2, n-1, m), longest_common_subsequence(string1, string2, n, m-1));
+}
+```
+

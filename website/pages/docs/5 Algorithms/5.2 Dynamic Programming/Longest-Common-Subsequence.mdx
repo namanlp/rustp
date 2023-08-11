@@ -22,3 +22,14 @@ So, we are given 2 strings, say `string1` and `string2` we have to find length o
 **For Example :** If `string1` = "abcdef" and `string2` = "acfbde", the longest common subsequence is "abde", so answer is 4.
 
 **Note :** In Rust Language, the `String` is UTF-8 encoded by default, hence, indexing is not possible in `String` type. Hence, we use **`Vec<char>`** instead.
+
+
+## Recursive Solution
+
+Before jumping into dynamic programming solution, we will first have a look at recursive solution.
+
+In recursive solution, we apply the logic.
+
+1. If the last character of both the string is same, we must include it to our solution and recursively find the LCS of remaining string.
+2. Else, we first check by removing last character from first string and then the last character from second string, and return the maximum of both the cases.
+3. Repeat steps 1 and 2 till either of string is empty.

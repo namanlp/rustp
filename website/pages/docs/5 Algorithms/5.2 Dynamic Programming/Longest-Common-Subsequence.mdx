@@ -133,3 +133,110 @@ So, we simply store the result for each sub-problem, and return it if it is alre
 In the LCS problem, we take 2D matrix, such that matrix[i][j] contains the length of LCS of first `i` characters of string1 with first `j` characters of string2.
 
 For example, if the string1 is `abcdef` and string 2 is `acfbde`, then matrix[3][4] will contain length of LCS of strings `abc` and `acfb`
+
+
+## Memoization Method
+
+In memoization method, we simply take a DP matrix, and store the computed result.
+
+### Algorithm
+
+1. Initially, set all the elements of dp matrix to -1. ( We do not set it to 0 because LCS of completely mismatch strings is also 0. Hence it will compute again and again)
+2. If the length of LCS has already been found and stored in matrix, return the length of LCS.
+3. Else, compute the length of LCS and store it in DP matrix at dp[i][j], where i is length of string1 and j is length of string2.
+
+### Function
+
+Here is the function using above algorithm
+
+```rust
+fn longest_common_subsequence(string1:&Vec<char>, string2:&Vec<char>, n:usize, m:usize, dp:&mut Vec<Vec<i64>>) -> i64 {
+
+    // If there is no character in any of the string, return 0
+    if n==0 || m==0 {
+        return 0;
+    }
+
+    // If already computed, return computed value
+    if dp[n][m]!=-1 {
+        return dp[n][m];
+    }
+
+    // If last character of both strings is same, we include that in our lcs
+    // Hence, we return 1 + lcs of remaining parts of both strings
+    if string1[n-1] == string2[m-1] {
+        dp[n][m] = 1+longest_common_subsequence(string1, string2, n-1, m-1, dp);
+        return dp[n][m];
+    }
+
+    // Now, if the last character is not same, we check by removing 1 letter from each string
+    // And return their max as answer
+    dp[n][m] = max( longest_common_subsequence(string1, string2, n-1, m, dp),
+                    longest_common_subsequence(string1, string2, n, m-1, dp));
+    return dp[n][m];
+}
+```
+
+With Driver code
+
+```rust
+use std::cmp::max;
+use std::io;
+
+fn longest_common_subsequence(string1:&Vec<char>, string2:&Vec<char>, n:usize, m:usize, dp:&mut Vec<Vec<i64>>) -> i64 {
+
+    // If there is no character in any of the string, return 0
+    if n==0 || m==0 {
+        return 0;
+    }
+
+    // If already computed, return computed value
+    if dp[n][m]!=-1 {
+        return dp[n][m];
+    }
+
+    // If last character of both strings is same, we include that in our lcs
+    // Hence, we return 1 + lcs of remaining parts of both strings
+    if string1[n-1] == string2[m-1] {
+        dp[n][m] = 1+longest_common_subsequence(string1, string2, n-1, m-1, dp);
+        return dp[n][m];
+    }
+
+    // Now, if the last character is not same, we check by removing 1 letter from each string
+    // And return their max as answer
+    dp[n][m] = max( longest_common_subsequence(string1, string2, n-1, m, dp),
+                    longest_common_subsequence(string1, string2, n, m-1, dp));
+    return dp[n][m];
+}
+
+// Driver Code
+
+// Take vector of characters
+fn take_string() -> Vec<char> {
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+    let vec:Vec<char> = input.trim().chars().collect();
+    return vec;
+}
+
+fn main() {
+
+    // Input String
+    let string1 = take_string();
+    let string2 = take_string();
+
+    // Make a DP array
+    let n = string1.len();
+    let m = string2.len();
+
+    // We are making a vector of vectors with n rows and m columns
+    // We set each element to -1 initially
+    // If we take 0, its complexity will become 2^(m+n) in the worst case
+    // Because if strings mismatch, there LCS is also 0
+    let mut dp = vec![vec![-1 as i64; m+1];n+1];
+
+    // Print the length of longest common subsequence
+    println!("Length of longest common subsequence is : {}", longest_common_subsequence(&string1, &string2, string1.len(), string2.len() , &mut dp));
+
+}
+```

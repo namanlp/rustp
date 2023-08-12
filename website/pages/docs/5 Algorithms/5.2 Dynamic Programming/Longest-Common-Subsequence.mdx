@@ -268,3 +268,36 @@ In tabulation method, we make the matrix, and fill it on the basis of base condi
 3. Else, set dp[i][j] = maximum of dp[i][j-1] and dp[i-1][j]
 
 If we traverse the matrix either row-wise or column-wise, it is always guaranteed that dp[i-1][j-1], dp[i][j-1] and dp[i-1][j] are already processed, hence ensuring our answer is correct.
+
+### Function
+
+Here is the function using above algorithm
+
+```rust
+fn longest_common_subsequence(string1:&Vec<char>, string2:&Vec<char>, n:usize, m:usize, dp:&mut Vec<Vec<i64>>) -> i64 {
+
+    // Set all the elements in 0th row and column to 0
+    for i in 0..m+1 { dp[0][i] = 0; }
+    for i in 0..n+1 { dp[i][0] = 0; }
+
+    // Traverse each row and column, row wise
+
+    for i in 1..n+1 {
+        for j in 1..m+1 {
+
+            // If both string have same character, dp[i][j] = dp[i-1][j-1]
+            if string1[i-1] == string2[j-1] {
+                dp[i][j] = 1+dp[i-1][j-1];
+            }
+
+            // Else, find maximum of dp[i-1][j] and dp[i][j-1]
+            else {
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
+            }
+
+        }
+    }
+
+    return dp[n][m];
+}
+```

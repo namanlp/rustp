@@ -118,5 +118,16 @@ acfbde
 **Time Complexity : O( 2<sup>m+n</sup> )** <br/>
 **Space Complexity : O( m+n )**
 
-( Space complexity include recursive stack space )
+( Space complexity includes recursive stack space )
 
+## Overlapping Sub-problems
+
+If we have a look carefully on recursive approach, we computed multiple LCS of multiple strings again and again.
+
+For example, if we have to compute LCS of strings `abcdefghi` and `jklmnopqr`, the LCS of strings `abcd` and `jklm` is computed more than 1000 times, and takes hundreds of iterations each time.
+
+So, we simply store the result for each sub-problem, and return it if it is already computed, hence preventing it computing again and again.
+
+In the LCS problem, we take 2D matrix, such that matrix[i][j] contains the length of LCS of first `i` characters of string1 with first `j` characters of string2.
+
+For example, if the string1 is `abcdef` and string 2 is `acfbde`, then matrix[3][4] will contain length of LCS of strings `abc` and `acfb`

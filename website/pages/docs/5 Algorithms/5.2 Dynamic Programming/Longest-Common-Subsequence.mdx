@@ -261,3 +261,10 @@ Although time and space complexities of tabulation as well as memoization method
 
 In tabulation method, we make the matrix, and fill it on the basis of base condition, and then on the basis of LCS of previous values.
 
+## Algorithm
+
+1. Initially, set all the elements of all the columns and rows to 0, because LCS = 0 if either of string is empty.
+2. For i<sup>th</sup> row and j<sup>th</sup> column, if string1[i] == string2[j], then set dp[i][j] = 1+dp[i-1][j-1].
+3. Else, set dp[i][j] = maximum of dp[i][j-1] and dp[i-1][j]
+
+If we traverse the matrix either row-wise or column-wise, it is always guaranteed that dp[i-1][j-1], dp[i][j-1] and dp[i-1][j] are already processed, hence ensuring our answer is correct.

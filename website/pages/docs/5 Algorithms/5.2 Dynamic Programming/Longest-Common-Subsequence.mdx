@@ -236,7 +236,23 @@ fn main() {
     let mut dp = vec![vec![-1 as i64; m+1];n+1];
 
     // Print the length of longest common subsequence
-    println!("Length of longest common subsequence is : {}", longest_common_subsequence(&string1, &string2, string1.len(), string2.len() , &mut dp));
+    println!("Length of longest common subsequence is : {}",
+             longest_common_subsequence(&string1, &string2, string1.len(), string2.len() , &mut dp));
 
 }
 ```
+
+**Input**
+
+> abcdef <br />
+acfbde
+
+**Output**
+
+> Length of longest common subsequence is : 4
+
+
+**Time Complexity : O( m*n )** <br/>
+**Space Complexity : O( m*n )**
+
+

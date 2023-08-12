@@ -56,7 +56,8 @@ fn longest_common_subsequence(string1:&Vec<char>, string2:&Vec<char>, n:usize, m
 
     // Now, if the last character is not same, we check by removing 1 letter from each string
     // And return their max as answer
-    return max( longest_common_subsequence(string1, string2, n-1, m), longest_common_subsequence(string1, string2, n, m-1));
+    return max( longest_common_subsequence(string1, string2, n-1, m),
+                longest_common_subsequence(string1, string2, n, m-1));
 }
 ```
 
@@ -81,9 +82,9 @@ fn longest_common_subsequence(string1:&Vec<char>, string2:&Vec<char>, n:usize, m
 
     // Now, if the last character is not same, we check by removing 1 letter from each string
     // And return their max as answer
-    return max( longest_common_subsequence(string1, string2, n-1, m), longest_common_subsequence(string1, string2, n, m-1));
+    return max( longest_common_subsequence(string1, string2, n-1, m),
+                longest_common_subsequence(string1, string2, n, m-1));
 }
-
 // Driver Code
 
 // Take vector of characters
@@ -101,7 +102,8 @@ fn main() {
     let string2 = take_string();
 
     // Print the length of longest common subsequence
-    println!("Length of longest common subsequence is : {}", longest_common_subsequence(&string1, &string2, string1.len(), string2.len()));
+    println!("Length of longest common subsequence is : {}",
+             longest_common_subsequence(&string1, &string2, string1.len(), string2.len()));
 }
 ```
 

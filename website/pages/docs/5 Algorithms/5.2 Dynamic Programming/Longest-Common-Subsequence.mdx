@@ -124,7 +124,7 @@ acfbde
 
 ## Overlapping Sub-problems
 
-If we have a look carefully on recursive approach, we computed multiple LCS of multiple strings again and again.
+If we have a look carefully on recursive approach, we computed the LCS of multiple subsequence or substrings of original strings again and again. This is called overlapping sub-problems.
 
 For example, if we have to compute LCS of strings `abcdefghi` and `jklmnopqr`, the LCS of strings `abcd` and `jklm` is computed more than 1000 times, and takes hundreds of iterations each time.
 
@@ -344,5 +344,5 @@ fn longest_common_subsequence(string1:&Vec<char>, string2:&Vec<char>, n:usize, m
 
 import {SEO} from "smooth-doc/src/components/SEO";
 
-<SEO title="Longest Common Subsequence ( LCS ) using Memoization and Tabulation - Rust Programming"
+<SEO title="Longest Common Subsequence ( LCS ) using Memoization and Tabulation - Dynamic Programming - Rust Programming"
      description="In this article, we will see how to find length of Longest Common Subsequence of given strings, first using recursion, and then using dynamic programming methods, Memoization as well as Tabulation, in Rust Language" />

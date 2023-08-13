@@ -6,7 +6,7 @@ slug: /number-theory/integer-square-root/
 description: Integer Square root of a Number
 ---
 
-# Integer square root
+# Integer ( Floor ) square root
 of a whole number and program to find it in Rust Language
 
 ## Introduction
@@ -20,5 +20,53 @@ But, there is a catch. F64 type uses some bits to represent the decimal number. 
 So, if you have to find a floor of square root of. say, 10<sup>18</sup>, you will simply get inaccurate answers.
 This is a frequent cause of failing testcases in many questions, especially if 10 test cases are passing, and 11th gives wrong answer in solution involving square root of number `>= 10<sup>15</sup>.`, this might be the issue.
 
-So, in this article, we will see how to find **Floor of square root** of a number in Logarithmic time complexity in Rust Language.
+So, in this article, we will see how to find **Floor of square root** of a number in Logarithmic time complexity using binary search in Rust Language.
 
+## Naive approach
+
+Naive Approach would be to linearly check each and every number from 1 till we find a number whose square root is greater than the given number.
+
+This will take **O( sqrt(n) )** time complexity. Function using this approach is
+
+```rust
+fn square_root(num:usize) -> usize{
+    let mut i = 0;
+
+    // If the number is 0 or 1,
+    if num <=1 {
+        return num;
+    }
+
+    // Increase i, till square of i+1 is less than or equal to number
+    while (i+1)*(i+1) <= num {
+        i+=1;
+    }
+    return i;
+}
+```
+
+Program With driver code
+
+```rust
+
+fn square_root(num:usize) -> usize{
+    let mut i = 0;
+
+    // If the number is 0 or 1,
+    if num <=1 {
+        return num;
+    }
+
+    // Increase i, till square of i+1 is less than or equal to number
+    while (i+1)*(i+1) <= num {
+        i+=1;
+    }
+    return i;
+}
+
+fn main() {
+    println!("{}", square_root(899));
+    println!("{}", square_root(900));
+    println!("{}", square_root(901));
+}
+```

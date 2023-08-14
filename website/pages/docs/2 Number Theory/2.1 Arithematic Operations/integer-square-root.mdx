@@ -11,11 +11,11 @@ of a whole number and program to find it in Rust Language
 
 ## Introduction
 
-Many times, we have to compute the **floor value of square root** of a given number.
+Many times, we have to compute the integer or **floor value of square root** of a given very large number instead of  exact square root.
 
 You may argue that we can find the square root of a number using default `sqrt()` method, and then take its floor.
 
-But, there is a catch. F64 type uses some bits to represent the decimal number. So, it reduces the accuracy of square roots of numbers greater than 10<sup>14</sup>.
+But, there is a catch. `f64` type uses some bits to represent the decimal number. So, it reduces the accuracy of square roots of numbers greater than 10<sup>14</sup>.
 
 So, if you have to find a floor of square root of. say, 10<sup>18</sup>, you will simply get inaccurate answers.
 This is a frequent cause of failing testcases in many questions, especially if 10 test cases are passing, and 11th gives wrong answer in solution involving square root of number `>= 10<sup>15</sup>.`, this might be the issue.
@@ -121,7 +121,9 @@ fn square_root(num:usize) -> usize{
 
 
     while high>=low {
-        mid = (high+low)/2;
+        // Right shift by 1 is equivalent to divide
+        mid = (high+low)>>1;
+
         let mid_square = mid*mid;
 
         // If mid_square if equal to number, return mid
@@ -155,3 +157,37 @@ Use the same driver code.
 **Time Complexity : O( log( n ) )** <br/>
 **Space Complexity : O( 1 )**
 
+
+**Note :** Similarly, you can use the same program for **Cube Root** and other higher degree roots.
+
+## Conclusion
+
+Many times, we have to compute the integer or **floor value of square root** of a given very large number instead of  exact square root.
+
+The default `sqrt()` method might become inaccurate for such large numbers. Hence, we have to use binary search method to compute such large square roots.
+
+In this article, we saw how to find the integer or floor square root of very large number in logarithmic time complexity using binary search in Rust Language.
+
+Here is the optimized function for easy access
+
+```rust
+fn square_root(num:usize) -> usize{
+    if num<=1 { return num }
+    let mut l : usize = 1;
+    let mut h : usize = 1_100_000_000;
+    let mut m;
+    let mut ans = 0;
+    while h>=l {
+        m = (h+l)>>1;
+        let m_s = m*m;
+        if m_s == num { return m }
+        if m_s < num { ans = m ; l = m+1; }
+        else { h = m-1; }
+    }
+    return ans;
+}
+```
+
+I suggest you to include it in your template.
+
+**Thank You**

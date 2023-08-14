@@ -97,3 +97,47 @@ Below algorithm can find the integer square root of numbers upto **10<sup>18</su
 6. Repeat steps 3 to 5 till high is not equal to low.
 7. If high is equal to low, return the stored value of mid in step 4.
 
+**Note :** I have taken 1.1×10<sup>9</sup> as high because it can find the square root of all the numbers upto  **10<sup>18</sup>**, without **overflowing.**
+
+### Function
+
+Here is the function using above algorithm
+
+```rust
+
+fn square_root(num:usize) -> usize{
+
+    // If number is less than or equal to 1, return it
+    if num<=1 { return num }
+
+    // Take high and low, mid and ans .
+    let mut low : usize = 1;
+    let mut high : usize = 1_100_000_000;
+
+    let mut mid;
+    let mut ans = 0;
+
+
+    while high>=low {
+        mid = (high+low)/2;
+        let mid_square = mid*mid;
+
+        // If mid_square if equal to number, return mid
+        if mid_square == num { return mid }
+
+        // If mid_square is less than number, set ans to mid
+        // And low to mid+1
+        // Else, set high to mid -1
+        if mid_square < num {
+            ans = mid;
+            low = mid+1;
+        }else {
+            high = mid-1;
+        }
+    }
+
+    // In case the given number is not a prefect square,
+    // Return stored ans, because it is floor of square root.
+    return ans;
+}
+```

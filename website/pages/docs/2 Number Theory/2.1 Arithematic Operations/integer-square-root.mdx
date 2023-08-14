@@ -18,7 +18,7 @@ You may argue that we can find the square root of a number using default `sqrt()
 But, there is a catch. `f64` type uses some bits to represent the floating digits. So, it reduces the accuracy of square roots of numbers greater than 10<sup>14</sup>.
 
 So, if you have to find a floor of square root of. say, 10<sup>18</sup>, you will simply get inaccurate answers.
-This is a frequent cause of failing testcases in many questions, especially if 10 test cases are passing, and 11th gives wrong answer in solution involving square root of number `>= 10<sup>15</sup>.`, this might be the issue.
+This is a frequent cause of failing testcases in many questions, especially if 10 test cases are passing, and 11th gives wrong answer in solution involving square root of number >= 10<sup>15</sup>, this might be the issue.
 
 So, in this article, we will see how to find **Floor of square root** of a number in Logarithmic time complexity using binary search in Rust Language.
 

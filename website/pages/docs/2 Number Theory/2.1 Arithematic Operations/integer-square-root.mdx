@@ -80,3 +80,20 @@ fn main() {
 **Time Complexity : O( n )** <br/>
 **Space Complexity : O( 1 )**
 
+
+## Efficient Binary Search Approach
+
+We can optimize the above approach using binary search, and find the integer square root in  **Logarithmic time** instead of Linear time.
+
+Below algorithm can find the integer square root of numbers upto **10<sup>18</sup>** in logarithmic time complexity.
+
+### Algorithm
+
+1. If the number is 0 or 1, return that number.
+2. Take starting point ( or low ) to be 1 and ending point ( or high ) to be 1.1×10<sup>9</sup> .
+3. Find the mid-point of high and low. If mid×mid is equal to the number, return the mid.
+4. If mid is less than the number, store the value of the mid, and set the low to mid+1.
+5. Else, Set the high to mid -1.
+6. Repeat steps 3 to 5 till high is not equal to low.
+7. If high is equal to low, return the stored value of mid in step 4.
+

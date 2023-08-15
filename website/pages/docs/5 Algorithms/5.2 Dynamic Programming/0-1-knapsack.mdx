@@ -90,3 +90,20 @@ fn knapsack(w:usize, weights:&Vec<usize>, profits:&Vec<usize>, n:usize) -> usize
 **Space Complexity : O( n )**
 
 ( Space complexity includes recursive stack space )
+
+
+## Overlapping Sub-problems
+
+If we have a look carefully on recursive approach, we computed multiple results many times.
+
+**For Example :** If weights are [1, 2, 3, 4, 5, 6, 7, 8] and **W** = 20,
+
+We have to compute best answer for n = 2, and W = 5 multiple times, for example, if we select [8, 7] , [8, 4, 3], [7, 5, 3], [6, 5, 4] etc.
+And it takes 4 recursions each time, when we include and exclude 2 and 1. If we store it in a matrix, we do not have to calculate it again and again.
+
+These are called **Overlapping Sub-problems** because they are smaller part of large problems, and are computed again and again.
+
+So, we simply calculate them once, and store it in a matrix, and retrieve it when necessary.
+
+This is called Dynamic Programming Approach for the problem.
+

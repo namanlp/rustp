@@ -29,3 +29,16 @@ And **W** = 11
 
 Answer should be 18, ( Taking items weights [1, 4, 5])
 
+## Recursive Solution
+
+The recursive solution is pretty simple. We can either include a given item in knapsack, or do not include it.
+
+So, we simply check all the possibilities, and return the maximum profit that we can obtain. We use the given algorithm.
+
+### Algorithm
+
+1. If the remaining weight in knapsack is less than the weight of given item, we can not carry it. Hence, check the other items.
+2. We first try to include the item in the knapsack, and check the profit of remaining items with remaining weights recursively.
+3. Then we exclude the item and check profit of remaining items and weight recursively.
+4. We return the maximum profit earned through both the methods as the answer.
+

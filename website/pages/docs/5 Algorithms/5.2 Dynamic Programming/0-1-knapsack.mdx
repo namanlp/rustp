@@ -42,3 +42,35 @@ So, we simply check all the possibilities, and return the maximum profit that we
 3. Then we exclude the item and check profit of remaining items and weight recursively.
 4. We return the maximum profit earned through both the methods as the answer.
 
+### Function
+
+Here is the function using above algorithm
+
+```rust
+
+use std::cmp::max;
+
+fn knapsack(w:usize, weights:&Vec<usize>, profits:&Vec<usize>, n:usize) -> usize{
+
+    // If we have 0 elements remaining or knapsack filled, return 0
+    if n==0 || w == 0 {
+        return 0;
+    }
+
+    // If the nth element has higher weight than available capacity,
+    // it can not be carried. So, return without including item
+    if weights[n-1] > w {
+        return knapsack(w, weights, profits, n-1);
+    }
+
+    // Else, we check by including and excluding the given item
+    // And return max of it
+    return max(
+        // If we exclude item, simply return function for n-1 items
+        knapsack(w, weights, profits, n-1),
+
+        // If we include item, return profit of given item +
+        // maximum value from given weight for remaining items
+        profits[n-1] + knapsack(w-weights[n-1], weights, profits, n-1));
+}
+```

@@ -158,3 +158,82 @@ fn knapsack(w:usize, weights:&Vec<usize>, profits:&Vec<usize>, n:usize, dp: &mut
     return dp[n][w];
 }
 ```
+
+With Driver code
+
+```rust
+use std::cmp::max;
+
+fn knapsack(w:usize, weights:&Vec<usize>, profits:&Vec<usize>, n:usize, dp: &mut Vec<Vec<i64>>) -> i64{
+
+    // If we have 0 elements remaining or knapsack filled, return 0
+    if n==0 || w == 0 {
+        dp[n][w] = 0;
+        return 0;
+    }
+
+    // If already calculated result, return it
+    if dp[n][w] != -1 {
+        return dp[n][w];
+    }
+
+    // If the nth element has higher weight than available capacity,
+    // it can not be carried. So, return without including item
+    if weights[n-1] > w {
+        dp[n][w] = knapsack(w, weights, profits, n-1, dp);
+        return dp[n][w];
+    }
+
+    // Else, we check by including and excluding the given item
+    // And return max of it
+
+    dp[n][w] = max(
+        // If we exclude item, simply return function for n-1 items
+        knapsack(w, weights, profits, n-1, dp),
+
+        // If we include item, return profit of given item +
+        // maximum value from given weight for remaining items
+        profits[n-1] as i64 + knapsack(w-weights[n-1], weights, profits, n-1, dp));
+
+    return dp[n][w];
+}
+
+
+// Driver Code
+
+use std::io;
+
+fn take_vector() -> Vec<usize> {
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+    let arr: Vec<usize> = input.trim().split_whitespace()
+        .map(|x| x.parse().unwrap()).collect();
+    return arr;
+}
+
+fn main() {
+    let weights = take_vector();
+    let profits = take_vector();
+    let w = take_vector()[0];
+
+    // Declare DP Matrix
+    let mut dp = vec![vec![-1 as i64; w+1]; weights.len()+1];
+
+    println!("{}", knapsack(w, &weights, &profits, weights.len() , &mut dp));
+}
+
+```
+
+**Input**
+
+> 1 4 5 7 <br />
+3 6 9 11 <br />
+11
+
+**Output**
+
+> 18
+
+
+**Time Complexity : O( n*w )** <br/>
+**Space Complexity : O( n*w )**

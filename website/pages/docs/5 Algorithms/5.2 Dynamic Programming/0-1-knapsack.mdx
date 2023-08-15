@@ -74,3 +74,19 @@ fn knapsack(w:usize, weights:&Vec<usize>, profits:&Vec<usize>, n:usize) -> usize
         profits[n-1] + knapsack(w-weights[n-1], weights, profits, n-1));
 }
 ```
+
+**Input**
+
+> 1 4 5 7 <br />
+3 6 9 11 <br />
+11
+
+**Output**
+
+> 18
+
+
+**Time Complexity : O( 2<sup>n</sup> )** <br/>
+**Space Complexity : O( n )**
+
+( Space complexity includes recursive stack space )

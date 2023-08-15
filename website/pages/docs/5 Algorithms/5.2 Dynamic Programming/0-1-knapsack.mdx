@@ -107,7 +107,7 @@ So, we simply calculate them once, and store it in a matrix, and retrieve it whe
 
 This is called Dynamic Programming Approach for the problem.
 
-## Memoization ( Dynamic Programming ) Method
+## Memoization ( Top-down DP ) Method
 
 In memoization method, we simply take a DP matrix, and store the computed result.
 
@@ -237,3 +237,44 @@ fn main() {
 
 **Time Complexity : O( n*w )** <br/>
 **Space Complexity : O( n*w )**
+
+## Tabulation  ( Button-up DP )  Method
+
+
+### Function
+
+Here is the function using above algorithm
+
+```rust
+use std::cmp::max;
+
+fn knapsack(w:usize, weights:&Vec<usize>, profits:&Vec<usize>, n:usize, dp: &mut Vec<Vec<i64>>) -> i64{
+
+    // Initially, set the first row and first column to 0
+    // Because, if n = 0, no item left
+    // If w = 0, no capacity, hence no more profit.
+
+    for i in 0..n+1 { dp[i][0] = 0; }
+    for i in 0..w+1 { dp[0][i] = 0; }
+
+    // Now, we run a loop for all n from 1 to n
+    for i in 1..n+1 {
+        // For all weights less than the weight of given item, we can not include it
+        // So, copy from previous row.
+        for j in 1..weights[i-1] {
+            dp[i][j] = dp[i-1][j];
+        }
+
+        // Now, for higher weights, we take max of
+        // First excluding, than including the item
+
+        for j in weights[i-1]..w+1 {
+            dp[i][j] = max(dp[i-1][j],  profits[i-1] as i64 + dp[i-1][j-weights[i-1]]);
+        }
+    }
+
+    // Finally, return the answer
+    return dp[n][w];
+}
+
+```

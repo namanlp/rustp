@@ -116,3 +116,45 @@ In memoization method, we simply take a DP matrix, and store the computed result
 1. Initially, set all the elements of dp matrix to -1. ( Do not set to 0 because result of some sub-problems will be 0 itself. They will be computed again and again)
 2. If the profit for given weight and given n is not -1 in the DP matrix, return the value.
 3. Else, compute the profit using recursion and store it in DP Matrix, at given weight and given n.
+
+### Function
+
+Here is the function using above algorithm
+
+```rust
+use std::cmp::max;
+
+fn knapsack(w:usize, weights:&Vec<usize>, profits:&Vec<usize>, n:usize, dp: &mut Vec<Vec<i64>>) -> i64{
+
+    // If we have 0 elements remaining or knapsack is already filled, return 0
+    if n==0 || w == 0 {
+        dp[n][w] = 0;
+        return 0;
+    }
+
+    // If already calculated result earlier, return it
+    if dp[n][w] != -1 {
+        return dp[n][w];
+    }
+
+    // If the nth element has higher weight than available capacity,
+    // it can not be carried. So, return without including item
+    if weights[n-1] > w {
+        dp[n][w] = knapsack(w, weights, profits, n-1, dp);
+        return dp[n][w];
+    }
+
+    // Else, we check by including and excluding the given item
+    // And return max of it
+
+    dp[n][w] = max(
+        // If we exclude item, simply return function for n-1 items
+        knapsack(w, weights, profits, n-1, dp),
+
+        // If we include item, return profit of given item +
+        // maximum value from given weight for remaining items
+        profits[n-1] as i64 + knapsack(w-weights[n-1], weights, profits, n-1, dp));
+
+    return dp[n][w];
+}
+```

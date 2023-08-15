@@ -107,3 +107,12 @@ So, we simply calculate them once, and store it in a matrix, and retrieve it whe
 
 This is called Dynamic Programming Approach for the problem.
 
+## Memoization ( Dynamic Programming ) Method
+
+In memoization method, we simply take a DP matrix, and store the computed result.
+
+### Algorithm
+
+1. Initially, set all the elements of dp matrix to -1. ( Do not set to 0 because result of some sub-problems will be 0 itself. They will be computed again and again)
+2. If the profit for given weight and given n is not -1 in the DP matrix, return the value.
+3. Else, compute the profit using recursion and store it in DP Matrix, at given weight and given n.

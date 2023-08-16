@@ -373,3 +373,30 @@ Use the same driver code, except removing DP matrix from driver code.
 **Time Complexity : O( n*w )** <br/>
 **Space Complexity : O( w )**
 
+
+## Conclusion
+
+0/1 Knapsack Problem is also a classical Dynamic Programming problem. In this problem, you have to earn maximum profit by collecting items in a limited capacity knapsack.
+
+In this article, we saw how to solve the 0/1 Knapsack problem, first using recursion and then using Dynamic Programming, memoization as well as tabulation method, and latter space optimized the tabulation method in Rust Language.
+
+Here is the optimized code for reference
+
+```rust
+use std::cmp::max;
+
+fn knapsack(w:usize, weights:&Vec<usize>, profits:&Vec<usize>, n:usize) -> i64{
+    let mut prev = vec![0; w+1];
+    let mut curr = vec![0; w+1];
+    for i in 1..n+1 {
+        for j in 1..weights[i-1] { curr[j] = prev[j]; }
+        for j in weights[i-1]..w+1 {
+            curr[j] = max(prev[j],  profits[i-1] as i64 + prev[j-weights[i-1]]);
+        }
+        for j in 0..w+1 { prev[j] = curr[j] }
+    }
+    return curr[w];
+}
+```
+
+**Thank You**

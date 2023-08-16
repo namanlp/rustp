@@ -287,3 +287,15 @@ fn knapsack(w:usize, weights:&Vec<usize>, profits:&Vec<usize>, n:usize, dp: &mut
 }
 
 ```
+
+## Space Optimized Tabulation Method
+
+If we observe the above tabulation method carefully, we find that for calculating the profit for a given n and w, **we only need previous row**.
+
+In the above algorithm, step 1 is base case or initialization step, and do not require any other row.
+
+Step 2 and Step 3 requires only previous row.
+
+Hence, we can optimize our space complexity, by storing only the previous row and not the whole matrix.
+
+

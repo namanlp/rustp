@@ -244,7 +244,7 @@ Although time and space complexities of tabulation as well as memoization method
 
 In tabulation method, we make the matrix, and fill it first on the basis of base condition, and then on the basis of previous row.
 
-## Algorithm
+### Algorithm
 
 1. Initially, set elements of first row and first column as 0, because no profit if n = 0, that is no item left or w = 0, that is knapsack has 0 capacity left.
 2. For all the values till weight of n<sup>th</sup> item, fill the given row with previous row, because we can not include the item if capacity of knapsack is less than its weight.
@@ -316,7 +316,43 @@ Step 2 and Step 3 requires only previous row.
 
 Hence, we can optimize our space complexity, by storing only the previous row and not the whole matrix.
 
-## Function
+### Function
 
 Here is the function using space optimization of tabulation method.
 
+```rust
+use std::cmp::max;
+
+fn knapsack(w:usize, weights:&Vec<usize>, profits:&Vec<usize>, n:usize) -> i64{
+
+    // Initially, set the first row  0
+    // Because, if n = 0, no item, hence no profit
+
+    // Only O(W) space
+    let mut previous = vec![0; w+1];
+    let mut current = vec![0; w+1];
+
+
+    for i in 1..n+1 {
+        // For all weights less than the weight of given item, we can not include it
+        // So, copy from previous row.
+        for j in 1..weights[i-1] {
+            current[j] = previous[j];
+        }
+
+        // Now, for higher weights, we take max of
+        // First excluding, than including the item
+        for j in weights[i-1]..w+1 {
+            current[j] = max(previous[j],  profits[i-1] as i64 + previous[j-weights[i-1]]);
+        }
+
+        // Copy the elements of current to previous
+        for j in 0..w+1 {
+            previous[j] = current[j]
+        }
+    }
+
+    // Finally, return the answer
+    return current[w];
+}
+```

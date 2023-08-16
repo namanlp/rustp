@@ -288,6 +288,24 @@ fn knapsack(w:usize, weights:&Vec<usize>, profits:&Vec<usize>, n:usize, dp: &mut
 
 ```
 
+Use the same driver code.
+
+**Input**
+
+> 1 4 5 7 <br />
+3 6 9 11 <br />
+11
+
+**Output**
+
+> 18
+
+
+**Time Complexity : O( n*w )** <br/>
+**Space Complexity : O( n*w )**
+
+
+
 ## Space Optimized Tabulation Method
 
 If we observe the above tabulation method carefully, we find that for calculating the profit for a given n and w, **we only need previous row**.
@@ -300,4 +318,5 @@ Hence, we can optimize our space complexity, by storing only the previous row an
 
 ## Function
 
-Here is the function using above algorithm
+Here is the function using space optimization of tabulation method.
+

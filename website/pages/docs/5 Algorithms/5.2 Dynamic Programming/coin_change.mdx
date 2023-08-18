@@ -39,7 +39,7 @@ Recursive solution to this problem is pretty straightforward. At each step, you 
 
 We have to take sum of both the cases.
 
-If amount is 0, there is 1 way to form the amount, that is, not using any coin.
+If amount is 0, there is only 1 way to form the amount, that is, by not using any coin.
 
 Also, if n is 0 and amount is not 0, we have to return 0, because there are no ways to make the amount in this way.
 
@@ -125,3 +125,18 @@ fn main() {
 }
 
 ```
+
+**Input**
+
+> 1 2 3 <br />
+4
+
+**Output**
+
+> 4
+
+**Time Complexity : O( 2<sup>n</sup> )** <br/>
+**Space Complexity : O( n )**
+
+( Space complexity includes recursive stack space )
+

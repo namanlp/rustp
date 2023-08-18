@@ -43,3 +43,34 @@ If amount is 0, there is 1 way to form the amount, that is, not using any coin.
 
 Also, if n is 0 and amount is not 0, we have to return 0, because there are no ways to make the amount in this way.
 
+### Function
+
+Here is the function using above algorithm
+
+```rust
+fn coin_change(coins:&Vec<usize>, amount : usize, n:usize) -> usize{
+
+    // If amount is 0, there is one way of making the change
+    // That is, do not take any coin
+    if amount == 0 { return 1; }
+
+    // If no coins left, return 0
+    if n==0 { return 0; }
+
+    // If current coin is greater than amount, we can not include it
+    // Hence, compute recursively the coins of n-1
+    if coins[n-1] > amount {
+        return coin_change(coins, amount, n-1);
+    }
+
+    // Now we can either exclude or include current coin
+    // If exclude, answer would be the coin_change of n-1 items
+    // If include, answer would be reduce the amount by denomination
+    // And calculate the coin_change of n items.
+    // Because we can include the coin again
+
+    // Return sum of both cases.
+    return coin_change(coins, amount, n-1)+coin_change(coins, amount-coins[n-1], n);
+}
+
+```

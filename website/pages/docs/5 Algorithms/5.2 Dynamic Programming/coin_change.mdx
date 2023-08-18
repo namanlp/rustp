@@ -162,3 +162,104 @@ In memoization method, we simply take a DP matrix, and store the computed result
 1. If the stored value for given number of coins and amount in DP matrix is not `None`, we return the value.
 2. If the amount is 0, return 1 and if n is 0 and amount > 0, return 0.
 3. Else, use recursive logic to calculate the given value and store it in the DP matrix.
+
+### Function
+
+Here is the function using above algorithm
+
+```rust
+
+fn coin_change(coins:&Vec<usize>, amount : usize, n:usize, dp : &mut Vec<Vec<Option<usize>>>) -> usize{
+
+    // If amount is 0, there is one way of making the change
+    // That is, do not take any coin
+    if amount == 0 { return 1; }
+
+    // If no coins left, return 0
+    if n==0 { return 0; }
+
+    // If already computed the value, return it
+    if dp[n][amount].is_some() {
+        return dp[n][amount].unwrap();
+    }
+
+    // If current coin is greater than amount, we can not include it
+    // Hence, compute recursively the coins of n-1
+    if coins[n-1] > amount {
+        dp[n][amount] = Option::from(coin_change(coins, amount, n-1, dp));
+        return dp[n][amount].unwrap();
+    }
+
+    // Now we can either exclude or include current coin
+    // If exclude, answer would be the coin_change of n-1 items
+    // If include, answer would be reduce the amount by denomination
+    // And calculate the coin_change of n items.
+    // Because we can include the coin again
+
+    // Return sum of both cases.
+    dp[n][amount] = Option::from( coin_change(coins, amount, n-1, dp)+coin_change(coins, amount-coins[n-1], n, dp));
+    return dp[n][amount].unwrap();
+}
+```
+
+With driver code
+
+```rust
+
+fn coin_change(coins:&Vec<usize>, amount : usize, n:usize, dp : &mut Vec<Vec<Option<usize>>>) -> usize{
+
+    // If amount is 0, there is one way of making the change
+    // That is, do not take any coin
+    if amount == 0 { return 1; }
+
+    // If no coins left, return 0
+    if n==0 { return 0; }
+
+    // If already computed the value, return it
+    if dp[n][amount].is_some() {
+        return dp[n][amount].unwrap();
+    }
+
+    // If current coin is greater than amount, we can not include it
+    // Hence, compute recursively the coins of n-1
+    if coins[n-1] > amount {
+        dp[n][amount] = Option::from(coin_change(coins, amount, n-1, dp));
+        return dp[n][amount].unwrap();
+    }
+
+    // Now we can either exclude or include current coin
+    // If exclude, answer would be the coin_change of n-1 items
+    // If include, answer would be reduce the amount by denomination
+    // And calculate the coin_change of n items.
+    // Because we can include the coin again
+
+    // Return sum of both cases.
+    dp[n][amount] = Option::from( coin_change(coins, amount, n-1, dp)+coin_change(coins, amount-coins[n-1], n, dp));
+    return dp[n][amount].unwrap();
+}
+
+
+// Driver Code
+use std::io;
+
+fn take_vector() -> Vec<usize> {
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+    let arr: Vec<usize> = input.trim().split_whitespace()
+        .map(|x| x.parse().unwrap()).collect();
+    return arr;
+}
+
+fn main() {
+    println!("Hello, world!");
+
+    let coins = take_vector();
+    let amount = take_vector()[0];
+
+    // Make a DP Matrix
+    // Initially set all the elements to None
+    let mut dp = vec![vec![Option::None; amount+1 ]; coins.len()+1];
+
+    println!("{}", coin_change(&coins, amount, coins.len(), &mut dp));
+}
+```

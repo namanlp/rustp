@@ -6,4 +6,25 @@ slug: /dynamic-programming/coin_change/
 description: Coin Change
 ---
 
+# Coin Change Problem
+and Dynamic Programming Solution to it using tabulation and memoization in Rust Language
 
+## Introduction
+
+Coin change is another classical Dynamic Programming problem.
+
+In this problem, you are given coins of various denomination, and each coin has infinite supply.
+
+You have to tell in how many ways you can form the given amount by using these coins any number of times.
+
+**For Example :** If coins are [1, 2, 3] and the amount is 4, there are **4** ways to form the amount using the coins, that is,
+
+* 4 = 1 + 1 + 1 + 1
+* 4 = 1 + 1 + 2
+* 4 = 1+3
+* 4 = 2 + 2
+
+Hence, the output should be **4**.
+
+
+Similarly, if the coins are [1, 3] and the amount is 4, there are 2 ways only.

@@ -74,3 +74,54 @@ fn coin_change(coins:&Vec<usize>, amount : usize, n:usize) -> usize{
 }
 
 ```
+
+With driver code
+
+```rust
+
+fn coin_change(coins:&Vec<usize>, amount : usize, n:usize) -> usize{
+
+    // If amount is 0, there is one way of making the change
+    // That is, do not take any coin
+    if amount == 0 { return 1; }
+
+    // If no coins left, return 0
+    if n==0 { return 0; }
+
+    // If current coin is greater than amount, we can not include it
+    // Hence, compute recursively the coins of n-1
+    if coins[n-1] > amount {
+        return coin_change(coins, amount, n-1);
+    }
+
+    // Now we can either exclude or include current coin
+    // If exclude, answer would be the coin_change of n-1 items
+    // If include, answer would be reduce the amount by denomination
+    // And calculate the coin_change of n items.
+    // Because we can include the coin again
+
+    // Return sum of both cases.
+    return coin_change(coins, amount, n-1)+coin_change(coins, amount-coins[n-1], n);
+}
+
+
+// Driver Code
+use std::io;
+
+fn take_vector() -> Vec<usize> {
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+    let arr: Vec<usize> = input.trim().split_whitespace()
+        .map(|x| x.parse().unwrap()).collect();
+    return arr;
+}
+
+fn main() {
+    println!("Hello, world!");
+
+    let coins = take_vector();
+    let amount = take_vector()[0];
+    println!("{}", coin_change(&coins, amount, coins.len()));
+}
+
+```

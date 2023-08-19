@@ -454,3 +454,26 @@ Use the same driver code except removing the dp matrix input.
 **Time Complexity : O( n*amount )** <br/>
 **Space Complexity : O( amount )**
 
+## Conclusion
+
+Coin Change Problem is a classical Dynamic Programming problem. In this problem, you have to tell in how many ways you can form the given amount by using given coins any number of times.
+
+In this article, we saw how to solve the coin change problem, first using recursion and then using Dynamic Programming, memoization as well as tabulation method, and latter the space optimized tabulation method in Rust Language.
+
+Here is the optimized function for easy access
+
+```rust
+fn coin_change(coins:&Vec<usize>, amount : usize, n:usize) -> usize{
+    let mut prev = vec![0; amount+1];
+    let mut current = vec![0; amount+1];
+    prev[0] = 1; current[0] = 1;
+    for i in 1..n+1 {
+        for j in 1..coins[i-1]{ current[j] = prev[j]; }
+        for j in coins[i-1]..amount+1 { current[j] = current[j-coins[i-1]] + prev[j]; }
+        for j in 0..amount+1 { prev[j] = current[j]; }
+    }
+    current[amount]
+}
+```
+**Thank You**
+

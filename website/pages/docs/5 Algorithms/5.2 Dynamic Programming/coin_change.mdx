@@ -391,4 +391,16 @@ fn main() {
 **Time Complexity : O( n*amount )** <br/>
 **Space Complexity : O( n*amount )**
 
+## Space Optimized Tabulation Method
 
+If we observe the above tabulation method carefully, we find that for calculating coin change for a given amount and number of coins, only **current and previous row** is required.
+
+In the above algorithm, step 1 is base case or initialization step, and do not require any other row.
+
+Step 3 and Step 4 requires only previous and current row.
+
+Hence, we can optimize our space complexity, by storing only the previous row instead of the whole matrix.
+
+### Function
+
+Here is the function using space optimization of tabulation method.

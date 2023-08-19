@@ -404,3 +404,39 @@ Hence, we can optimize our space complexity, by storing only the previous row in
 ### Function
 
 Here is the function using space optimization of tabulation method.
+
+```rust
+fn coin_change(coins:&Vec<usize>, amount : usize, n:usize) -> usize{
+
+    let mut prev = vec![0; amount+1];
+    let mut current = vec![0; amount+1];
+
+    // Set first column to 1
+    prev[0] = 1;
+    current[0] = 1;
+
+    // Run loop for all the i from 1 to n
+    for i in 1..n+1 {
+        // Run loop for each amount below coins[n-1], set above row
+        for j in 1..coins[i-1]{
+            current[j] = prev[j];
+        }
+
+        // Now, for larger amount, we can both include and exclude.
+        // So, we take sum of both cases
+        for j in coins[i-1]..amount+1 {
+            current[j] = current[j-coins[i-1]] + prev[j];
+        }
+
+        // Copy the elements of current to previous
+        for j in 0..amount+1 {
+            prev[j] = current[j];
+        }
+    }
+
+    // Return last element of current array
+    current[amount]
+}
+```
+
+Use the same driver code except removing the dp matrix input.

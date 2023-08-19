@@ -291,3 +291,90 @@ In tabulation method, we make the matrix, and fill it first on the basis of base
 4. Set the value of dp[i][amount] as dp[i][amount-coins[n-1]] + dp[i-1][amount] for inclusion and exclusion of the given coin respectively.
 5. Return the dp[n][amount] as the final answer.
 
+### Function
+
+Here is the function using above algorithm
+
+```rust
+fn coin_change(coins:&Vec<usize>, amount : usize, n:usize, dp : &mut Vec<Vec<usize>>) -> usize{
+
+    // Set first column as 1
+    for i in 0..n+1 { dp[i][0] = 1; }
+
+    // Set the first row as 0
+    for i in 1..amount+1 { dp[0][i] = 0; }
+
+    // Run loop for all the i from 1 to n
+    for i in 1..n+1 {
+        // Run loop for each amount below coins[n-1], set above row
+        for j in 1..coins[i-1]{
+            dp[i][j] = dp[i-1][j];
+        }
+
+        // Now, for larger amount, we can both include and exclude.
+        // So, we take sum of both cases
+        for j in coins[i-1]..amount+1 {
+            dp[i][j] = dp[i][j-coins[i-1]] + dp[i-1][j];
+        }
+    }
+
+    // Return The answer
+    dp[n][amount]
+}
+```
+
+With Driver code
+
+```rust
+
+fn coin_change(coins:&Vec<usize>, amount : usize, n:usize, dp : &mut Vec<Vec<usize>>) -> usize{
+
+    // Set first column as 1
+    for i in 0..n+1 { dp[i][0] = 1; }
+
+    // Set the first row as 0
+    for i in 1..amount+1 { dp[0][i] = 0; }
+
+    // Run loop for all the i from 1 to n
+    for i in 1..n+1 {
+        // Run loop for each amount below coins[n-1], set above row
+        for j in 1..coins[i-1]{
+            dp[i][j] = dp[i-1][j];
+        }
+
+        // Now, for larger amount, we can both include and exclude.
+        // So, we take sum of both cases
+        for j in coins[i-1]..amount+1 {
+            dp[i][j] = dp[i][j-coins[i-1]] + dp[i-1][j];
+        }
+    }
+
+    // Return The answer
+    dp[n][amount]
+}
+
+
+// Driver Code
+use std::io;
+
+fn take_vector() -> Vec<usize> {
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+    let arr: Vec<usize> = input.trim().split_whitespace()
+        .map(|x| x.parse().unwrap()).collect();
+    return arr;
+}
+
+fn main() {
+    println!("Hello, world!");
+
+    let coins = take_vector();
+    let amount = take_vector()[0];
+
+    // Make a DP Matrix
+    // Initially set all the elements to None
+    let mut dp = vec![vec![0 as usize; amount+1 ]; coins.len()+1];
+
+    println!("{}", coin_change(&coins, amount, coins.len(), &mut dp));
+}
+```

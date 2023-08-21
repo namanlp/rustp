@@ -61,3 +61,35 @@ pub fn minimum_cost_path(grid: &Vec<Vec<usize>>, r:usize, c:usize) -> usize {
     return grid[r-1][c-1] + min(minimum_cost_path(grid,r-1, c ) , minimum_cost_path(grid,r, c-1 ));
 }
 ```
+
+With Driver code
+
+```rust
+use std::cmp::min;
+
+pub fn minimum_cost_path(grid: &Vec<Vec<usize>>, r:usize, c:usize) -> usize {
+
+    // Base Case, if only 1 row and column, return the value of top left cell
+    if r == 1 && c ==1 { return grid[0][0]; }
+
+    // If only 1 row, we can only move leftwards
+    if r==1 { return grid[r-1][c-1] + minimum_cost_path(grid,r, c-1 ) ;}
+
+    // If only 1 column, we can only move upwards
+    if c==1 { return grid[r-1][c-1] + minimum_cost_path(grid,r-1, c ); }
+
+    // Else, we take minimum of both leftwards path and rightwards path
+    return grid[r-1][c-1] + min(minimum_cost_path(grid,r-1, c ) , minimum_cost_path(grid,r, c-1 ));
+}
+
+// Driver Code
+
+fn main() {
+    let grid = vec![
+        vec![2, 4, 1, 5, 6],
+        vec![3, 3, 2, 6, 7],
+        vec![1, 4, 5, 3, 5],
+    ];
+    println!("{}", minimum_cost_path(&grid, grid.len(), grid[0].len()));
+}
+```

@@ -23,3 +23,17 @@ import minPS from "../../../../images/Algorithms/minimum-path-sum.webp"
 </div>
 
 So, for above grid, answer is **22**
+
+
+## Recursive Solution
+
+In recursive solution, we start from the end, that is, bottom right cell, and take minimum of Minimum Path Sum of the cell upwards and leftwards to it.
+
+So, we find the Minimum Path Sum of upward and leftward cell and return this after adding the cost of current cell.
+
+### Algorithm
+
+1. Base Case would be that, if the current grid has 1 column and 1 row, return value of current cell.
+2. If current Grid has 1 row, we can traverse only leftwards. So, return cost of current cell + cost of Minimum Path Sum of the left cell.
+3. Similarly, if the grid has only 1 column, return cost of current cell + cost of Minimum Path Sum of the upward cell.
+4. Else, return the cost of current cell + minimum of Minimum Path Sum of the upward cell and leftward cell.

@@ -155,3 +155,51 @@ pub fn minimum_cost_path(grid: &Vec<Vec<usize>>, r:usize, c:usize, dp:&mut Vec<V
     return dp[r-1][c-1].unwrap();
 }
 ```
+
+With Driver code
+
+```rust
+use std::cmp::min;
+
+pub fn minimum_cost_path(grid: &Vec<Vec<usize>>, r:usize, c:usize, dp:&mut Vec<Vec<Option<usize>>>) -> usize {
+
+    // If Already computed, return it
+    if dp[r-1][c-1].is_some() { return dp[r-1][c-1].unwrap(); }
+
+    // Base Case, if only 1 row and column, return the value of top left cell
+    if r == 1 && c ==1 { dp[0][0] = Option::from(grid[0][0]) ;return dp[0][0].unwrap();  }
+
+    // If only 1 row, we can only move leftwards
+    if r==1 { dp[0][c-1] = Option::from(grid[0][c-1] + minimum_cost_path(grid,1, c-1 , dp)) ; return dp[0][c-1].unwrap();}
+
+    // If only 1 column, we can only move upwards
+    if c==1 { dp[r-1][0] = Option::from(grid[r-1][0] + minimum_cost_path(grid,r-1, 1 , dp)) ; return dp[r-1][0].unwrap();}
+
+    // Else, we take minimum of both leftwards path and rightwards path
+    dp[r-1][c-1] = Option::from( grid[r-1][c-1] + min(minimum_cost_path(grid,r-1, c, dp ) , minimum_cost_path(grid,r, c-1, dp)) );
+
+    return dp[r-1][c-1].unwrap();
+}
+
+// Driver Code
+
+fn main() {
+    let grid = vec![
+        vec![2, 4, 1, 5, 6],
+        vec![3, 3, 2, 6, 7],
+        vec![1, 4, 5, 3, 5],
+    ];
+
+    // Initialize DP matrix
+    let mut dp = vec![vec![Option::None; grid[0].len()]; grid.len()];
+
+    println!("{}", minimum_cost_path(&grid, grid.len(), grid[0].len(), &mut dp));
+}
+```
+
+**Output**
+
+> 22
+
+**Time Complexity : O( r*c )** <br/>
+**Space Complexity : O( r*c )**

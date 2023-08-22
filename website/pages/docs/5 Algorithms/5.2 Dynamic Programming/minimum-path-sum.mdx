@@ -254,3 +254,30 @@ Use the same driver code.
 
 **Time Complexity : O( r*c )** <br/>
 **Space Complexity : O( r*c )**
+
+## Conclusion
+
+Minimum Path Sum, also known as Minimum Cost Path, is a grid based Dynamic Programming problem.
+
+In this problem, you are given a grid of positive numbers, and you have to tell the minimum sum of elements from top left corner to bottom right through any path,
+but you can move only rightwards or downwards.
+
+In this article, we saw how to solve the Minimum Path Sum problem, first using recursion and then using Dynamic Programming, memoization as well as tabulation method in Rust Language.
+
+Here is the optimized function for easy access
+
+```rust
+use std::cmp::min;
+
+pub fn minimum_cost_path(grid: &Vec<Vec<usize>>, r:usize, c:usize, dp:&mut Vec<Vec<Option<usize>>>) -> usize {
+    dp[0][0] = Option::from(grid[0][0]);
+    for i in 1..r { dp[i][0] = Option::from(dp[i-1][0].unwrap() + grid[i][0]); }
+    for i in 1..c { dp[0][i] = Option::from(dp[0][i-1].unwrap() + grid[0][i]); }
+    for i in 1..r {
+        for j in 1..c {
+            dp[i][j] = Option::from(grid[i][j] + min(dp[i-1][j].unwrap(), dp[i][j-1].unwrap())); }}
+    return dp[r-1][c-1].unwrap();
+}
+```
+
+**Thank You**

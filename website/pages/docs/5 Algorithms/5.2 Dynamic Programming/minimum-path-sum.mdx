@@ -93,3 +93,15 @@ fn main() {
     println!("{}", minimum_cost_path(&grid, grid.len(), grid[0].len()));
 }
 ```
+
+
+**Output**
+
+> 4
+
+**Time Complexity : O( 2<sup>r+c</sup> )** <br/>
+**Space Complexity : O( r+c )**
+
+( Space complexity includes recursive stack space )
+
+**Note :** Space complexity is 2<sup>r+c</sup>  because each time, we have 2 choices.

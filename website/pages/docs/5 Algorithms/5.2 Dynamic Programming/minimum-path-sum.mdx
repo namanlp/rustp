@@ -215,3 +215,42 @@ In tabulation method, we make the DP matrix, and fill it first on the basis of b
 1. Initialize the first row and first column like [Prefix Sum Array](/array-algorithms/prefix-sum-array/), because to reach to given cell in first row or column, we have only 1 path, rightwards in case of row and downwards in case of column.
 2. For all cells in DP matrix, set its value to the sum of its corresponding value in initial grid and minimum of adjacent left and up cell.
 3. Finally, return the bottom right value of the DP matrix.
+
+
+### Function
+
+Here is the function using above algorithm
+
+```rust
+use std::cmp::min;
+
+pub fn minimum_cost_path(grid: &Vec<Vec<usize>>, r:usize, c:usize, dp:&mut Vec<Vec<Option<usize>>>) -> usize {
+
+    // Set dp[0][0], the first element of DP matrix as corresponding grid value.
+    dp[0][0] = Option::from(grid[0][0]);
+
+    // Initialize the first row and column of the DP matrix
+    for i in 1..r { dp[i][0] = Option::from(dp[i-1][0].unwrap() + grid[i][0]); }
+    for i in 1..c { dp[0][i] = Option::from(dp[0][i-1].unwrap() + grid[0][i]); }
+
+    // Traverse for each Row and column
+    for i in 1..r {
+        for j in 1..c {
+            // Set dp[i][j] as sum of corresponding grid value and
+            // Minimum of minimum path sum of upper and left cell
+            dp[i][j] = Option::from(grid[i][j] + min(dp[i-1][j].unwrap(), dp[i][j-1].unwrap()));
+        }
+    }
+
+    // Finally, Return last element
+    return dp[r-1][c-1].unwrap();
+}
+```
+Use the same driver code.
+
+**Output**
+
+> 22
+
+**Time Complexity : O( r*c )** <br/>
+**Space Complexity : O( r*c )**

@@ -27,4 +27,20 @@ import gp from "../../../../images/Algorithms/grid-paths.webp"
     <img src={gp} width="100%" alt="Grid Paths" />
 </div>
 
-Hence, the answer is **3**.
+So, for above grid, answer is **22**
+
+
+## Recursive Solution
+
+In recursive solution, we start from the end, that is, bottom right cell, and take sum of paths of cell upwards and leftwards to it.
+
+If the cell is `*` in the grid, we return 0.
+
+### Algorithm
+
+1. If the value of cell in grid is `*`, return 0.
+2. Base Case would be that, if the current grid has 1 column and 1 row, return 1.
+3. If current Grid has 1 row, we can traverse only leftwards. So, return Grid Paths of the left cell.
+4. Similarly, If current Grid has 1 column, we can traverse only upwards. So, return Grid Paths of the upper cell.
+5. Else, return the sum of Grid Paths of left and upper cells.
+

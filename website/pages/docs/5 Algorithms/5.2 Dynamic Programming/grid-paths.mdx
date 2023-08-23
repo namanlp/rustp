@@ -135,3 +135,14 @@ These are called **Overlapping Sub-problems** because they are smaller part of l
 So, we simply calculate them once, and store it in a matrix, and retrieve it when necessary. This helps to save a lot of computation.
 
 This is called Dynamic Programming Approach for the problem.
+
+
+## Memoization ( Top-down DP ) Method
+
+In memoization method, we simply take a DP matrix, and store the computed result.
+
+### Algorithm
+
+1. Initially, take a DP matrix and set all its elements to `None` type. Alternatively, you can set it to -1.
+2. If the grid paths are already calculated, that is given index of matrix is `Some` or not -1, return it.
+3. Else, calculate the grid paths by using recursion and store it in the DP matrix.

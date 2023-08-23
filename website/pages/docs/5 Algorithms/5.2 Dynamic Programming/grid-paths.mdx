@@ -146,3 +146,85 @@ In memoization method, we simply take a DP matrix, and store the computed result
 1. Initially, take a DP matrix and set all its elements to `None` type. Alternatively, you can set it to -1.
 2. If the grid paths are already calculated, that is given index of matrix is `Some` or not -1, return it.
 3. Else, calculate the grid paths by using recursion and store it in the DP matrix.
+
+### Function
+
+Here is the function using above algorithm
+
+
+```rust
+fn grid_paths(grid:&Vec<Vec<char>>, r:usize, c:usize,  dp:&mut Vec<Vec<Option<usize>>>) -> usize{
+    // If there is no row or column in the grid, return 0
+    if r<1 || c < 1 { return 0; }
+
+    // If already computed, return value
+    if dp[r-1][c-1].is_some() { return dp[r-1][c-1].unwrap(); }
+
+    // If corresponding grid value is *, return 0
+    if grid[r-1][c-1] == '*' { dp[r-1][c-1] = Option::from(0); return 0;}
+
+    // Base Case
+    // If only 1 row and column, return 1
+    if r == 1 && c==1 { dp[0][0] = Option::from(1); return 1; }
+
+    // Recursive Cases
+    // If only 1 row, can go only left
+    if r == 1 { dp[0][c-1] = Option::from(grid_paths(grid, 1, c-1, dp)); return dp[0][c-1].unwrap(); }
+
+    // If only 1 column, can go only up
+    if c == 1 { dp[r-1][0] = Option::from( grid_paths(grid, r-1, 1, dp)); return dp[r-1][0].unwrap(); }
+
+    // Else, return sum of upper and left values
+    dp[r-1][c-1] = Option::from(grid_paths(grid, r-1, c, dp) + grid_paths(grid, r, c-1, dp));
+    return dp[r-1][c-1].unwrap();
+}
+```
+
+With Driver code
+
+```rust
+
+
+fn grid_paths(grid:&Vec<Vec<char>>, r:usize, c:usize,  dp:&mut Vec<Vec<Option<usize>>>) -> usize{
+    // If there is no row or column in the grid, return 0
+    if r<1 || c < 1 { return 0; }
+
+    // If already computed, return value
+    if dp[r-1][c-1].is_some() { return dp[r-1][c-1].unwrap(); }
+
+    // If corresponding grid value is *, return 0
+    if grid[r-1][c-1] == '*' { dp[r-1][c-1] = Option::from(0); return 0;}
+
+    // Base Case
+    // If only 1 row and column, return 1
+    if r == 1 && c==1 { dp[0][0] = Option::from(1); return 1; }
+
+    // Recursive Cases
+    // If only 1 row, can go only left
+    if r == 1 { dp[0][c-1] = Option::from(grid_paths(grid, 1, c-1, dp)); return dp[0][c-1].unwrap(); }
+
+    // If only 1 column, can go only up
+    if c == 1 { dp[r-1][0] = Option::from( grid_paths(grid, r-1, 1, dp)); return dp[r-1][0].unwrap(); }
+
+    // Else, return sum of upper and left values
+    dp[r-1][c-1] = Option::from(grid_paths(grid, r-1, c, dp) + grid_paths(grid, r, c-1, dp));
+    return dp[r-1][c-1].unwrap();
+}
+
+// Driver Code
+
+fn main() {
+    // Take the sample grid, as shown in picture
+    let grid = vec![
+        vec!['.', '.', '.', '.', '.'],
+        vec!['.', '*', '.', '*', '.'],
+        vec!['.', '.', '.', '.', '.'],
+    ];
+
+    // Initialize DP matrix
+    let mut dp = vec![vec![None; grid[0].len()]; grid.len()];
+
+    // Print The number of paths of the grid
+    println!("{}", grid_paths(&grid, grid.len(), grid[0].len(), &mut dp));
+}
+```

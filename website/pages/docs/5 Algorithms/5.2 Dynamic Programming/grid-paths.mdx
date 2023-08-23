@@ -124,3 +124,14 @@ fn main() {
 
 ( Space complexity includes recursive stack space )
 
+## Overlapping Sub-problems
+
+If we have a look carefully on recursive approach, we computed multiple results many times.
+
+**For example :** In a 20×20 grid, you can reach the (10, 10) cell in thousands of ways, and takes thousands of recursions each time to calculate.
+
+These are called **Overlapping Sub-problems** because they are smaller part of large problems, and are computed again and again.
+
+So, we simply calculate them once, and store it in a matrix, and retrieve it when necessary. This helps to save a lot of computation.
+
+This is called Dynamic Programming Approach for the problem.

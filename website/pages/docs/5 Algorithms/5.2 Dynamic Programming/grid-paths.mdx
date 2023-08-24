@@ -235,3 +235,16 @@ fn main() {
 
 **Time Complexity : O( r*c )** <br/>
 **Space Complexity : O( r*c )**
+
+## Tabulation  ( Bottom-up DP )  Method
+
+Although time and space complexities of tabulation as well as memoization method are same, tabulation is much more efficient as there are a lot of expensive recursive calls in memoization.
+
+In tabulation method, we make the DP matrix, and fill it first on the basis of base condition, and then on the basis of previous row.
+
+### Algorithm
+
+1. Initially, set `1` upto first `*` in first row and column in DP matrix, and 0 after that.
+2. Now, for each of cell, if the corresponding cell in original grid is `*`, set it to 0, else sum of upper and left cell in DP matrix.
+3. Finally, return the value of last cell as the answer.
+

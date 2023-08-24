@@ -3,7 +3,7 @@ title: Grid Paths
 section: 5.2 Dynamic Programming
 order: 16
 slug: /dynamic-programming/grid-paths/
-description: Grid Paths.
+description: Tell the unique paths from top left to bottom right without stepping on trap in the given grid. We will see recursive, memoization and tabulation DP solution in Rust Language.
 ---
 
 # Grid Paths Problem
@@ -329,3 +329,9 @@ fn grid_paths(grid:&Vec<Vec<char>>, r:usize, c:usize,  dp:&mut Vec<Vec<Option<us
     return dp[r-1][c-1].unwrap();
 }
 ```
+
+
+import {SEO} from "smooth-doc/src/components/SEO";
+
+<SEO title="Grid Paths ( CSES ) using Recursion, Memoization and Tabulation - Dynamic Programming - Rust Programming"
+    description="Tell the unique paths from top left to bottom right without stepping on trap in the given grid. We will see recursive, memoization and tabulation DP solution in Rust Language." />

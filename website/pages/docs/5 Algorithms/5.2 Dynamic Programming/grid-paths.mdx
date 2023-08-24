@@ -298,3 +298,34 @@ Use the same driver code.
 
 **Time Complexity : O( r*c )** <br/>
 **Space Complexity : O( r*c )**
+
+## Conclusion
+
+Grid Paths is a grid based Dynamic Programming problem.
+
+In this problem, you are given a grid with traps / obstacles. You have to tell the number of unique paths to reach from top left to bottom right in the grid, **without stepping onto trap**.
+
+You can only move in right and down directions.
+
+In this article, we saw how to solve the Grid Paths problem, first using recursion and then using Dynamic Programming, memoization as well as tabulation method in Rust Language.
+
+Here is the optimized function for easy access
+
+```rust
+fn grid_paths(grid:&Vec<Vec<char>>, r:usize, c:usize,  dp:&mut Vec<Vec<Option<usize>>>) -> usize{
+    let mut trapped = false;
+    for i in 0..c {
+        if grid[0][i] == '*' { trapped = true; }
+        if trapped { dp[0][i] = Option::from(0); }  else { dp[0][i] = Option::from(1); } }
+
+    trapped = false;
+    for i in 0..r {
+        if grid[i][0] == '*' { trapped = true; }
+        if trapped { dp[i][0] = Option::from(0); } else { dp[i][0] = Option::from(1); } }
+
+    for i in 1..r { for j in 1..c {
+            if grid[i][j] == '*' { dp[i][j] = Option::from(0); continue; }
+            dp[i][j] = Option::from(dp[i-1][j].unwrap() + dp[i][j-1].unwrap() ); } }
+    return dp[r-1][c-1].unwrap();
+}
+```

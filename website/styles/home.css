@@ -128,3 +128,10 @@ img.feature-image{
         text-shadow: 0.4vh 1.3vw #b7410e;
     }
 }
+
+#bottom_heading{
+    font-weight: bolder;
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1.1rem;
+}

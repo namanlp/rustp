@@ -33,3 +33,15 @@ In the solution to this problem, we apply an observation.
 **Observation :** If the value of the last element of the array is fixed, say `x`,  there can be only three values of last second element, that is `x-1`, `x` and `x+1`. Similarly, we can count the cases of last third element and so on till we reach first element.
 
 We can apply this observation to solve this problem.
+
+### Algorithm
+
+If the last element of array is `0`, count the cases for all values of last element from 1 to m. Here is the function to count possible arrays.
+
+Function takes the original array, index to check, m and value to check as input and return the number of possible cases for the array.
+
+1. If the value to check is not in range of 1 to m, return 0.
+2. If the given index of array is non 0, and not equal to the given value, return 0, because can not be possible.
+3. Now, it is certainly possible to create an array using these values.
+4. **Base Case :** If the index is 0, return 1, because we can set the first element to given value. Hence 1 case.
+5. **Recursive Case :** Else, return the cases by setting previous element to given `value-1`, `value` and `value+1`.

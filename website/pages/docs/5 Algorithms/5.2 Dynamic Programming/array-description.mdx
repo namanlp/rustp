@@ -23,3 +23,13 @@ In this question you are given an array with missing values and some conditions.
 You are given the value of n, m and the array, in which missing numbers are represented by `0`, and other numbers are between 1 and m.
 
 You have to tell the number of possible arrays that follow the above conditions. Since the answer may be very large, you have to tell the answer modulo 10<sup>9 </sup>+7
+
+**For Example :** If the array is [2, 1, 0] and the m is 100, the answer will be 2 as the arrays can be [2, 1, 1] and [2, 1, 2].
+
+## Recursive Solution
+
+In the solution to this problem, we apply an observation.
+
+**Observation :** If the value of the last element of the array is fixed, say `x`,  there can be only three values of last second element, that is `x-1`, `x` and `x+1`. Similarly, we can count the cases of last third element and so on till we reach first element.
+
+We can apply this observation to solve this problem.

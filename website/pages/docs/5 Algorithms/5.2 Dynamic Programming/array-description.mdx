@@ -188,3 +188,118 @@ In memoization method, we simply take a DP matrix, and store the computed result
 2. If the possible arrays for given index and value is already computed, return it.
 3. Else, calculate the value using recursion, and store it in DP matrix, and return it.
 
+### Function
+
+Here is the function using above algorithm
+
+```rust
+fn count_arrays(arr:&Vec<usize>, index:usize, m:usize, value:usize, dp: &mut Vec<Vec<Option<usize>>>) -> usize{
+
+    // If value is not between 1 and m, no possible case
+    if value >m || value < 1 { return 0; }
+
+    // If already computed the value, return it
+    if dp[index][value].is_some() { return dp[index][value].unwrap(); }
+
+    // Now, if the array's given index value is already non 0
+    // And not equal to the checked value, no possible case
+    if arr[index] != 0 && arr[index] != value { dp[index][value] = Option::from(0); return 0; }
+
+    // Now, in either case, we can set the given value to the given index.
+    // Hence, count the cases after setting given index to value
+
+    // Base Case, if the first element is to be checked, return 1
+    // Because if arr[0] == 0, only 1 possible case, that is set the value
+    // Or if arr[0] == value, still only 1 case
+    if index == 0 { dp[index][value] = Option::from(1); return 1; }
+
+
+    // Now cases are counted by recursively calling the function
+    // For index -1, and values x-1, x, x+1
+    // It is guaranteed that the value returned by each function
+    // is not greater than 10^9+7. So, we add them and return their modulo 10^9+7
+
+    dp[index][value] = Option::from(  (count_arrays(arr, index-1, m, value-1, dp) +
+        count_arrays(arr, index-1, m, value, dp) +
+        count_arrays(arr, index-1, m, value+1, dp)) % 1_000_000_007);
+    return dp[index][value].unwrap();
+}
+```
+
+With Driver code
+
+```rust
+
+
+fn count_arrays(arr:&Vec<usize>, index:usize, m:usize, value:usize, dp: &mut Vec<Vec<Option<usize>>>) -> usize{
+
+    // If value is not between 1 and m, no possible case
+    if value >m || value < 1 { return 0; }
+
+    // If already computed the value, return it
+    if dp[index][value].is_some() { return dp[index][value].unwrap(); }
+
+    // Now, if the array's given index value is already non 0
+    // And not equal to the checked value, no possible case
+    if arr[index] != 0 && arr[index] != value { dp[index][value] = Option::from(0); return 0; }
+
+    // Now, in either case, we can set the given value to the given index.
+    // Hence, count the cases after setting given index to value
+
+    // Base Case, if the first element is to be checked, return 1
+    // Because if arr[0] == 0, only 1 possible case, that is set the value
+    // Or if arr[0] == value, still only 1 case
+    if index == 0 { dp[index][value] = Option::from(1); return 1; }
+
+
+    // Now cases are counted by recursively calling the function
+    // For index -1, and values x-1, x, x+1
+    // It is guaranteed that the value returned by each function
+    // is not greater than 10^9+7. So, we add them and return their modulo 10^9+7
+
+    dp[index][value] = Option::from(  (count_arrays(arr, index-1, m, value-1, dp) +
+        count_arrays(arr, index-1, m, value, dp) +
+        count_arrays(arr, index-1, m, value+1, dp)) % 1_000_000_007);
+    return dp[index][value].unwrap();
+}
+
+// Driver code
+
+// Take array input
+use std::io;
+fn take_vector() -> Vec<usize> {
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+    let arr: Vec<usize> = input.trim().split_whitespace()
+        .map(|x| x.parse().unwrap()).collect();
+    return arr;
+}
+
+fn main() {
+    // Input n and m
+    let n_m = take_vector();
+    let n = n_m[0];
+    let m = n_m[1];
+
+    // Take array
+    let arr = take_vector();
+
+    // Take sum of all the possible values.
+    // Now, we know that usize can easily store numbers upto 10^18
+    // So, we take modulo at the end.
+
+    let mut ans = 0;
+
+    // DP matrix has m+1 columns because value of each element is at max m
+    // And there are n elements in array, so n rows.
+    let mut dp = vec![vec![None; m+1]; n];
+
+    // We take all possible value of last element.
+    // If last element is non zero, other values will be rejected
+    for i in 1..m+1 {
+        ans+=count_arrays(&arr, n-1, m, i, &mut dp);
+    }
+
+    println!("{}", ans% 1_000_000_007);
+}
+```

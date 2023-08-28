@@ -153,7 +153,7 @@ fn main() {
 ```
 
 **Input**
-3 100
+> 3 100 <br/>
 2 1 0
 
 **Output**
@@ -305,7 +305,7 @@ fn main() {
 ```
 
 **Input**
-3 100
+>3 100 <br/>
 2 1 0
 
 **Output**
@@ -326,3 +326,4 @@ In tabulation method, we make the DP matrix, and fill it first on the basis of b
 1. Initially, if the value of first element is 0, set first row to 1, because only 1 possible case. Else, set first row to 0, except the value of first element.
 2. For each element, if the value is non-zero, say x, then compute only cases for x, and set other to zero. Else, compute cases for all values from 1 to m.
 3. To compute values for given element, simply take sum of `x-1`, `x` and `x+1` from previous row.
+4. Finally, return the sum of elements of last row as the answer.

@@ -493,3 +493,35 @@ Use the same driver code.
 
 **Time Complexity : O( m×n )** <br/>
 **Space Complexity : O( m )**
+
+## Conclusion
+
+Array Description is a Dynamic Programming Problem taken from CSES problem set.
+
+In this question you are given an array with missing values. You have to determine the number of possible arrays such that absolute difference of each adjacent elements is at most 1.
+
+Also, each element must be in range 1 to m.
+
+In this article, we saw how to solve the Array Description problem, first using recursion and then using Dynamic Programming, memoization as well as tabulation method, and latter the space optimized tabulation method in Rust Language.
+
+Here is the optimized function for easy access
+
+```rust
+fn count_arrays(arr:&Vec<usize>, m:usize) -> usize{
+    let mut prev = vec![0; m+2];
+    let mut curr = vec![0; m+2];
+    if arr[0] == 0 { for i in 1..m+1 { prev[i] = 1;} }
+    else { prev[arr[0]] = 1; }
+
+    for i in 1..arr.len() {
+        if arr[i] == 0 { for j in 1..m+1 { curr[j] = (prev[j-1] + prev[j] + prev[j+1])%1_000_000_007;} }
+        else { let val = arr[i];curr[val] = (prev[val-1] + prev[val] + prev[val+1])%1_000_000_007;}
+
+        for j in 0..m+2 {prev[j] = curr[j]; curr[j] = 0;}
+    }
+    let mut sum = 0; for i in 1..m+1 { sum+=prev[i]; }
+    return sum%1_000_000_007;
+}
+```
+
+**Thank You**

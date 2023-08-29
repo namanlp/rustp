@@ -335,7 +335,7 @@ Here is the function using above algorithm
 ```rust
 fn count_arrays(arr:&Vec<usize>, m:usize) -> usize{
 
-    // init dp vector as all 0
+    // init dp matrix as all 0
     // We take m+2 columns so that 0 and m+1 are always 0.
     let mut dp = vec![vec![0; m+2]; arr.len()];
 
@@ -371,7 +371,7 @@ With Driver code
 
 fn count_arrays(arr:&Vec<usize>, m:usize) -> usize{
 
-    // init dp vector as all 0
+    // init dp matrix as all 0
     // We take m+2 columns so that 0 and m+1 are always 0.
     let mut dp = vec![vec![0; m+2]; arr.len()];
 
@@ -444,3 +444,40 @@ Hence, we can optimize our space complexity, by storing only the previous row an
 ### Function
 
 Here is the function using space optimization of tabulation method.
+
+```rust
+
+fn count_arrays(arr:&Vec<usize>, m:usize) -> usize{
+    // Initially, both current and finally are all 0 vector
+    let mut prev = vec![0; m+2];
+    let mut curr = vec![0; m+2];
+
+    // Base case, If first element is 0, set first row to 1, else set only value to 1
+    // Rest of elements are automatically set to 0
+    if arr[0] == 0 { for i in 1..m+1 { prev[i] = 1;} }
+    else { prev[arr[0]] = 1; }
+
+    // For each subsequent row, if the element is 0, compute cases for each value
+    // from 1 to m. Else for the given element only.
+    for i in 1..arr.len() {
+        if arr[i] == 0 {
+            // The 0 and m+1 element in dp array is always 0, hence no issue.
+            for j in 1..m+1 { curr[j] = (prev[j-1] + prev[j] + prev[j+1])%1_000_000_007;}
+        }
+        else {
+            let val = arr[i];
+            curr[val] = (prev[val-1] + prev[val] + prev[val+1])%1_000_000_007;}
+
+        // Move the current values to previous vector
+        // And set current vector to 0
+        for j in 0..m+2 {prev[j] = curr[j]; curr[j] = 0;}
+    }
+
+    // Finally, return the sum of all elements of previous
+    // Because current is cleared and its element are already in prev
+    let mut sum = 0;
+    for i in 1..m+1 { sum+=prev[i]; }
+    return sum%1_000_000_007;
+}
+```
+

@@ -433,3 +433,14 @@ fn main() {
 
 **Time Complexity : O( m×n )** <br/>
 **Space Complexity : O( m×n )**
+
+
+## Space Optimized Tabulation Method
+
+If we observe the above tabulation method carefully, we find that for calculating the value for each `n`, only the previous row values are needed.
+
+Hence, we can optimize our space complexity, by storing only the previous row and not the whole matrix.
+
+### Function
+
+Here is the function using space optimization of tabulation method.

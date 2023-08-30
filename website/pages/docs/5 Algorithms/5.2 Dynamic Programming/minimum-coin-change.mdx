@@ -18,3 +18,17 @@ In this problem, you are given coins of various denomination, and each coin has 
 You have to tell **Minimum number of coins** that you can use to make the exact amount.
 
 **For Example :** If coins are [1, 3, 4] and the amount is 6, the answer should be **2**, because you can form the sum using coins [3, 3]
+
+## Recursive Solution
+
+Recursive solution to this problem is pretty straightforward. At each step, you have 2 choices :
+
+1. **Exclude the given coin :** We can exclude the given coin and find the answer with the remaining coins. In this, we simply call recursion using same amount, but n-1 coins.
+2. **Include the given coin :** We can include the coin and again call recursion by reducing amount, but on same number of coins, because we can include and exclude same coin again.
+
+We have to take minimum of both the cases.
+
+If amount is 0, we can form it using 0 coins.
+
+Also, if n is 0 and amount is not 0, we can not make the money. Hence, return Infinite value. We will take 10<sup>10</sup> as our *infinite* value for this question.
+

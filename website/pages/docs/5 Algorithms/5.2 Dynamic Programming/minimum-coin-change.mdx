@@ -32,3 +32,87 @@ If amount is 0, we can form it using 0 coins.
 
 Also, if n is 0 and amount is not 0, we can not make the money. Hence, return Infinite value. We will take 10<sup>10</sup> as our *infinite* value for this question.
 
+
+### Function
+
+Here is the function using above algorithm
+
+```rust
+use std::cmp::min;
+
+fn min_coin_change(coins:&Vec<usize>, amount : usize, n:usize) -> usize{
+
+    let infinite = 10_000_000_000;
+    // If amount is 0, we can make it without using coins
+    if amount == 0 { return 0; }
+
+    // If no coins left, but amount is not 0, we can not make the amount.
+    // Hence, return infinite value
+    if n==0 { return infinite; }
+
+    // If current coin is greater than amount, we can not include it
+    // Hence, compute recursively the coins of n-1
+    if coins[n-1] > amount {
+        return min_coin_change(coins, amount, n-1);
+    }
+
+    // Now we can either exclude or include current coin
+    // If exclude, answer would be the min_coin_change of n-1 items
+    // If include, answer would be reduce the amount by denomination
+    // And calculate the min_coin_change of n items.
+    // Because we can include the coin again
+
+    // Return minimum of both cases.
+    return min(min_coin_change(coins, amount, n-1),1+min_coin_change(coins, amount-coins[n-1], n));
+}
+```
+
+With driver code
+
+```rust
+use std::cmp::min;
+
+fn min_coin_change(coins:&Vec<usize>, amount : usize, n:usize) -> usize{
+
+    let infinite = 10_000_000_000;
+    // If amount is 0, we can make it without using coins
+    if amount == 0 { return 0; }
+
+    // If no coins left, but amount is not 0, we can not make the amount.
+    // Hence, return infinite value
+    if n==0 { return infinite; }
+
+    // If current coin is greater than amount, we can not include it
+    // Hence, compute recursively the coins of n-1
+    if coins[n-1] > amount {
+        return min_coin_change(coins, amount, n-1);
+    }
+
+    // Now we can either exclude or include current coin
+    // If exclude, answer would be the min_coin_change of n-1 items
+    // If include, answer would be reduce the amount by denomination
+    // And calculate the min_coin_change of n items.
+    // Because we can include the coin again
+
+    // Return minimum of both cases.
+    return min(min_coin_change(coins, amount, n-1),1+min_coin_change(coins, amount-coins[n-1], n));
+}
+
+
+// Driver Code
+
+use std::io;
+fn take_vector() -> Vec<usize> {
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+    let arr: Vec<usize> = input.trim().split_whitespace()
+        .map(|x| x.parse().unwrap()).collect();
+    return arr;
+}
+
+fn main() {
+    let coins = take_vector();
+    let amount = take_vector()[0];
+    println!("{}", min_coin_change(&coins, amount, coins.len()));
+}
+```

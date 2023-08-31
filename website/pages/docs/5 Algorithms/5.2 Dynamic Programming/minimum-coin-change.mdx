@@ -128,3 +128,18 @@ fn main() {
 
 **Time Complexity : O( 2<sup>n</sup> )** <br/>
 **Space Complexity : O( n )**
+
+( Space complexity includes recursive stack space )
+
+## Overlapping Sub-problems
+
+If we have a look carefully on recursive approach, we computed multiple results many times.
+
+For example, if coins are [1, 2, 3, 6, 12] and amount is 24, the result for n = 2 and amount = 12 is calculated 4 times, and takes many recursions each time.
+These are called overlapping sub-problems, because it is a sub-problem of actual problem and is overlapping in multiple recursions.
+
+To prevent this, we can store the output and each result will be calculated only once.
+
+In minimum coin change problem, we can create a dp matrix, and store each value by coin index and amount. That is, if we consider first `i` coins, the result will be stored at dp[i][amount].
+
+This is called memoization or Top-down Dynamic Programming.

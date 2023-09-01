@@ -143,3 +143,13 @@ To prevent this, we can store the output and each result will be calculated only
 In minimum coin change problem, we can create a dp matrix, and store each value by coin index and amount. That is, if we consider first `i` coins, the result will be stored at dp[i][amount].
 
 This is called memoization or Top-down Dynamic Programming.
+
+## Memoization ( Top-down DP ) Method
+
+In memoization method, we simply take a DP matrix, and store the computed result.
+
+### Algorithm
+
+1. If the stored value for given number of coins and amount in DP matrix is not `None`, we return the value.
+2. If the amount is 0, return 0 and if n is 0 and amount > 0, return infinity.
+3. Else, use recursive logic to calculate the given value and store it in the DP matrix.

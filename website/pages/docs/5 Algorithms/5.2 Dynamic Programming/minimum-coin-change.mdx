@@ -113,7 +113,11 @@ fn take_vector() -> Vec<usize> {
 fn main() {
     let coins = take_vector();
     let amount = take_vector()[0];
-    println!("{}", min_coin_change(&coins, amount, coins.len()));
+    let ans  = min_coin_change(&coins, amount, coins.len());
+
+    // If answer is infinity, we have to print -1
+    if ans >= 1_000_000_000 { println!("-1"); }
+    else { println!("{}", ans); }
 }
 ```
 
@@ -253,8 +257,11 @@ fn main() {
     // Initially set all the elements to None
     let mut dp = vec![vec![Option::None; amount+1 ]; coins.len()+1];
 
-    println!("{}", min_coin_change(&coins, amount, coins.len(), &mut dp));
+    let ans  = min_coin_change(&coins, amount, coins.len(), &mut dp);
 
+    // If answer is infinity, we have to print -1
+    if ans >= 1_000_000_000 { println!("-1"); }
+    else { println!("{}", ans); }
 }
 ```
 

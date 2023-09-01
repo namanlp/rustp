@@ -120,11 +120,11 @@ fn main() {
 **Input**
 
 > 1 3 4 <br />
-4
+6
 
 **Output**
 
-> 6
+> 2
 
 **Time Complexity : O( 2<sup>n</sup> )** <br/>
 **Space Complexity : O( n )**
@@ -153,3 +153,107 @@ In memoization method, we simply take a DP matrix, and store the computed result
 1. If the stored value for given number of coins and amount in DP matrix is not `None`, we return the value.
 2. If the amount is 0, return 0 and if n is 0 and amount > 0, return infinity.
 3. Else, use recursive logic to calculate the given value and store it in the DP matrix.
+
+### Function
+
+Here is the function using above algorithm
+
+```rust
+use std::cmp::min;
+
+fn min_coin_change(coins:&Vec<usize>, amount : usize, n:usize, dp : &mut Vec<Vec<Option<usize>>>) -> usize{
+
+    let infinite = 10_000_000_000;
+    // If amount is 0, we can make it without using coins
+    if amount == 0 { return 0; }
+
+    // If no coins left, but amount is not 0, we can not make the amount.
+    // Hence, return infinite value
+    if n==0 { return infinite; }
+
+    // If already computed the value, return it
+    if dp[n][amount].is_some() {
+        return dp[n][amount].unwrap();
+    }
+
+    // If current coin is greater than amount, we can not include it
+    // Hence, compute recursively the coins of n-1
+    if coins[n-1] > amount {
+        dp[n][amount] = Option::from(min_coin_change(coins, amount, n-1, dp));
+        return dp[n][amount].unwrap();
+    }
+
+    // Now we can either exclude or include current coin
+    // If exclude, answer would be the min_coin_change of n-1 items
+    // If include, answer would be reduce the amount by denomination
+    // And calculate the min_coin_change of n items.
+    // Because we can include the coin again
+
+    // Return minimum of both cases.
+    dp[n][amount] =Option::from( min(min_coin_change(coins, amount, n-1, dp),1+min_coin_change(coins, amount-coins[n-1], n, dp)) );
+    return dp[n][amount].unwrap();
+}
+```
+
+With driver code
+
+```rust
+use std::cmp::min;
+
+fn min_coin_change(coins:&Vec<usize>, amount : usize, n:usize, dp : &mut Vec<Vec<Option<usize>>>) -> usize{
+
+    let infinite = 10_000_000_000;
+    // If amount is 0, we can make it without using coins
+    if amount == 0 { return 0; }
+
+    // If no coins left, but amount is not 0, we can not make the amount.
+    // Hence, return infinite value
+    if n==0 { return infinite; }
+
+    // If already computed the value, return it
+    if dp[n][amount].is_some() {
+        return dp[n][amount].unwrap();
+    }
+
+    // If current coin is greater than amount, we can not include it
+    // Hence, compute recursively the coins of n-1
+    if coins[n-1] > amount {
+        dp[n][amount] = Option::from(min_coin_change(coins, amount, n-1, dp));
+        return dp[n][amount].unwrap();
+    }
+
+    // Now we can either exclude or include current coin
+    // If exclude, answer would be the min_coin_change of n-1 items
+    // If include, answer would be reduce the amount by denomination
+    // And calculate the min_coin_change of n items.
+    // Because we can include the coin again
+
+    // Return minimum of both cases.
+    dp[n][amount] =Option::from( min(min_coin_change(coins, amount, n-1, dp),1+min_coin_change(coins, amount-coins[n-1], n, dp)) );
+    return dp[n][amount].unwrap();
+}
+
+
+// Driver Code
+
+use std::io;
+fn take_vector() -> Vec<usize> {
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+    let arr: Vec<usize> = input.trim().split_whitespace()
+        .map(|x| x.parse().unwrap()).collect();
+    return arr;
+}
+
+fn main() {
+    let coins = take_vector();
+    let amount = take_vector()[0];
+
+    // Make a DP Matrix
+    // Initially set all the elements to None
+    let mut dp = vec![vec![Option::None; amount+1 ]; coins.len()+1];
+
+    println!("{}", min_coin_change(&coins, amount, coins.len(), &mut dp));
+
+}
+```

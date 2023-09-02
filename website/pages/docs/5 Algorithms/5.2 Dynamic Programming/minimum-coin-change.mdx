@@ -310,7 +310,7 @@ fn min_coin_change(coins:&Vec<usize>, amount : usize, n:usize) -> usize{
     // Run loop for all the i from 1 to n
     for i in 1..n+1 {
         // Run loop for each amount below coins[n-1], set above row
-        for j in 1..coins[i-1]{ dp[i][j] = dp[i-1][j]; }
+        for j in 1..min(coins[i-1], amount+1){ dp[i][j] = dp[i-1][j]; }
 
         // Now, for larger amount, we can both include and exclude.
         // So, we take minimum of both cases
@@ -370,7 +370,7 @@ fn min_coin_change(coins:&Vec<usize>, amount : usize, n:usize) -> usize{
     // Run loop for all the i from 1 to n
     for i in 1..n+1 {
         // Run loop for each amount below coins[n-1], set above row
-        for j in 1..coins[i-1]{ curr[j] = prev[j]; }
+        for j in 1..min(coins[i-1], amount+1){ curr[j] = prev[j]; }
 
         // Now, for larger amount, we can both include and exclude.
         // So, we take minimum of both cases

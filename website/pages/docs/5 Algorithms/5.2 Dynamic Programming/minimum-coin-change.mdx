@@ -347,3 +347,44 @@ In the above algorithm, step 1 is base case or initialization step, and do not r
 Step 3 and Step 4 requires only previous and current row.
 
 Hence, we can optimize our space complexity, by storing only the previous row instead of the whole matrix.
+
+### Function
+
+Here is the function using space optimization of tabulation method.
+
+```rust
+use std::cmp::min;
+
+fn min_coin_change(coins:&Vec<usize>, amount : usize, n:usize) -> usize{
+
+    // Initially, set previous as well as current to infinity
+    let infinite = 10_000_000_000;
+
+    let mut prev = vec![infinite; amount+1];
+    let mut curr = vec![infinite; amount+1];
+
+    // Set the first column to 0, because if amount is 0, we can make the amount
+    prev[0] = 0;
+    curr[0] = 0;
+
+    // Run loop for all the i from 1 to n
+    for i in 1..n+1 {
+        // Run loop for each amount below coins[n-1], set above row
+        for j in 1..coins[i-1]{ curr[j] = prev[j]; }
+
+        // Now, for larger amount, we can both include and exclude.
+        // So, we take minimum of both cases
+        for j in coins[i-1]..amount+1 {
+            curr[j] = min(1+curr[j-coins[i-1]] , prev[j]);
+        }
+
+        // Move the elements from current to previous
+        for j in 0..amount+1 { prev[j] = curr[j];}
+    }
+
+    // Return The answer
+    curr[amount]
+}
+```
+
+Use the same driver code as recursive solution.

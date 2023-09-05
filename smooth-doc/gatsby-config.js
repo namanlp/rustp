@@ -148,7 +148,6 @@ module.exports = function config(options) {
           start_url: '/',
           display: 'minimal-ui',
           icon: logoPath,
-          include_favicon: false, // This will exclude favicon link tag
         },
       },
       {

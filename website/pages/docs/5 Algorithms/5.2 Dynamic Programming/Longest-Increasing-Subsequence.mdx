@@ -16,3 +16,14 @@ Longest Increasing Subsequence is another classical Dynamic Programming problem,
 Subsequence of an array is defined as an array, that is formed by removing 0 or more elements from the original array.
 
 **For Example :** If array are [1, 5, 8, 2, 4, 5, 10], the longest increasing subsequence is [1, 2, 4, 5, 10].
+
+## Recursive Solution
+
+Recursive solution to this problem is pretty straightforward. At each step, you have 2 choices :
+
+1. **Include the element :** Include the given element, only if the previous element is lesser.
+2. **Exclude the element :** We can exclude it and include other elements.
+
+And recursively call for next elements.
+We have to take maximum of both the cases.
+

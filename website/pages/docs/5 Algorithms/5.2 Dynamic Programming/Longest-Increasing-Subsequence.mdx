@@ -30,3 +30,67 @@ We have to take maximum of both the cases.
 ### Function
 
 Here is the function using above algorithm
+
+```rust
+use std::cmp::max;
+
+fn lis_recursive(arr : &Vec<usize>, n:usize, i:usize, prev_index:Option<usize>) -> usize{
+    // If completely traversed array, return 0
+    if i >= n { return 0; }
+
+    // If prev index is none, we can both include and exclude
+    // Else, we can include iff previous element is lesser
+    // So, we have to exclude otherwise
+
+    if prev_index.is_some() && arr[i] <= arr[prev_index.unwrap()] {
+        return lis_recursive( arr, n, i+1, prev_index);
+    }
+
+    // Else, we can both include and exclude,
+    // So return max of both cases
+    return max(
+        1+lis_recursive(arr, n, i+1, Option::from(i)), // Include
+        lis_recursive(arr, n, i+1, prev_index)); // Exclude
+}
+```
+
+With Driver code
+
+```rust
+use std::cmp::max;
+
+fn lis_recursive(arr : &Vec<usize>, n:usize, i:usize, prev_index:Option<usize>) -> usize{
+    // If completely traversed array, return 0
+    if i >= n { return 0; }
+
+    // If prev index is none, we can both include and exclude
+    // Else, we can include iff previous element is lesser
+    // So, we have to exclude otherwise
+
+    if prev_index.is_some() && arr[i] <= arr[prev_index.unwrap()] {
+        return lis_recursive( arr, n, i+1, prev_index);
+    }
+
+    // Else, we can both include and exclude,
+    // So return max of both cases
+    return max(
+        1+lis_recursive(arr, n, i+1, Option::from(i)), // Include
+        lis_recursive(arr, n, i+1, prev_index)); // Exclude
+}
+
+// Driver Code
+
+use std::io;
+fn take_vector() -> Vec<usize> {
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+    let arr: Vec<usize> = input.trim().split_whitespace()
+        .map(|x| x.parse().unwrap()).collect();
+    return arr;
+}
+
+fn main() {
+    let arr = take_vector();
+    println!("{}", lis_recursive(&arr, arr.len(), 0, None));
+}
+```

@@ -15,7 +15,6 @@
 ## Number Theory
 
 * Redesign intro to Number Theory page
-* nth root page
 
 ## Combinatorics
 

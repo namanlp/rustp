@@ -107,3 +107,15 @@ fn main() {
 
 ( Space complexity includes recursive stack space )
 
+## Overlapping Sub-problems
+
+If we have a look carefully on recursive approach, we computed multiple results many times.
+
+**For Example :** If the array is [1, 2, ... ,50] ( numbers from 1 to 50 ), we can reach the element 25 in thousands of ways, by including and excluding 1, 2, 3, etc.
+and takes thousands of recursions each time to calculate, by including and excluding 26, 27, 28, etc.
+
+These are called **Overlapping Sub-problems** because they are smaller part of large problems, and are computed again and again.
+
+So, we simply calculate them once, and store them in a matrix, and retrieve them when necessary. This helps to save a lot of computation.
+
+This is called Memoization Dynamic Programming Approach for the problem.

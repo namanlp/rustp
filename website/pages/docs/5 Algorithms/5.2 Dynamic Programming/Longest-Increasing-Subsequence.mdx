@@ -130,3 +130,104 @@ In memoization method, we simply take a DP matrix, and store the computed result
 1. Initially, take a DP matrix and set all its elements to `None` type. Alternatively, you can set it to -1.
 2. If the Longest Increasing Subsequence for the given index and previous element is already computed, return it.
 3. Else, calculate the value using recursion, and store it in DP matrix, and return it.
+
+
+### Function
+
+Here is the function using above algorithm
+
+```rust
+use std::cmp::max;
+
+fn lis_recursive(arr : &Vec<usize>, n:usize, i:usize, prev_index:Option<usize>, dp:&mut Vec<Vec<Option<usize>>>) -> usize{
+    // If completely traversed array, return 0
+    if i >= n { return 0; }
+
+    // If prev index is none, we can both include and exclude
+    // We compute both. Also, note that we can reach it in just 1 way
+    // That is, by excluding all previous elements. Hence, there is no point in storing it.
+
+    if prev_index.is_none() {
+        return max(
+            1+lis_recursive(arr, n, i+1, Option::from(i), dp), // Include
+            lis_recursive(arr, n, i+1, None, dp)); // Exclude
+    }
+
+    // If the already value is stored, return it
+    if dp[i][prev_index.unwrap()].is_some() { return dp[i][prev_index.unwrap()].unwrap();}
+
+    // We can include iff previous element is lesser
+    // So, we have to exclude otherwise
+
+    if arr[i] <= arr[prev_index.unwrap()] {
+        dp[i][prev_index.unwrap()] = Option::from( lis_recursive( arr, n, i+1, prev_index, dp));
+        return dp[i][prev_index.unwrap()].unwrap();
+    }
+
+    // Else, we can both include and exclude,
+    // So return max of both cases
+    dp[i][prev_index.unwrap()] = Option::from( max(
+        1+lis_recursive(arr, n, i+1, Option::from(i), dp), // Include
+        lis_recursive(arr, n, i+1, prev_index, dp))); // Exclude
+    return dp[i][prev_index.unwrap()].unwrap();
+}
+```
+
+With Driver code
+
+```rust
+use std::cmp::max;
+
+fn lis_recursive(arr : &Vec<usize>, n:usize, i:usize, prev_index:Option<usize>, dp:&mut Vec<Vec<Option<usize>>>) -> usize{
+    // If completely traversed array, return 0
+    if i >= n { return 0; }
+
+    // If prev index is none, we can both include and exclude
+    // We compute both. Also, note that we can reach it in just 1 way
+    // That is, by excluding all previous elements. Hence, there is no point in storing it.
+
+    if prev_index.is_none() {
+        return max(
+            1+lis_recursive(arr, n, i+1, Option::from(i), dp), // Include
+            lis_recursive(arr, n, i+1, None, dp)); // Exclude
+    }
+
+    // If the already value is stored, return it
+    if dp[i][prev_index.unwrap()].is_some() { return dp[i][prev_index.unwrap()].unwrap();}
+
+    // We can include iff previous element is lesser
+    // So, we have to exclude otherwise
+
+    if arr[i] <= arr[prev_index.unwrap()] {
+        dp[i][prev_index.unwrap()] = Option::from( lis_recursive( arr, n, i+1, prev_index, dp));
+        return dp[i][prev_index.unwrap()].unwrap();
+    }
+
+    // Else, we can both include and exclude,
+    // So return max of both cases
+    dp[i][prev_index.unwrap()] = Option::from( max(
+        1+lis_recursive(arr, n, i+1, Option::from(i), dp), // Include
+        lis_recursive(arr, n, i+1, prev_index, dp))); // Exclude
+    return dp[i][prev_index.unwrap()].unwrap();
+}
+
+// Driver Code
+
+use std::io;
+fn take_vector() -> Vec<usize> {
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+    let arr: Vec<usize> = input.trim().split_whitespace()
+        .map(|x| x.parse().unwrap()).collect();
+    return arr;
+}
+
+fn main() {
+    let arr = take_vector();
+
+    // Create DP matrix
+    let mut dp = vec![vec![None; arr.len()]; arr.len()];
+
+    println!("{}", lis_recursive(&arr, arr.len(), 0, None, &mut dp));
+}
+```

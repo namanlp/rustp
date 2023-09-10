@@ -119,3 +119,14 @@ These are called **Overlapping Sub-problems** because they are smaller part of l
 So, we simply calculate them once, and store them in a matrix, and retrieve them when necessary. This helps to save a lot of computation.
 
 This is called Memoization Dynamic Programming Approach for the problem.
+
+
+## Memoization ( Top-down DP ) Method
+
+In memoization method, we simply take a DP matrix, and store the computed result.
+
+### Algorithm
+
+1. Initially, take a DP matrix and set all its elements to `None` type. Alternatively, you can set it to -1.
+2. If the Longest Increasing Subsequence for the given index and previous element is already computed, return it.
+3. Else, calculate the value using recursion, and store it in DP matrix, and return it.

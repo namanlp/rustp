@@ -10,10 +10,10 @@ module.exports = {
         siteUrl: "https://rustp.org",
         baseDirectory: path.resolve(__dirname, '../'),
         author: "Naman Garg",
-        sections: ['1. Basic Programs', '2. Number Theory', '2.1 Arithmetic Operations', '2.2 Factors of a Number', '3 Combinatorics', '4 Data Structures', '5.1 Array Algorithms', '5.2 Dynamic Programming'],
+        sections: ['1. Basic Programs', '2. Number Theory', '2.1 Arithmetic Operations', '2.2 Factors of a Number', '3 Combinatorics', '4 Data Structures', '5.1 Array Algorithms', '5.2 Dynamic Programming', 'X.1 Codeforces Solutions'],
         twitterAccount: 'namanlp',
         githubRepositoryURL: 'https://github.com/namanlp/rustp/',
-        docSearch: { appId: '9AFUK2OAFI', apiKey: '5e83557335cd2d4c93144517d309a790', indexName: 'rustp'   },
+        docSearch: { appId: '9AFUK2OAFI', apiKey: '5e83557335cd2d4c93144517d309a790', indexName: 'rustp' },
       },
     },
     {

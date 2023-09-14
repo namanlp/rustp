@@ -7,7 +7,7 @@ description: C. Salyg1n and the MEX Game
 ---
 
 # C. Salyg1n and the MEX Game
-and solution of this problem in Rust Language
+and solution of this problem with proof in Rust Language
 
 ## Introduction
 
@@ -25,3 +25,18 @@ In this problem, we can see that we can each time add a number, and a number les
 
 So, we have to add **the mex of the array** each time, till we reach the 0.
 
+## Proof
+
+Let us suppose to the contradiction that adding mex is not the optimal solution. This means that we can add `x` that can become mex, also there is an element `y` which is current mex.
+
+Then, Bob can remove an element from the array, such that there are 2 elements less than `x` missing from the array.
+
+As Alice can only add 1 element at a time, after which, 1 element will be removed from the array, so net change in elements less than `x` is at max 1.
+
+Hence, we can say that there is always a missing element less than `x`, so mex will always be less than `x`.
+
+But this contradicts our assumption.
+
+Hence, we have to add mex each time.
+
+Hence Proved.

@@ -45,3 +45,74 @@ Hence Proved.
 
 We first find the mex of the array. Then we output it. Now, we take the input and print it, till -1, because the element removed will be new mex.
 
+## Program
+
+Program using above implementation is
+
+```rust
+/*
+This template is made by Naman Garg <naman.rustp@gmail.com>
+GitHub : https://github.com/namanlp
+GitLab : https://gitlab.com/namanlp
+Website : https://rustp.org
+
+You can visit https://rustp.org/basic-programs/basic-template/
+for understanding the template
+
+Feel free to copy the template, but not the solutions :D
+Thank You
+ */
+
+#![allow(unused)]
+
+use std::io::stdin;
+
+fn take_int() -> i128 {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    return input.trim().parse().unwrap();
+}
+
+fn take_vector() -> Vec<usize> {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    let arr: Vec<usize> = input.trim().split_whitespace().map(|x| x.parse().unwrap()).collect();
+    return arr;
+}
+
+// Find Mex function
+
+fn find_mex(arr:&Vec<usize>) ->usize{
+    // If missing element is less than largest element
+    for i in 0..arr.len() { if arr[i]!=i { return i;} }
+
+    // Else, if all elements present upto n-1, return n
+    // For example array is 0, 1, 2, return 3
+    return arr.len();
+}
+
+fn solve() {
+// ======================= Code Here =========================
+    let _n = take_int();
+    let mut arr = take_vector();
+
+    // Sort the vector and find the mex
+    arr.sort();
+    let mex = find_mex(&arr) as i128;
+
+    println!("{}", mex);
+    let mut choice = take_int();
+
+    // Print the input, till we reach -1
+    while choice >= 0 {
+        println!("{}", choice);
+        choice = take_int();
+    }
+}
+
+pub fn main() {
+    let t = take_int();
+    for _ in 0..t { solve(); }
+}
+```
+

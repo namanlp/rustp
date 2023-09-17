@@ -33,12 +33,12 @@ const SEOQuery = graphql`
   }
 `
 
-export function SEO({ title, description }) {
+export function SEO({ title, description, img=null }) {
   const data = useStaticQuery(SEOQuery)
   const metaDescription = description || data.site.siteMetadata.description
   const metaTitle = title || data.site.siteMetadata.title
   const url = data.site.siteMetadata.siteUrl
-  const socialImage = data.defaultSocialImage || data.socialImage
+  const socialImage = img || data.defaultSocialImage || data.socialImage
   const image = socialImage
     ? url + socialImage.childImageSharp.gatsbyImageData.images.fallback.src
     : null

@@ -4,24 +4,6 @@ import { graphql, useStaticQuery } from 'gatsby'
 
 const SEOQuery = graphql`
   query SEOQuery {
-    socialImage: file(
-      sourceInstanceName: { eq: "image" }
-      name: { eq: "social" }
-    ) {
-      childImageSharp {
-        gatsbyImageData(layout: FIXED, width: 1280, height: 640)
-      }
-    }
-
-    defaultSocialImage: file(
-      sourceInstanceName: { eq: "default-image" }
-      name: { eq: "social" }
-    ) {
-      childImageSharp {
-        gatsbyImageData(layout: FIXED, width: 1280, height: 640)
-      }
-    }
-
     site {
       siteMetadata {
         title
@@ -39,9 +21,7 @@ export function SEO({ title, description, img=null }) {
   const metaTitle = title || data.site.siteMetadata.title
   const url = data.site.siteMetadata.siteUrl
   const socialImage = data.defaultSocialImage || data.socialImage
-  const image = img? img : socialImage
-    ? url + socialImage.childImageSharp.gatsbyImageData.images.fallback.src
-    : null
+  const image = img? img : "https://rustp.org/Static_Images_DND/Social/Rust_Default_Social.png"
   return (
     <Helmet
       htmlAttributes={{ lang: 'en' }}

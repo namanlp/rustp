@@ -38,8 +38,8 @@ export function SEO({ title, description, img=null }) {
   const metaDescription = description || data.site.siteMetadata.description
   const metaTitle = title || data.site.siteMetadata.title
   const url = data.site.siteMetadata.siteUrl
-  const socialImage = img || data.defaultSocialImage || data.socialImage
-  const image = socialImage
+  const socialImage = data.defaultSocialImage || data.socialImage
+  const image = img? img : socialImage
     ? url + socialImage.childImageSharp.gatsbyImageData.images.fallback.src
     : null
   return (

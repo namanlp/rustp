@@ -57,6 +57,10 @@ export function SEO({ title, description, img=null }) {
                 name: 'twitter:card',
                 content: 'summary_large_image',
               },
+            {
+                name: 'twitter:image:alt',
+                content: title,
+            },
               {
                 name: 'twitter:image:src',
                 content: image,

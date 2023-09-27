@@ -29,3 +29,86 @@ It is basically a Brute Force Approach, and uses O(N) time and space complexity,
 
 We must include all the elements less than mex at least once. Also, we check all the conditions.
 Hence, we can proof that this is correct answer.
+
+## Program
+
+```rust
+/*
+This template is made by Naman Garg <naman.rustp@gmail.com>
+GitHub : https://github.com/namanlp
+GitLab : https://gitlab.com/namanlp
+Website : https://rustp.org
+
+You can visit https://rustp.org/basic-programs/basic-template/
+for understanding the template
+
+Feel free to copy the template, but not the solutions :D
+Thank You
+ */
+
+#![allow(unused)]
+
+use std::io::stdin;
+
+fn take_int() -> usize {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    return input.trim().parse().unwrap();
+}
+
+fn take_vector() -> Vec<usize> {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    let arr: Vec<usize> = input.trim().split_whitespace().map(|x| x.parse().unwrap()).collect();
+    return arr;
+}
+
+fn take_string() -> Vec<char> {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    let vec: Vec<char> = input.trim().chars().collect();
+    return vec;
+}
+
+fn to_string(vec: Vec<char>) -> String { return vec.iter().collect::<String>(); }
+
+fn solve() {
+// ======================= Code Here =========================
+    let n_k_x = take_vector();
+    let n = n_k_x[0];
+    let k = n_k_x[1];
+    let x = n_k_x[2];
+
+    let mut arr = Vec::new();
+
+    if x+1 < k { println!("-1"); return; }
+
+    for i in 0..k {
+        arr.push(i);
+    }
+
+    while arr.len() < n {
+        if x == k {
+            arr.push(x-1);
+        }
+        else {
+            arr.push(x);
+        }
+    }
+
+    if arr.len() > n{ println!("-1"); return; }
+
+    let mut sum =0;
+
+    for i in arr {
+        sum += i;
+    }
+    println!("{}", sum);
+}
+
+
+pub fn main() {
+    let t = take_int();
+    for _ in 0..t { solve(); }
+}
+```

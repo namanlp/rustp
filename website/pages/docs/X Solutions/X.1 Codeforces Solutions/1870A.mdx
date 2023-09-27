@@ -11,7 +11,7 @@ and solution of this problem with proof in Rust Language
 
 ## Introduction
 
-In this article, we will see my solution to the codeforces problem, [1870A. MEXanized Array](https://codeforces.com/contest/1870/problem/A), which came in Codeforces Round 897 (Div. 2).
+In this article, we will see my solution to the codeforces problem, [1870A. MEXanized Array](https://codeforces.com/contest/1870/problem/A), which came in Codeforces CodeTON Round 6 (Div. 1 + Div. 2, Rated, Prizes!).
 
 **Note :** My Solution might not be the most optimized one, but it is certainly working.
 
@@ -22,3 +22,10 @@ You can go to above link to view the question statement.
 In this problem, we can create a vector of integers, and push all the elements from 0 to mex-1. Then, we have to push maximum element, which is not mex.
 
 Then, we check if all the conditions satisfy. If yes, we find the sum of the array and print it. Else, we print -1.
+
+It is basically a Brute Force Approach, and uses O(N) time and space complexity, ( I know it can be achieved in O(1) too)
+
+## Proof
+
+We must include all the elements less than mex at least once. Also, we check all the conditions.
+Hence, we can proof that this is correct answer.

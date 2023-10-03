@@ -28,3 +28,13 @@ So, we just have to find the edge length of the above-mentioned square to find t
 **Conclusion 2 :** As we have to output the sum of width and height of this rectangle ( or square ), we can simply say that edge of the square is the difference of positions where the element is first minimum and last minimum + 1.
 
 **Mathematically :** Answer = 2×(1 + last index - first index where element or color is minimum)
+
+## Approach
+
+Now, all we have to do is to find for each color, when it is minimum, both in front and back.
+
+For this, first of all, we can store indices of each color in a vector of vector. It will take O( k+N ) time complexity and O( k+N ) space complexity.
+
+Then, we will make an `minimum` set, and insert all indices at first.
+
+Then we will traverse the colors from 1 to k and print the difference of first and last minimum, and remove all the indices of the indices where the color has come using the matrix we made earlier.

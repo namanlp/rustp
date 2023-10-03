@@ -35,7 +35,7 @@ Now, all we have to do is to find for each color, when it is minimum, both in fr
 
 For this, first of all, we can store indices of each color in a vector of vector. It will take O( k+N ) time complexity and O( k+N ) space complexity.
 
-Then, we will make an `minimum` set, and insert all indices at first.
+Then, we will make an `minimum` set, and insert all indices at first. Also, it must be a BTreeSet, because we have to find its minimum and maximum value.
 
 Then we will traverse the colors from 1 to k and print the difference of first and last minimum, and remove all the indices of the indices where the color has come using the matrix we made earlier.
 
@@ -46,3 +46,90 @@ As we are traversing number from 1 to k+1, and removing all the occurrences of t
 So, if all the numbers less than the given number are already removed from this set, it is clear that this number is minimum for these indices in the `minimum` set.
 
 Hence, proved.
+
+## Program
+
+```rust
+/*
+This template is made by Naman Garg <naman.rustp@gmail.com>
+GitHub : https://github.com/namanlp
+GitLab : https://gitlab.com/namanlp
+Website : https://rustp.org
+
+You can visit https://rustp.org/basic-programs/basic-template/
+for understanding the template
+
+Feel free to copy the template, but not the solutions :D
+Thank You
+ */
+
+#![allow(unused)]
+
+use std::collections::BTreeSet;
+use std::io::stdin;
+
+fn take_int() -> usize {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    return input.trim().parse().unwrap();
+}
+
+fn take_vector() -> Vec<usize> {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    let arr: Vec<usize> = input.trim().split_whitespace().map(|x| x.parse().unwrap()).collect();
+    return arr;
+}
+
+fn take_string() -> Vec<char> {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    let vec: Vec<char> = input.trim().chars().collect();
+    return vec;
+}
+
+fn to_string(vec: Vec<char>) -> String { return vec.iter().collect::<String>(); }
+
+fn solve() {
+// ======================= Code Here =========================
+    let n_k = take_vector();
+    let n = n_k[0];
+    let k = n_k[1];
+
+    let arr = take_vector();
+
+    // Matrix for storing indices of the colors
+    let mut indices = vec![Vec::new(); k+1];
+
+    for i in 0..n {
+        indices[arr[i]].push(i);
+    }
+
+    // Minimum set contains all the available indices
+    let mut minimum = BTreeSet::new();
+
+    // Insert all the indices in the beginning
+    for i in 0..n {
+        minimum.insert(i);
+    }
+
+    for i in 1..k+1 {
+        // If the color is not present in array at all, return 0
+        if indices[i].is_empty() { print!("0 ");continue; }
+
+        // Print answer
+        print!("{} ", 2 * (1+ minimum.last().unwrap()-minimum.first().unwrap()));
+
+        // Remove the covered indices
+        for j in &indices[i] {
+            minimum.remove(&j);
+        }
+    }
+    println!();
+}
+
+pub fn main() {
+    let t = take_int();
+    for _ in 0..t { solve(); }
+}
+```

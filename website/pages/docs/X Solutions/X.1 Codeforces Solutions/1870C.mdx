@@ -38,3 +38,11 @@ For this, first of all, we can store indices of each color in a vector of vector
 Then, we will make an `minimum` set, and insert all indices at first.
 
 Then we will traverse the colors from 1 to k and print the difference of first and last minimum, and remove all the indices of the indices where the color has come using the matrix we made earlier.
+
+## Proof
+
+As we are traversing number from 1 to k+1, and removing all the occurrences of the number, it can be easily proved that all the indices of numbers less than given number are already removed from the `minimum` set.
+
+So, if all the numbers less than the given number are already removed from this set, it is clear that this number is minimum for these indices in the `minimum` set.
+
+Hence, proved.

@@ -33,4 +33,5 @@
 
 ## Dynamic Programming
 
+* Dice Combinations
 * Add LIS

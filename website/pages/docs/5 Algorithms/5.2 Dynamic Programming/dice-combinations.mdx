@@ -50,7 +50,7 @@ Here is the function using above algorithm
 fn dice_combinations(amount :usize) -> usize{
     // We can make 0 in 1 and only 1 way,
     // that is by not rolling dice anymore :D
-    static UPTO_6 : [usize;7] = [1, 1, 2, 4, 8, 16, 32];
+    static UPTO_6 : [usize; 7] = [1, 1, 2, 4, 8, 16, 32];
 
     // Base Case : If element is less than or equal to 6,
     // return corresponding value
@@ -63,5 +63,41 @@ fn dice_combinations(amount :usize) -> usize{
         dice_combinations(amount-3)+dice_combinations(amount-4)+
         dice_combinations(amount-5)+dice_combinations(amount-6)
     ) % 1_000_000_007;
+}
+```
+
+With driver code
+
+```rust
+fn dice_combinations(amount :usize) -> usize{
+    // We can make 0 in 1 and only 1 way,
+    // that is by not rolling dice anymore :D
+    static UPTO_6 : [usize; 7] = [1, 1, 2, 4, 8, 16, 32];
+
+    // Base Case : If element is less than or equal to 6,
+    // return corresponding value
+    if amount <= 6 { return UPTO_6[amount]; }
+
+    // Recursive Case : Else, return sum of all possible amounts,
+    // That is, by throwing 1, 2, 3, 4, 5 and 6.
+    return (
+        dice_combinations(amount-1)+dice_combinations(amount-2)+
+        dice_combinations(amount-3)+dice_combinations(amount-4)+
+        dice_combinations(amount-5)+dice_combinations(amount-6)
+    ) % 1_000_000_007;
+}
+
+// Driver Code
+use std::io;
+
+fn take_int() -> usize {
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+    return input.trim().parse().unwrap();
+}
+
+fn main() {
+    let amount = take_int();
+    println!("{}", dice_combinations(amount));
 }
 ```

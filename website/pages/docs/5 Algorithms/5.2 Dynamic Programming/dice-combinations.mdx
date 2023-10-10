@@ -116,3 +116,19 @@ fn main() {
 
 ( Space complexity includes recursive stack space )
 
+## Overlapping Sub-problems
+
+If we have a look carefully on recursive approach, we computed multiple results many times.
+
+For example, if we have n = 30, then the result for n=15 is calculated thousands of times, and takes thousands of iterations each time to calculate the result.
+
+These are called overlapping sub-problems, because it is a sub-problem of actual problem and is overlapping in multiple recursions.
+
+To prevent this, we can store the output and each result will be calculated only once.
+
+As the result is only dependent on amount, we can simply store the values in an array or a vector, at the index of amount itself.
+
+For example, the result for amount = 15 will be stored at index 15.
+
+This is called **memoization** or Top-down Dynamic Programming.
+

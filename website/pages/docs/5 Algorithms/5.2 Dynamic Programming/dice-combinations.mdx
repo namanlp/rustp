@@ -23,3 +23,16 @@ So, in this problem, we have to find number of ways we can form a sum rolling di
 * 1+2
 * 2+1
 * 3
+
+Hence, the output should be **4**.
+
+
+This problem has been taken from our beloved [CSES DP problem set. See Dice Combinations](https://cses.fi/problemset/task/1633)
+
+## Recursive Solution
+
+In the Recursive Solution to this problem, we have to make an observation.
+
+If we fix the first number that comes on the dice, we can calculate the number of ways by subtracting it from n and calculating recursively.
+
+For example, if we have to find the number of ways for **n = 7**, then we can fix first roll as 1, 2, 3, 4, 5 and 6 and then calculate the answer recursively.

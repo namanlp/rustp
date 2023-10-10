@@ -36,3 +36,32 @@ In the Recursive Solution to this problem, we have to make an observation.
 If we fix the first number that comes on the dice, we can calculate the number of ways by subtracting it from n and calculating recursively.
 
 For example, if we have to find the number of ways for **n = 7**, then we can fix first roll as 1, 2, 3, 4, 5 and 6 and then calculate the answer recursively.
+
+To Summarize approach,
+
+- **Base Case :** If the amount is less than or equal to 6, return corresponding value ( we already manually compute and store those values in an array )
+- **Recursive Case :** Return the sum of recursively calculating answer for n-1, n-2, n-3, n-4, n-5 and n-6.
+
+### Function
+
+Here is the function using above algorithm
+
+```rust
+fn dice_combinations(amount :usize) -> usize{
+    // We can make 0 in 1 and only 1 way,
+    // that is by not rolling dice anymore :D
+    static UPTO_6 : [usize;7] = [1, 1, 2, 4, 8, 16, 32];
+
+    // Base Case : If element is less than or equal to 6,
+    // return corresponding value
+    if amount <= 6 { return UPTO_6[amount]; }
+
+    // Recursive Case : Else, return sum of all possible amounts,
+    // That is, by throwing 1, 2, 3, 4, 5 and 6.
+    return (
+        dice_combinations(amount-1)+dice_combinations(amount-2)+
+        dice_combinations(amount-3)+dice_combinations(amount-4)+
+        dice_combinations(amount-5)+dice_combinations(amount-6)
+    ) % 1_000_000_007;
+}
+```

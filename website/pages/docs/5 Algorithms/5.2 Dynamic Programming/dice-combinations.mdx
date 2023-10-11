@@ -39,7 +39,7 @@ For example, if we have to find the number of ways for **n = 7**, then we can fi
 
 To Summarize approach,
 
-- **Base Case :** If the amount is less than or equal to 6, return corresponding value ( we already manually compute and store those values in an array )
+- **Base Case :** If the sum is less than or equal to 6, return corresponding value ( we already manually compute and store those values in an array )
 - **Recursive Case :** Return the sum of recursively calculating answer for n-1, n-2, n-3, n-4, n-5 and n-6.
 
 ### Function
@@ -47,21 +47,21 @@ To Summarize approach,
 Here is the function using above algorithm
 
 ```rust
-fn dice_combinations(amount :usize) -> usize{
+fn dice_combinations(sum :usize) -> usize{
     // We can make 0 in 1 and only 1 way,
     // that is by not rolling dice anymore :D
     static UPTO_6 : [usize; 7] = [1, 1, 2, 4, 8, 16, 32];
 
     // Base Case : If element is less than or equal to 6,
     // return corresponding value
-    if amount <= 6 { return UPTO_6[amount]; }
+    if sum <= 6 { return UPTO_6[sum]; }
 
-    // Recursive Case : Else, return sum of all possible amounts,
+    // Recursive Case : Else, return sum of all possible sums,
     // That is, by throwing 1, 2, 3, 4, 5 and 6.
     return (
-        dice_combinations(amount-1)+dice_combinations(amount-2)+
-        dice_combinations(amount-3)+dice_combinations(amount-4)+
-        dice_combinations(amount-5)+dice_combinations(amount-6)
+        dice_combinations(sum-1)+dice_combinations(sum-2)+
+        dice_combinations(sum-3)+dice_combinations(sum-4)+
+        dice_combinations(sum-5)+dice_combinations(sum-6)
     ) % 1_000_000_007;
 }
 ```
@@ -69,21 +69,21 @@ fn dice_combinations(amount :usize) -> usize{
 With driver code
 
 ```rust
-fn dice_combinations(amount :usize) -> usize{
+fn dice_combinations(sum :usize) -> usize{
     // We can make 0 in 1 and only 1 way,
     // that is by not rolling dice anymore :D
     static UPTO_6 : [usize; 7] = [1, 1, 2, 4, 8, 16, 32];
 
     // Base Case : If element is less than or equal to 6,
     // return corresponding value
-    if amount <= 6 { return UPTO_6[amount]; }
+    if sum <= 6 { return UPTO_6[sum]; }
 
-    // Recursive Case : Else, return sum of all possible amounts,
+    // Recursive Case : Else, return sum of all possible sums,
     // That is, by throwing 1, 2, 3, 4, 5 and 6.
     return (
-        dice_combinations(amount-1)+dice_combinations(amount-2)+
-        dice_combinations(amount-3)+dice_combinations(amount-4)+
-        dice_combinations(amount-5)+dice_combinations(amount-6)
+        dice_combinations(sum-1)+dice_combinations(sum-2)+
+        dice_combinations(sum-3)+dice_combinations(sum-4)+
+        dice_combinations(sum-5)+dice_combinations(sum-6)
     ) % 1_000_000_007;
 }
 
@@ -97,8 +97,8 @@ fn take_int() -> usize {
 }
 
 fn main() {
-    let amount = take_int();
-    println!("{}", dice_combinations(amount));
+    let sum = take_int();
+    println!("{}", dice_combinations(sum));
 }
 ```
 
@@ -126,9 +126,19 @@ These are called overlapping sub-problems, because it is a sub-problem of actual
 
 To prevent this, we can store the output and each result will be calculated only once.
 
-As the result is only dependent on amount, we can simply store the values in an array or a vector, at the index of amount itself.
+As the result is only dependent on sum, we can simply store the values in an array or a vector, at the index of sum itself.
 
-For example, the result for amount = 15 will be stored at index 15.
+For example, the result for sum = 15 will be stored at index 15.
 
 This is called **memoization** or Top-down Dynamic Programming.
+
+
+## Memoization ( Top-down DP ) Method
+
+In memoization method, we simply take a DP array, and store the computed result.
+
+### Algorithm
+
+1. **Base Case :** If the stored value for given sum in DP array is not `None`, we return the value.
+2. **Recursive Case :** Else, compute the result using recursion and store it at the index of sum.
 

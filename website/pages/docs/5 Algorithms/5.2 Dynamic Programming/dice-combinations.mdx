@@ -224,3 +224,14 @@ fn main() {
 **Time Complexity : O( n )** <br/>
 **Space Complexity : O( n )**
 
+## Tabulation  ( Bottom-up DP )  Method
+
+Although time and space complexities of tabulation as well as memoization method are same, tabulation is much more **efficient** as there are a lot of expensive recursive calls in memoization.
+
+In tabulation method, we make the array, and fill it first on the basis of base condition, and then on the basis of previously computed variables.
+
+### Algorithm
+
+1. Firstly, make an array and store the results for sum upto 6.
+2. Now, for each subsequent sum from 7 to n, set array[index] as sum of previous 6 elements.
+3. Return the value of the array[n]

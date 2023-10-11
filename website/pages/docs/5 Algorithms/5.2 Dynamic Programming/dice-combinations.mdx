@@ -315,3 +315,45 @@ fn main() {
 
 **Time Complexity : O( n )** <br/>
 **Space Complexity : O( n )**
+
+## Space Optimized Tabulation Method
+
+If we look tabulation method carefully, we can easily see that only previous 6 values are used to calculate the next value.
+
+Hence, we don't have to store all the values upto n, and store only previous 6 values or 7 values, and calculate the result.
+
+### Function
+
+Here is the function using space optimization of tabulation method.
+
+```rust
+fn dice_combinations(sum:usize) -> usize{
+    // Handles the case when sum < 6 using max
+    let mut dp = vec![0; 7];
+
+    // Set values for sum upto 6
+    dp[0] = 1; dp[1] = 1; dp[2] = 2;
+    dp[3] = 4; dp[4] = 8;
+    dp[5] = 16; dp[6] = 32;
+
+    // if sum is less than 7, return it
+    if sum < 7 {return dp[sum];}
+
+
+    // Now, we first left rotate the array
+    // Because we have already stored the value for n = 6
+    // Hence, for n=7, first left rotate,
+    // then find and store the value in dp array
+    for _ in 7..sum+1 {
+        // Left rotate the matrix
+        for j in 0..6 {
+            dp[j] = dp[j+1];
+        }
+
+        // Find and set sum as the last element of array
+        dp[6] = (dp[0]+dp[1]+dp[2]+dp[3]+dp[4]+dp[5])%1000000007;
+    }
+
+    return dp[6];
+}
+```

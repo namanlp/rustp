@@ -142,3 +142,73 @@ In memoization method, we simply take a DP array, and store the computed result.
 1. **Base Case :** If the stored value for given sum in DP array is not `None`, we return the value.
 2. **Recursive Case :** Else, compute the result using recursion and store it at the index of sum.
 
+### Function
+
+Here is the function using above algorithm
+
+```rust
+fn dice_combinations(sum :usize, dp:&mut Vec<Option<usize>>) -> usize{
+
+    // Base Case : If result is already stored, return it
+    if dp[sum].is_some() { return dp[sum].unwrap(); }
+
+    // Recursive Case : Else, compute and return sum of all possible sums
+    // That is, by throwing 1, 2, 3, 4, 5 and 6 first.
+
+    dp[sum] = Option::from( (
+        dice_combinations(sum-1, dp)+dice_combinations(sum-2, dp)+
+        dice_combinations(sum-3, dp)+dice_combinations(sum-4, dp)+
+        dice_combinations(sum-5, dp)+dice_combinations(sum-6, dp)
+    ) % 1_000_000_007);
+
+    return dp[sum].unwrap();
+}
+```
+
+With driver code
+
+```rust
+
+fn dice_combinations(sum :usize, dp:&mut Vec<Option<usize>>) -> usize{
+
+    // Base Case : If result is already stored, return it
+    if dp[sum].is_some() { return dp[sum].unwrap(); }
+
+    // Recursive Case : Else, compute and return sum of all possible sums
+    // That is, by throwing 1, 2, 3, 4, 5 and 6 first.
+
+    dp[sum] = Option::from( (
+        dice_combinations(sum-1, dp)+dice_combinations(sum-2, dp)+
+        dice_combinations(sum-3, dp)+dice_combinations(sum-4, dp)+
+        dice_combinations(sum-5, dp)+dice_combinations(sum-6, dp)
+    ) % 1_000_000_007);
+
+    return dp[sum].unwrap();
+}
+
+// Driver Code
+use std::io;
+use std::cmp::max;
+
+fn take_int() -> usize {
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+    return input.trim().parse().unwrap();
+}
+
+fn main() {
+    let sum = take_int();
+
+    // Handles the case when sum < 6 using max
+    let mut dp = vec![None; max(sum+1, 7)];
+
+    // Set values for sum upto 6
+    dp[0] = Option::from(1); dp[1] = Option::from(1);
+    dp[2] = Option::from(2); dp[3] = Option::from(4);
+    dp[4] = Option::from(8); dp[5] = Option::from(16);
+    dp[6] = Option::from(32);
+
+    println!("{}", dice_combinations(sum, &mut dp));
+}
+```
+

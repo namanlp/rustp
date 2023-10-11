@@ -235,3 +235,71 @@ In tabulation method, we make the array, and fill it first on the basis of base 
 1. Firstly, make an array and store the results for sum upto 6.
 2. Now, for each subsequent sum from 7 to n, set array[index] as sum of previous 6 elements.
 3. Return the value of the array[n]
+
+
+### Function
+
+Here is the function using above algorithm
+
+```rust
+fn dice_combinations(sum:usize) -> usize{
+    // Handles the case when sum < 6 using max
+    let mut dp = vec![0; max(sum+1, 7)];
+
+    // Set values for sum upto 6
+    dp[0] = 1; dp[1] = 1; dp[2] = 2;
+    dp[3] = 4; dp[4] = 8;
+    dp[5] = 16; dp[6] = 32;
+
+    // For each value from 7 to sum,
+    // set dp[sum] = sum of previous 6 elements
+
+    for n in 7..sum+1 {
+        dp[n] = (dp[n-1]+dp[n-2]+dp[n-3]+
+            dp[n-4]+dp[n-5]+dp[n-6]) %1_000_000_007;
+    }
+
+    return dp[sum];
+}
+```
+
+With Driver code
+
+```rust
+
+fn dice_combinations(sum:usize) -> usize{
+    // Handles the case when sum < 6 using max
+    let mut dp = vec![0; max(sum+1, 7)];
+
+    // Set values for sum upto 6
+    dp[0] = 1; dp[1] = 1; dp[2] = 2;
+    dp[3] = 4; dp[4] = 8;
+    dp[5] = 16; dp[6] = 32;
+
+    // For each value from 7 to sum,
+    // set dp[sum] = sum of previous 6 elements
+
+    for n in 7..sum+1 {
+        dp[n] = (dp[n-1]+dp[n-2]+dp[n-3]+
+            dp[n-4]+dp[n-5]+dp[n-6]) %1_000_000_007;
+    }
+
+    return dp[sum];
+}
+
+// Driver Code
+use std::io;
+use std::cmp::max;
+
+fn take_int() -> usize {
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).unwrap();
+    return input.trim().parse().unwrap();
+}
+
+fn main() {
+    let sum = take_int();
+
+    println!("{}", dice_combinations(sum));
+}
+```

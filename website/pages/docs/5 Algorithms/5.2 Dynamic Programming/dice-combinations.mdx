@@ -371,3 +371,24 @@ Use the same driver code except removing the dp matrix input.
 **Time Complexity : O( n )** <br/>
 **Space Complexity : O( 1 )**
 
+
+## Conclusion
+
+In this article, we saw how to solve the dice combinations problem, first using recursion and then using Dynamic Programming, memoization as well as tabulation method, and latter the space optimized tabulation method in Rust Language.
+
+Here is the optimized function for easy access
+
+```rust
+fn dice_combinations(sum:usize) -> usize{
+    let mut dp = vec![0; 7];
+    dp[0] = 1; dp[1] = 1; dp[2] = 2;
+    dp[3] = 4; dp[4] = 8;
+    dp[5] = 16; dp[6] = 32;
+    if sum < 7 {return dp[sum];}
+    for _ in 7..sum+1 { for j in 0..6 { dp[j] = dp[j+1]; }
+        dp[6] = (dp[0]+dp[1]+dp[2]+dp[3]+dp[4]+dp[5])%1000000007; }
+    return dp[6];
+}
+```
+
+**Thank You**

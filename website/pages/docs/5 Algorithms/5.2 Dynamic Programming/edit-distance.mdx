@@ -6,3 +6,21 @@ slug: /dynamic-programming/edit-distance/
 description: Edit Distance
 ---
 
+# Edit Distance ( CSES ) Problem
+and space optimized Dynamic Programming Solution using tabulation and memoization in Rust Language.
+
+## Introduction
+
+Edit distance is another very commonly seen Dynamic Programming Problem and is very similar to [Longest Common Subsequence Problem](/dynamic-programming/longest-common-subsequence/).
+
+In this problem, we have to determine minimum number of operations required to transform one string into the other.
+
+Now, the operations allowed are different for different websites or problems. We are solving [CSES Edit Distance](https://cses.fi/problemset/task/1639) problem in this article.
+
+In this problem, allowed operations are
+
+1. Add one character to the string.
+2. Remove one character from the string.
+3. Replace one character in the string.
+
+For example, strings are `ABC` and `XYA`. For this, answer should be **4**

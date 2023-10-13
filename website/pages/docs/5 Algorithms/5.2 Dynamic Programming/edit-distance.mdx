@@ -32,3 +32,13 @@ The observation tells us that either the last character of string matches, or do
 **1. Last character of string is same :** Then, we do not have to change it. We can simply solve the answer for n-1 and m-1 length strings. It can be proved it is always optimal.
 **2. Last character of string is not same :** Then we can perform either of 3 operations.
 
+## Recursive Solution
+
+Recursive solution to this problem should be pretty straightforward now.
+
+### Algorithm
+
+1. If either of string is empty, **return length of other string**. Because, you have to either add all the characters or remove all the characters, depending on which string is empty.
+2. If the last character is same, simply return the function for strings of n-1 and m-1 length. This requires no operation.
+3. Otherwise, return 1 + minimum of all three operations.
+

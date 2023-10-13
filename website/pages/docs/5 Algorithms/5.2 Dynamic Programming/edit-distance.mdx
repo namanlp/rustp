@@ -42,3 +42,96 @@ Recursive solution to this problem should be pretty straightforward now.
 2. If the last character is same, simply return the function for strings of n-1 and m-1 length. This requires no operation.
 3. Otherwise, return 1 + minimum of all three operations.
 
+
+### Function
+
+Here is the function using above algorithm
+
+**Note :** In Rust Language, the `String` is UTF-8 encoded by default, hence, indexing is not possible in `String` type. Hence, we use **`Vec<char>`** instead.
+
+```rust
+fn edit_distance(str1:&Vec<char>, str2:&Vec<char>, n:usize, m:usize) -> usize{
+
+    // If either of string is empty, return length of other string
+    if n==0 || m==0 {
+        return n+m;
+    }
+
+    // If the character is same, we don't have to change it
+    // And skip the character
+    if str1[n-1] == str2[m-1] {
+        return edit_distance(str1, str2, n-1, m-1);
+    }
+
+    // Else, we check all the 3 possibilities,
+    // Return minimum of them as answer
+
+    return 1+ min(
+        min(
+        // 1. If we add character, we can skip this character from
+        // string 2, because, string 1 and 2 has same last character now
+        edit_distance(str1, str2, n, m-1),
+
+        // 2. If we remove the character, we skip it from string 1
+        edit_distance(str1, str2, n-1, m)),
+
+        // 3. If we replace, both string 1 and 2 have same last character
+        edit_distance(str1, str2, n-1, m-1)
+    );
+}
+```
+
+With driver code
+
+```rust
+
+
+fn edit_distance(str1:&Vec<char>, str2:&Vec<char>, n:usize, m:usize) -> usize{
+
+    // If either of string is empty, return length of other string
+    if n==0 || m==0 {
+        return n+m;
+    }
+
+    // If the character is same, we don't have to change it
+    // And skip the character
+    if str1[n-1] == str2[m-1] {
+        return edit_distance(str1, str2, n-1, m-1);
+    }
+
+    // Else, we check all the 3 possibilities,
+    // Return minimum of them as answer
+
+    return 1+ min(
+        min(
+        // 1. If we add character, we can skip this character from
+        // string 2, because, string 1 and 2 has same last character now
+        edit_distance(str1, str2, n, m-1),
+
+        // 2. If we remove the character, we skip it from string 1
+        edit_distance(str1, str2, n-1, m)),
+
+        // 3. If we replace, both string 1 and 2 have same last character
+        edit_distance(str1, str2, n-1, m-1)
+    );
+}
+
+
+// Driver Code
+use std::io::stdin;
+use std::cmp::min;
+
+fn take_string() -> Vec<char> {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    let vec:Vec<char> = input.trim().chars().collect();
+    return vec;
+}
+
+fn main() {
+    let str1 = take_string();
+    let str2 = take_string();
+
+    println!("{}", edit_distance(&str1, &str2, str1.len(), str2.len()));
+}
+```

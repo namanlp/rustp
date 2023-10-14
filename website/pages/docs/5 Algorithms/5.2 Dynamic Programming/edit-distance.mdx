@@ -145,7 +145,20 @@ XYA
 
 > 4
 
-**Time Complexity : O( 3<sup>n</sup> )** <br/>
-**Space Complexity : O( n )**
+**Time Complexity : O( 3<sup>m+n</sup> )** <br/>
+**Space Complexity : O( m+n )**
 
 ( Space complexity includes recursive stack space )
+
+## Overlapping Sub-problems
+
+If we have a look carefully on recursive approach, we computed multiple results many times.
+
+For example, if the strings are ABCDEFG and MNOPQRST, the result for substrings ABC and MNOP is computed hundreds of times, and take hundreds of recursions each time.
+These are called overlapping sub-problems, because it is a sub-problem of actual problem and is overlapping in multiple recursions.
+
+To prevent this, we can store the output and each result will be calculated only once.
+
+In Edit Distance problem, we can create a dp matrix, and store each value by lengths of first and second string. That is, answer for ABC and MNOP will be stored at dp[3][4].
+
+This is called memoization or Top-down Dynamic Programming.

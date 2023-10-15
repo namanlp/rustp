@@ -306,3 +306,67 @@ In tabulation method, we make the matrix, and fill it first on the basis of base
 2. Now, traverse the matrix row wise ( or column wise, as per your preference ), and if the given character of both strings is same, set the dp[i][j] as dp[i-1][j-1].
 3. Else, set the element as 1 + minimum of all three previous elements, that is, dp[i-1][j], dp[i-1][j-1] and dp[i][j-1].
 4. Finally, return the last value of matrix, that is, dp[n][m].
+
+### Function
+
+Here is the function using above algorithm
+
+```rust
+
+
+fn edit_distance(str1:&Vec<char>, str2:&Vec<char>, n:usize, m:usize) -> usize{
+
+    // Create a dp matrix
+    let mut dp = vec![vec![0; str2.len()+1]; str1.len()+1];
+
+    // Set the first row as corresponding column number
+    for i in 1..str2.len()+1 {
+        dp[0][i]=i;
+    }
+
+    // Set the first column as corresponding row number
+    for i in 1..str1.len()+1 {
+        dp[i][0] = i;
+    }
+
+    // Now, traverse the matrix for each row and column.
+
+    for i in 1..str1.len()+1 {
+        for j in 1..str2.len()+1 {
+
+            // If the character is same, just copy dp[i-1][j-1]
+
+            if str1[i-1] == str2[j-1] { dp[i][j] = dp[i-1][j-1]; }
+
+            // Else, set it to 1 + minimum of above
+
+        }
+    }
+
+
+
+    println!("{:?}", dp);
+
+    return dp[n][m];
+}
+
+
+// Driver Code
+use std::io::stdin;
+use std::cmp::min;
+
+fn take_string() -> Vec<char> {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    let vec:Vec<char> = input.trim().chars().collect();
+    return vec;
+}
+
+fn main() {
+    let str1 = take_string();
+    let str2 = take_string();
+
+    println!("{}", edit_distance(&str1, &str2, str1.len(), str2.len()));
+}
+
+```

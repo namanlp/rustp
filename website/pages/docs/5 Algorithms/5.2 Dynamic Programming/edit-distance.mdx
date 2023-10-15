@@ -420,3 +420,58 @@ XYA
 
 **Time Complexity : O( m×n )** <br/>
 **Space Complexity : O( m×n )**
+
+## Space Optimized Tabulation Method
+
+If we observe the above tabulation method carefully, we find that for calculating edit distance for two strings, only **current and previous row** are required.
+
+Hence, we can optimize our space complexity, by storing only the previous row instead of the whole matrix.
+
+### Function
+
+Here is the function using space optimization of tabulation method.
+
+```rust
+fn edit_distance(str1:&Vec<char>, str2:&Vec<char>, n:usize, m:usize) -> usize{
+
+    // Create a dp matrix
+    let mut prev = vec![0; m+1];
+    let mut curr = vec![0; m+1];
+
+    // Set the first row as corresponding column number
+    for i in 1..m+1 {
+        prev[i] = i;
+    }
+
+
+    // Now, traverse for each character of  both the strings.
+
+    for i in 1..n+1 {
+        // Set current's first element as corresponding row number
+        curr[0] = i;
+
+        // Now traverse for each column in given row
+        for j in 1..m+1 {
+
+            // If the character is same, just copy previous[j-1]
+            if str1[i-1] == str2[j-1] { curr[j] = prev[j-1]; }
+
+            // Else, set it to 1 + minimum of previous 3 cells
+            else {
+                curr[j] = 1 + min(curr[j-1],
+                    min(prev[j], prev[j-1]));
+            }
+        }
+
+        // Now, copy current row to previous row
+        // No need to reinitialise current row,
+        // Because we are not using those values
+        prev=curr.clone();
+    }
+
+    return curr[m];
+}
+```
+
+Use the same driver code.
+

@@ -312,6 +312,45 @@ In tabulation method, we make the matrix, and fill it first on the basis of base
 Here is the function using above algorithm
 
 ```rust
+fn edit_distance(str1:&Vec<char>, str2:&Vec<char>, n:usize, m:usize) -> usize{
+
+    // Create a dp matrix
+    let mut dp = vec![vec![0; str2.len()+1]; str1.len()+1];
+
+    // Set the first row as corresponding column number
+    for i in 1..str2.len()+1 {
+        dp[0][i]=i;
+    }
+
+    // Set the first column as corresponding row number
+    for i in 1..str1.len()+1 {
+        dp[i][0] = i;
+    }
+
+    // Now, traverse the matrix for each row and column.
+
+    for i in 1..str1.len()+1 {
+        for j in 1..str2.len()+1 {
+
+            // If the character is same, just copy dp[i-1][j-1]
+
+            if str1[i-1] == str2[j-1] { dp[i][j] = dp[i-1][j-1]; }
+
+            // Else, set it to 1 + minimum of previous 3 cells
+            else {
+                dp[i][j] = 1 + min(dp[i][j-1],
+                    min(dp[i-1][j], dp[i-1][j-1]));
+            }
+        }
+    }
+
+    return dp[n][m];
+}
+```
+
+With Driver code
+
+```rust
 
 
 fn edit_distance(str1:&Vec<char>, str2:&Vec<char>, n:usize, m:usize) -> usize{
@@ -338,14 +377,13 @@ fn edit_distance(str1:&Vec<char>, str2:&Vec<char>, n:usize, m:usize) -> usize{
 
             if str1[i-1] == str2[j-1] { dp[i][j] = dp[i-1][j-1]; }
 
-            // Else, set it to 1 + minimum of above
-
+            // Else, set it to 1 + minimum of previous 3 cells
+            else {
+                dp[i][j] = 1 + min(dp[i][j-1],
+                    min(dp[i-1][j], dp[i-1][j-1]));
+            }
         }
     }
-
-
-
-    println!("{:?}", dp);
 
     return dp[n][m];
 }
@@ -370,7 +408,6 @@ fn main() {
 }
 
 ```
-
 
 **Input**
 

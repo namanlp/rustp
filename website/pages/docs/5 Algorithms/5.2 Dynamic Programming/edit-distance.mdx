@@ -487,3 +487,33 @@ XYA
 **Time Complexity : O( m×n )** <br/>
 **Space Complexity : O( m )**
 
+
+## Conclusion
+
+Edit distance is very commonly seen Dynamic Programming Problem and is very similar to [Longest Common Subsequence Problem](/dynamic-programming/longest-common-subsequence/).
+
+In this problem, we have to determine minimum number of operations required to transform one string into the other.
+
+In this article, we saw how to solve the  [CSES Edit Distance](https://cses.fi/problemset/task/1639), first using recursion and then using Dynamic Programming, memoization as well as tabulation method, and latter the space optimized tabulation method in Rust Language.
+
+Here is the optimized function for easy access
+
+```rust
+fn edit_distance(str1:&Vec<char>, str2:&Vec<char>, n:usize, m:usize) -> usize{
+    let mut prev = vec![0; m+1];
+    let mut curr = vec![0; m+1];
+    for i in 1..m+1 { prev[i] = i; }
+    for i in 1..n+1 {
+        curr[0] = i;
+        for j in 1..m+1 {
+            if str1[i-1] == str2[j-1] { curr[j] = prev[j-1]; }
+            else {
+                curr[j] = 1 + min(curr[j-1],
+                    min(prev[j], prev[j-1])); } }
+        prev=curr.clone();
+    }
+    return curr[m];
+}
+```
+
+**Thank You**

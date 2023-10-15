@@ -162,3 +162,14 @@ To prevent this, we can store the output and each result will be calculated only
 In Edit Distance problem, we can create a dp matrix, and store each value by lengths of first and second string. That is, answer for ABC and MNOP will be stored at dp[3][4].
 
 This is called memoization or Top-down Dynamic Programming.
+
+## Memoization ( Top-down DP ) Method
+
+In memoization method, we simply take a DP matrix, and store the computed result.
+
+### Algorithm
+
+1. First, take a dp matrix of size (n+1) × (m+1) and set all elements to None.
+2. If the now, if the value for given n and m is already stored, return it.
+3. Else, calculate the value using recursion and store it in the matrix and return it.
+

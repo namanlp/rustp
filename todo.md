@@ -34,5 +34,4 @@
 ## Dynamic Programming
 
 * Interview Questions
-* Dice Combinations
 * Add LIS

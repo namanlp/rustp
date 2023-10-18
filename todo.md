@@ -35,3 +35,7 @@
 
 * Interview Questions
 * Add LIS
+
+## Graphs Algorithms
+
+* Add BFS, DFS

@@ -60,7 +60,7 @@ For example, 5! = 5 × 4! = 5 × 24 = 120
 
 For example, 5! = 6! / 6 = 720/6 = 120
 
-**Note :** We will take maximum integer data type in rust, that is `i128` so that we can find factorial of the largest number possible to store
+**Note :** We will take maximum the most optimized, that is `usize` data type in this article.
 
 ## Recursive Approach
 
@@ -69,7 +69,7 @@ In this, we compute the factorial using property of factorial **n! = n × (n-1)!
 So, we find the factorial of n by computing the factorial of n-1 recursively. Factorial of 0 and 1 are 1, as already known. Program is
 
 ```rust
-fn factorial_recursive(number : i128) -> i128{
+fn factorial_recursive(number : usize) -> usize{
 
     // Base Case
     if number<=1 {
@@ -85,7 +85,7 @@ Program with Driver Code
 
 ```rust
 use std::io::stdin;
-fn factorial_recursive(number : i128) -> i128{
+fn factorial_recursive(number : usize) -> usize{
 
     // Base Case
     if number<=1 {
@@ -99,10 +99,10 @@ fn factorial_recursive(number : i128) -> i128{
 // Driver Code
 
 pub fn main() {
-    // Read and parse number to i128
+    // Read and parse number to usize
     let mut input = String::new();
     stdin().read_line(&mut input).unwrap();
-    let number : i128 = input.trim().parse().unwrap();
+    let number : usize = input.trim().parse().unwrap();
 
     // Find and print factorial
     let factorial = factorial_recursive(number);
@@ -127,10 +127,10 @@ Factorial of 20 is : 2432902008176640000
 It is more efficient method, just take the number, and multiply it with all the natural numbers less than it.
 
 ```rust
-fn factorial(number : i128) -> i128{
+fn factorial(number : usize) -> usize{
 
-    // initialize factorial to 1, explicitly type i128
-    let mut factorial : i128 = 1;
+    // initialize factorial to 1, explicitly type usize
+    let mut factorial : usize = 1;
 
     // Multiply factorial by all numbers from 1 to the given number
     for i in 1..(number+1) {
@@ -159,8 +159,8 @@ This article covers the basic definition factorial, properties and simple functi
 Here is function for easy access
 
 ```rust
-fn factorial(number : i128) -> i128{
-    let mut factorial : i128 = 1;
+fn factorial(number : usize) -> usize{
+    let mut factorial : usize = 1;
     for i in 1..(number+1) { factorial*=i; }
     return factorial
 }

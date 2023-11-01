@@ -30,6 +30,7 @@
 
 * Using in built data structures in Rust.
 * DSA Sheet
+* Add Linked Lists
 
 ## Dynamic Programming
 

@@ -31,6 +31,7 @@
 * Using in built data structures in Rust.
 * DSA Sheet
 * Add Linked Lists
+* Add Trees
 
 ## Dynamic Programming
 

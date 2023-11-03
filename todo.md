@@ -32,6 +32,7 @@
 * DSA Sheet
 * Add Linked Lists
 * Add Trees
+* Add Tries
 
 ## Dynamic Programming
 

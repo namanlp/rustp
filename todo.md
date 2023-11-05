@@ -41,5 +41,6 @@
 
 ## Graphs Algorithms
 
-* Add BFS, DFS
+* Add BFS
+* Add DFS
 * Add Prims

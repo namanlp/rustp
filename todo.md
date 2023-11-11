@@ -41,6 +41,8 @@
 
 ## Graphs Algorithms
 
+* Adjacency Matrix
+* Adjacency List
 * Add BFS
 * Add DFS
 * Add Prims

@@ -1,6 +1,9 @@
 # Rust Programming
 
-This is base repo for the website hosted at [Rust Programming](https://rustp.org/)
+Providing Guides and ready to use codes in Rust Language for development as well as competitive programming
+
+
+This is base repo for the website hosted at [Rust Programming](https://rustp.org/)  
 
 To make a local instance, first clone the repository using
 

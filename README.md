@@ -5,6 +5,9 @@ Providing Guides and ready to use codes in Rust Language for development as well
 
 This is base repo for the website hosted at [Rust Programming](https://rustp.org/)  
 
+
+## Make a Local Instance
+
 To make a local instance, first clone the repository using
 
 ```

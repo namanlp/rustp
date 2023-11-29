@@ -46,3 +46,5 @@
 * Add BFS
 * Add DFS
 * Add Prims
+* Add Kruskal Algorithm
+* Add cycle detection

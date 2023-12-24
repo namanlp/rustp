@@ -52,3 +52,9 @@ python3 -m http.server
 
 command
 
+## Contributing
+
+You can open pull request and also any issues regarding the content of the website.
+
+**Thank You**
+

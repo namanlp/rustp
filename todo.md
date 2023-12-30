@@ -8,7 +8,6 @@
 
 ## Basic Programs
 
-* Add solution to basic interactive problem
 * Add [Codeforces interactive question](https://codeforces.com/problemset/problem/1807/E) to interactive page.
 * Add [Codeforces interactive question](https://codeforces.com/problemset/problem/1780/D) to interactive page.
 
